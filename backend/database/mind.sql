@@ -1,0 +1,44 @@
+CREATE TABLE card(
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) UNIQUE NOT NULL,
+    description TEXT
+);
+
+ALTER TABLE task ADD COLUMN user_id INTEGER REFERENCES users(id);
+
+CREATE TABLE user_deck(
+    id SERIAL PRIMARY KEY,
+)
+
+ALTER TABLE user_deck ADD COLUMN user_id INTEGER REFERENCES users(id);
+ALTER TABLE user_deck ADD COLUMN deck_id INTEGER REFERENCES users(id);
+
+
+CREATE TABLE users(
+    id SERIAL PRIMARY KEY,
+    user VARCHAR(255) UNIQUE NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+
+ALTER TABLE users ADD COLUMN gravatar VARCHAR(255);
+
+CREATE TABLE deck(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    type VARCHAR(255) NOT NULL,
+    description VARCHAR(255)
+)
+
+CREATE TABLE parameters(
+    id SERIAL PRIMARY KEY,
+    racha
+    ef
+    interval_repeat
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+)
