@@ -1,0 +1,11 @@
+a { color:rgb(255, 255, 255) } 
+
+body{
+    background: rgb(18,88,184);
+    background: linear-gradient(177deg, rgba(18,88,184,1) 0%, rgba(0,0,0,1) 100%);
+    color:aliceblue;
+    min-height: 100vh;
+    justify-content: center;
+    margin: 0px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+} 
