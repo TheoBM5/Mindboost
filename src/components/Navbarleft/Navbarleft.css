@@ -1,0 +1,53 @@
+.side{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 300px;
+    background-color: #000000a1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+.header-tittle{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+.appTitulo{
+    align-items: center;
+  }
+
+.list-Unorded{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    list-style:none;
+    padding-left: 0;
+  }
+
+.nav-container{
+  display: flex;  
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1rem;
+  text-decoration: none;
+}
+
+.leftsidebar-link{
+  border-radius: 0.375rem; /* Esto establece la propiedad 'border-radius' con el valor correspondiente a 'rounded-lg' en Tailwind */
+  font-size: 1rem; /* Esto establece el tamaño de fuente correspondiente a 'base-medium' en Tailwind */
+  transition: all 0.3s ease; /* Esto establece una transición suave para todos los cambios de propiedad con una duración de 0.3 segundos */
+  color: white;
+}
+
+.group-img
+{
+  filter: invert(100%);
+}
+
+.leftsidebar-link:hover{
+  background-color: #002660a7; 
+}
+
