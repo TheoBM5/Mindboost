@@ -1,6 +1,6 @@
 import './Card.css'
 
-export function Card({children}) {
-  return <div className="cardStyle" >{children}</div>
+export function Card({children, className }) {
+  return <div className={`cardStyle ${className}`}>{children}</div>
 }
 export default Card

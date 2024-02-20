@@ -1,8 +1,8 @@
-import {Input, Card, Button} from "../../components/ui/index.js"
+import {Input, Card, Button, Label} from "../../components/ui/index.js"
 import {useForm} from 'react-hook-form'
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
-import './SigninForm.css'
+import './FormsStyle.css'
 
 function SigninForm() {
   const {
@@ -24,38 +24,39 @@ function SigninForm() {
   })
   
   return (
-      <div className="sizeInForm">
+      <div className="size-form">
           <Card>
           {
-            loginErrors &&(
-              loginErrors.map(err => (
-                <p>
+            loginErrors &&
+              loginErrors.map((err) => (
+                <p className="error-message">
                   {err}
                 </p>
               ))
-            )
           }
-          <h3>Iniciar Sesion</h3>
+          <h3 className="title-style">Sign-In</h3>
             <form onSubmit={onSubmit}>
+            <Label htmlFor="name">email</Label>
             <Input type="email" placeholder = "Enter your email" 
                 {...register('email',{
                   required: true,
                 })}
               />
-               {errors.email && <p>email is required</p>}
-               <Input type="password" placeholder = "Enter your password" 
-                  {...register('password',{
-                    required: true,
-                  })}
-                />
-                {errors.password && (<p>password is required</p>)}
+              {errors.email && <p className="error-message">Email is Required</p>}
+              <Label htmlFor="name">Password</Label>
+              <Input type="password" placeholder = "Enter your password" 
+                {...register('password',{
+                  required: true,
+                })}
+              />
+              {errors.password && (<p className="error-message"> Password is Required</p>)}
               <Button type="submit">
-                Register
+                Sign-in
               </Button>
-              <div>
-                <p >Dont't have an account?</p>
-                <Link to="/sign-up">
-                  Login
+              <div className="sub-form">
+                <p className="sub-text">Dont't have an account?</p>
+                <Link className="link-to" to="/sign-up">
+                  Register
                 </Link>
               </div>
             </form>

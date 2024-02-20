@@ -1,0 +1,39 @@
+.size-form{
+    height: calc(100vh - 70px); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title_{
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+}
+
+.error-message{
+    color: rgb(252, 64, 64);
+}
+
+.link-to{
+    opacity: 0.5;
+}
+
+.title-style{
+    margin:0.5rem auto;
+    padding: 1rem 3rem;
+    font-size: 1.75rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.sub-text{
+    text-align: center;
+}
+
+.sub-form{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,34 @@
+.user-Card {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-size: .8rem;
+    justify-content: space-between;
+    font-family:"Roboto";
+  }
+  
+  .user-Card-header {
+    display: flex;
+    align-items: center;
+    gap: 4px
+  }
+  
+  .user-info{
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+  .user-card-info{
+    opacity: .6;
+  }
+  
+  .profile-image{
+    width: 48px;
+    height: 48px;
+    border-radius: 1000px;
+  }
+
+  .enlace{
+    text-decoration: none;
+  }

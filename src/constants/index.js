@@ -1,24 +1,24 @@
 export const navigation = [
     {
-        imgURL:"/assets/icons/home.svg",
+        imgURL:"src/assets/icons/home.svg",
         route:"/",
         label:"Home",
     },
 
     {
-        imgURL:"/assets/icons/play-card.svg",
-        route:"/profile",
+        imgURL:"src/assets/icons/play-card.svg",
+        route:"/study",
         label:"Tarjetas",
     },
 
     {
-        imgURL:"/assets/icons/settings.svg",
-        route:"/",
+        imgURL:"src/assets/icons/settings.svg",
+        route:"/profile",
         label:"Configuracion",
     },
     {
-        imgURL:"/assets/icons/settings.svg",
-        route: "/study/new",
+        imgURL:"src/assets/icons/settings.svg",
+        route: "/card/new",
         label: "New",
     }
 ];

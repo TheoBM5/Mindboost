@@ -5,6 +5,10 @@ export const signupSchema = z.object({
         required_error: 'El nombre es requerido',
         invalid_type_error: 'El nombre debe ser un texto'
     }).min(1).max(255),
+    username: z.string({
+        required_error: 'El usuario es requerido',
+        invalid_type_error: 'El usuario debe ser un texto'
+    }).min(1).max(255),
     email: z.string({
         required_error: 'El email es requerido',
         invalid_type_error: 'El email debe ser un texto'

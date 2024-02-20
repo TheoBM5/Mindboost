@@ -2,7 +2,9 @@
     background: rgb(31, 31, 31);
     color: white;
     display: block;
-    padding: 0.5rem 0.75rem;
-    margin: 0.5rem 0rem;
+    border: 10px;
+    border-radius: 15px;
+    padding: 0.7rem 0.75rem;
+    margin: 0.8rem auto;
     width: 100%;
 }

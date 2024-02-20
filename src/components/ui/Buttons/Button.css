@@ -1,15 +1,75 @@
-.buttonStyle{
+.button-accept, .button-red, .button-green,
+.button-orange, .button-yellow{
     position: relative;
     display: inline-flex;
-    align-items: center;
     column-gap: 0.375rem;
-    border-radius: 0.375rem;
+    border:  3px solid rgb(12, 11, 11);
+    border-radius: 0.475rem;
     background: rgb(12, 11, 11);
-    color: white;
-    padding: 0.375rem 0.75rem;
-
+    color: rgb(140, 140, 140);
+    text-align: center;
     font-size: 0.875rem;
     line-height: 1.25rem;
-    font-weight: 600;
+    font-weight: bold;
+    align-items: center;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+}
 
+.button-red, .button-green,
+.button-orange, .button-yellow{
+    padding: 1rem 0rem;
+    color: white;
+    content: '';
+}
+
+.button-accept:hover 
+{
+    
+    border:  3px solid rgb(255, 255, 255);
+}
+
+.button-red{
+    background: rgb(255, 124, 124);
+    border:  1px solid rgb(12, 11, 11);
+}
+
+.button-red:hover 
+{
+    content: '';
+    border:  3px solid rgb(255, 71, 71);
+}
+
+
+.button-green
+{
+    background: rgb(124, 255, 168);
+    border:  3px solid rgb(124, 255, 168);
+}
+
+.button-green:hover{
+    border: 3px solid rgb(26, 255, 102)
+}
+
+
+.button-orange
+{
+    background: rgb(255, 196, 124);
+    border:  3px solid rgb(255, 196, 124);
+}
+
+.button-orange:hover{
+    border: 3px solid rgb(255, 158, 39);
+}
+
+
+.button-yellow
+{
+    background: rgb(242, 255, 124);
+    border:  3px solid rgb(245, 255, 49);
+}
+
+.button-yellow:hover{
+    border: 3px solid rgb(229, 255, 0);
 }

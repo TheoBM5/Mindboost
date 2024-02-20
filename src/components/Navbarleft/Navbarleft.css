@@ -4,7 +4,7 @@
     left: 0;
     height: 100%;
     width: 300px;
-    background-color: #000000a1;
+    background-color: #000000c4;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -17,6 +17,7 @@
 
 .appTitulo{
     align-items: center;
+    text-align: center;
   }
 
 .list-Unorded{
@@ -48,6 +49,27 @@
 }
 
 .leftsidebar-link:hover{
-  background-color: #002660a7; 
+  background-color: #0048b5; 
 }
 
+.logout-img{
+  width: 2.5rem;
+  filter: invert(100%);
+  padding-right: 10px;
+}
+
+.link-out{
+  display: flex;
+  padding: 1rem;
+}
+
+
+
+.cont-out{
+  padding-top: 20rem;
+}
+
+.cont-out :hover{
+  filter: invert(80%);
+  
+}

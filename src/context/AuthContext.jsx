@@ -38,7 +38,6 @@ export function AuthProvider({ children }) {
     try {
       const res = await axios.post("/signup", data);
       setUser(res.data);
-      setUser(res.data);
       setIsAuth(true);
 
       return res.data;
@@ -59,20 +58,22 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     setLoading(true);
-    if (Cookie.get("token")) {
-      axios
-        .get("/profile")
-        .then((res) => {
-          setUser(res.data);
-          setIsAuth(true);
-        })
-        .catch((err) => {
-          setUser(null);
-          setIsAuth(false);
-        });
+  const fetchUserData = async () => {
+    try {
+      if (Cookie.get("token")) {
+        const res = await axios.get("/profile");
+        setUser(res.data);
+        setIsAuth(true);
+      }
+    } catch (err) {
+      setUser(null);
+      setIsAuth(false);
+    } finally {
+      setLoading(false); // Establecer el estado de carga después de que se completa la solicitud
     }
-    
-    setLoading(false);
+  };
+
+  fetchUserData();
   }, []);
 
   useEffect(() => {

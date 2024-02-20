@@ -1,0 +1,32 @@
+.background-nav{
+    background-color: rgba(10, 10, 10, 0.899);
+    padding: 1px;
+}
+
+.title-bar{
+    padding-left: 3rem;
+}
+
+.link-container{
+    width: 10rem;
+    display: flex;
+    justify-content: space-around;
+    margin-left: auto;
+    padding: 0rem 3rem;
+    text-decoration: none;
+}
+
+.cont{
+    display: flex;
+    align-items: center;
+}
+
+.text-link{
+    text-decoration: none;
+    padding: 8px;
+    
+}
+
+.text-link:hover{
+    border:  3px solid rgb(255, 255, 255);
+}

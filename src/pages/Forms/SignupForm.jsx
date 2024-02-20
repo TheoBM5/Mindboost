@@ -1,8 +1,8 @@
-import {Input, Card, Button} from "../../components/ui/index"
+import {Input, Card, Button, Label} from "../../components/ui/index"
 import {useForm} from 'react-hook-form';
 import { Link, useNavigate } from "react-router-dom";
 import {useAuth} from '../../context/AuthContext'
-import './SignupForm.css'
+import './FormsStyle.css'
 
 function SignupForm() {
   const {
@@ -23,47 +23,61 @@ function SignupForm() {
 
 
   return (
-    <div className="sizeForm">
+    <div className="size-form">
         <Card>
         {
             signupErrors &&(
               signupErrors.map((err) => (
-                <p>
+                <p className="error-message">
                   {err}
                 </p>
               )))
           }
-        <h3>Register</h3>
+        <h3 className="title-style">Register</h3>
           <form onSubmit={onSubmit}>
+              <Label htmlFor="name">Name</Label>
               <Input placeholder = "Enter your fullname" 
                 {...register('name',{
                   required: true,
                 })}  
               />
               {
-                errors.name && <p>name is required</p>
+                errors.name && <p className="error-message">name is required</p>
               }
+
+              <Label htmlFor="username">User</Label>
+              <Input placeholder = "Enter your username" 
+                {...register('username',{
+                  required: true,
+                })}  
+              />
+              {
+                errors.user && <p className="error-message">user is required</p>
+              }
+
+              <Label htmlFor="email">Email</Label>
               <Input type="email" placeholder = "Enter your email" 
                 {...register('email',{
                   required: true,
                 })}
               />
                {errors.email && <p>email is required</p>}
+              <Label htmlFor="password">Password</Label>
               <Input type="password" placeholder = "Enter your password" 
                 {...register('password',{
                   required: true,
                 })}
               />
               {errors.password && (
-            <p>password is required</p>
+            <p className="error-message">password is required</p>
           )}
 
             <Button type="submit">
               Register
             </Button>
-            <div>
-              <p >Already have an account?</p>
-              <Link to="/sign-in">
+            <div className="sub-form">
+              <p className="sub-text">Already have an account?</p>
+              <Link className="link-to" to="/sign-in">
                 Login
               </Link>
             </div>

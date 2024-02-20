@@ -1,9 +1,21 @@
 import '../Buttons/Button.css'
 
-export function Button({ children, className, ...props }) {
+const STYLES = [
+  'button-accept',
+  'button-green',
+  'button-red',
+  'button-orange',
+  'button-yellow',
+];
+
+
+export function Button({ type, children, className, ...props }) {
+  const buttonStyle = STYLES.includes(type) ? type : STYLES[0];
   return (
     <button
-        className="buttonStyle">
+        className={`normal-buttons ${buttonStyle}`}
+        {...props}
+    >
         {children}
     </button>
   )

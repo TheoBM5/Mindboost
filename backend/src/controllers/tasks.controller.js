@@ -1,14 +1,14 @@
 import {pool} from '../db.js';
 
-export const getAllTasks = async (req, res, next) => {
-    const result = await pool.query("SELECT * FROM task WHERE user_id = $1",[
+export const getAllDecks = async (req, res, next) => {
+    const result = await pool.query("SELECT * FROM deck WHERE user_id = $1",[
         req.userId,
     ]);
     return res.json(result.rows);
 };
 
-export const getTask = async (req, res) => {
-    const result = await pool.query("SELECT * FROM  task WHERE id = $1", [
+export const getDeck = async (req, res) => {
+    const result = await pool.query("SELECT * FROM  deck WHERE id = $1", [
         req.params.id,
     ]);
 
@@ -20,31 +20,31 @@ export const getTask = async (req, res) => {
     return res.json(result.rows[0]);
 };
 
-export const createTask = async (req, res, next) => {
+export const createDeck = async (req, res, next) => {
     const {title, description} = req.body;
     try{
         const result = await pool.query(
-        "INSERT INTO task (title, description, user_id) VALUES ($1, $2, $3) RETURNING *",  
+        "INSERT INTO deck (title, description, user_id) VALUES ($1, $2, $3) RETURNING *",  
         [title,description ,req.userId]
     );   
     res.json(result.rows[0]);  
     } catch(error){
         if (error.code === "23505"){
             return res.status(409).json({
-                message:"Ya existe la tarea con ese titulo",
+                message:"Ya existe un deck con ese titulo",
             });
         }
         next(error);
     }
 };
     
-export const updateTask = async (req, res) => {
+export const updateDeck = async (req, res) => {
     console.log(req.userId)
     const id = req.params.id;
     const {title, description} = req.body;
 
     const result = await pool.query(
-        'UPDATE task SET title = $1, description = $2 WHERE id = $3 RETURNING *', [title, description, id])
+        'UPDATE deck SET title = $1, description = $2 WHERE id = $3 RETURNING *', [title, description, id])
     if (result.rowCount === 0) {
         return res.status(404).json({
             message: "No existe una tarea con ese id",
@@ -53,8 +53,8 @@ export const updateTask = async (req, res) => {
     return res.json(result.rows[0]);
 };
 
-export const deleteTask = async (req, res) => {
-    const result = await pool.query('DELETE FROM task WHERE id = $1 RETURNING *',[req.params.id])
+export const deleteDeck = async (req, res) => {
+    const result = await pool.query('DELETE FROM deck WHERE id = $1 RETURNING *',[req.params.id])
     console.log(result)
 
     if(result.rowCount === 0){

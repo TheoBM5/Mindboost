@@ -1,0 +1,13 @@
+
+.DeckDesign{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));	
+    gap: 5rem;
+    margin: 2rem 4rem;
+}
+
+.box{
+    display: flex;
+    width: 160vh;
+    margin-left: auto;
+}

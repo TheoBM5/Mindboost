@@ -1,0 +1,29 @@
+.card-size{
+    height: calc(100vh - 64px); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.line-buttons{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));	
+    gap: 5rem;
+    margin: 3rem 0rem;
+    padding: 2rem 0rem;
+}
+
+.content{
+    display: block;
+    
+}
+
+.estiloCard{
+    display: flex;
+    width: 50rem;
+    height: 20rem;
+    padding: 5.5rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
