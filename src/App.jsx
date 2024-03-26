@@ -1,6 +1,7 @@
 import {Routes, Route, Outlet} from 'react-router-dom'
 import {useAuth} from './context/AuthContext'
-import { DeckProvider } from './context/CardContext'
+import { DeckProvider } from './context/DeckContext'
+import { CardProvider } from './context/CardContext'
 
 import NavBar from './components/NavBar/NavBar'
 import {Container} from './components/ui/index'
@@ -12,13 +13,13 @@ import SigninForm from './pages/Forms/SigninForm';
 import SignupForm from './pages/Forms/SignupForm';
 import Navbarleft from './components/Navbarleft/NavbarLeft';
 import NotFound from './pages/NotFound';
-import CardFormPage from './pages/Forms/CardFormPage'
+import DeckFormPage from './pages/Forms/DeckFormPage'
 import Profile from './pages/Profile/Profile';
 import FlashCard from './pages/FlashCard/FlashCard'
+import CardFormPage from './pages/Forms/CardFormPage';
 
 function App() {
   const {isAuth, loading} = useAuth();
-  console.log(loading)
 
   if (loading) return <h1>
     Cargando...
@@ -35,12 +36,19 @@ function App() {
             <Route element = {<ProtectedRoute isAllowed={isAuth} redirectTo="/sign-in" />}>
               <Route element={
                 <DeckProvider>
-                  <Outlet/>
+                  <Outlet/> 
                 </DeckProvider>
               }>
                 <Route path='/' element={<><Container><Navbarleft/><Home/></Container></>} />
-                <Route path="/card/new" element={<CardFormPage/>}/>
-                <Route path="/cards/:id/edit" element={<CardFormPage/>}/>
+                <Route path="/deck/new" element={<DeckFormPage/>}/>
+                <Route path="/decks/:id/edit" element={<DeckFormPage/>}/>
+                <Route path='decks/:deckid/card/:idcard/edit' element={<CardFormPage/>} />
+                <Route path="/deck/:deckid/new/card" element={
+                  <CardProvider>
+                    <CardFormPage/>
+                  </CardProvider>
+                } />
+                
                 <Route path="/study" element={<FlashCard/>}/>
               </Route>
 

@@ -1,9 +1,7 @@
 import { useEffect } from "react"
-import { getAllDecksRequest } from "../../api/tasks.api";
-import TaskCard from "../../components/Cards/CardsContent"
 import CardsContent from "../../components/Cards/CardsContent";
 import {useState} from 'react'
-import {useDecks} from '../../context/CardContext'
+import {useDecks} from '../../context/DeckContext'
 import './Home.css'
 function Home() {
   const {decks, loadDecks} = useDecks();
@@ -20,7 +18,7 @@ function Home() {
   
   return (
     <div className="box">
-      <div className="DeckDesign">
+      <div className="deck-space">
         {decks.map((deck) => (
           <CardsContent key={deck.id} deck={deck}/>
         ))}

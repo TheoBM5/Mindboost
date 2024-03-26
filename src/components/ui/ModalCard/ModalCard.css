@@ -1,0 +1,184 @@
+.modalBackground {
+    position: fixed;
+    display: grid;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Fondo oscuro semitransparente */
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+  }
+
+.modalContainer {
+    width: 40vw;
+    height: 50vh;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.859);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    font-size: 1.2rem;
+    text-align: center;
+    flex: 20%;
+
+  }
+
+.modalContainer .title {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.titleCloseBtn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.titleCloseBtn button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.title{
+  display: inline-block;
+  text-align: center;
+  margin: 10px;
+  
+}
+
+.footer button{
+  width: 150px;
+  height: 45px;
+  margin: 10px;
+  border: none;
+  background-color: rgb(11, 11, 11);
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.footer{
+  padding-top: 3rem;
+}
+
+section{
+  width: 70vh;
+  height: 10vh;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  left: 50%;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tile{
+  height: 20vh;
+  width: 10vw;
+  display: inline-grid;
+  border: 1px solid black;
+  border-radius: 15px;
+  align-items: center;
+  background-color: #1b1a1a;
+
+  padding: 5px 5px;
+  gap: 10px;
+}
+
+input[type="checkbox"]{
+  position: relative;
+  height: 25%;
+  width: 25%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  outline: none;
+  box-shadow: 15px 15px 25px rgba(2,28,53,0.05);
+}
+
+input[type="radio"]:checked ~ .tile {
+  border: 3px solid rgb(0, 60, 255);
+}
+
+input[type="checkbox"]:after{
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  content: "\f111";
+  font-size: 22px;
+  top: 10px;
+  left: 10px;
+  color: #e2e6f3;
+}
+input[type="checkbox"]:hover{
+  transform: scale(1.08);
+}
+input[type="checkbox"]:checked{
+  border: 3px solid #478bfb;
+}
+input[type="checkbox"]:checked:after{
+  font-weight: 900;
+  content: "\f058";
+  color: #478bfb;
+}
+
+label .fas{
+  font-size: 60px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 80%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked + label .fas{
+  animation: grow 0.5s;
+}
+@keyframes grow{
+  50%{
+      font-size: 80px;
+  }
+}
+
+label h6{
+  font-family: "Poppins",sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+
+.tile-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.5rem;
+
+}
+
+.radio-select{
+  place-self: start;
+}
+
+.radio-img{
+  width: 5rem;
+  height: 5rem;
+  filter: invert(80%);
+  justify-self: center;
+}

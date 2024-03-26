@@ -1,7 +1,7 @@
 export const navigation = [
     {
         imgURL:"src/assets/icons/home.svg",
-        route:"/",
+        route:"/deck/new/card/",
         label:"Home",
     },
 
@@ -16,9 +16,9 @@ export const navigation = [
         route:"/profile",
         label:"Configuracion",
     },
-    {
-        imgURL:"src/assets/icons/settings.svg",
-        route: "/card/new",
-        label: "New",
-    }
+    // {
+    //     imgURL:"src/assets/icons/settings.svg",
+    //     route: "/card/new",
+    //     label: "New",
+    // }
 ];

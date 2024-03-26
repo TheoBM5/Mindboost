@@ -1,6 +1,9 @@
 import './UserCard.css'; 
+import {useAuth} from '../../context/AuthContext';
 import { Link } from 'react-router-dom'
 export function UserCard() {
+
+  const {user} = useAuth()
   return (
     <Link to={"/profile"} className='enlace'>
       <article className='user-Card'>
@@ -8,11 +11,11 @@ export function UserCard() {
               <img  
               className='profile-image'
               alt='Imagen del usuario'
-              src={'https://unavatar.io/youtube/TheoBM_5'}
+              src={user.gravatar}
               />
           <div className='user-info'>
-              <strong>TheoBm5</strong>
-              <span className='user-card-info'>teodorohugo5@gmail.com</span>
+              <strong>{user.name}</strong>
+              <span className='user-card-info'>{user.email}</span>
           </div>
           </header>
       </article>

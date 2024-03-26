@@ -1,13 +1,17 @@
 
-.DeckDesign{
+.deck-space{
     display: grid;
+    width: 100%;
     grid-template-columns: repeat(3, minmax(0, 1fr));	
     gap: 5rem;
     margin: 2rem 4rem;
+    align-items: center;
+
 }
 
 .box{
     display: flex;
-    width: 160vh;
+    width: 82%;
     margin-left: auto;
+
 }

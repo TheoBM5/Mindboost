@@ -13,7 +13,7 @@ export function Button({ type, children, className, ...props }) {
   const buttonStyle = STYLES.includes(type) ? type : STYLES[0];
   return (
     <button
-        className={`normal-buttons ${buttonStyle}`}
+        className={`normal-buttons ${buttonStyle} ${className}`}
         {...props}
     >
         {children}

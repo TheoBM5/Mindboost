@@ -1,0 +1,38 @@
+.back-card{
+    width: 50vw;
+    height: 50vh;
+    margin: 5rem auto;
+    display: flex;
+    text-align: center;
+
+    justify-content: center;
+}
+
+.ontainer-page{
+    width: 100%;
+    height: 100vh;
+
+}
+
+.slides
+{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    color: #fff;
+}
+
+.slides1{
+    background-color: linear-gradient(454deg, #4f4080, #9553ff);
+}
+
+.slides2{
+    background-color: linear-gradient(454deg, #40806d, #53f9ff);
+}
+
+.slides3{
+    background-color: linear-gradient(454deg, #806240, #ff5353);
+}

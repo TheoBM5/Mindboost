@@ -1,40 +1,40 @@
 import { createContext, useState, useContext } from "react";
 import {
-  getAllDecksRequest,
-  deleteDeckRequest,
-  createDeckRequest,
-  getDeckRequest,
-  updateDeckRequest,
-} from "../api/tasks.api";
+  getAllCardsRequest,
+  getCardRequest,
+  createCardRequest,
+  updateCardRequest,
+  deleteCardRequest,
+} from "../api/card.api";
 
-const DeckContext = createContext();
+const CardContext = createContext();
 
-export const useDecks = () => {
-  const context = useContext(DeckContext);
+export const useCards = () => {
+  const context = useContext(CardContext);
   if (!context) {
-    throw new Error("useDecks debe estar dentro del proveedor DeckProvider");
+    throw new Error("useCards debe estar dentro del proveedor CardProvider");
   }
   return context;
 };
 
-export const DeckProvider = ({ children }) => {
-  const [decks, setDecks] = useState([]);
+export const CardProvider = ({ children }) => {
+  const [cards, setCards] = useState([]);
   const [errors, setErrors] = useState([]);
 
-  const loadDecks = async () => {
-    const res = await getAllDecksRequest();
-    setDecks(res.data);
+  const loadCards = async (deckId) => {
+    const res = await getAllCardsRequest(deckId);
+    setCards(res.data);
   };
 
-  const loadDeck = async (id) => {
-    const res = await getDeckRequest(id);
+  const loadCard = async (deckId, id) => {
+    const res = await getCardRequest(deckId, id);
     return res.data;
   };
 
-  const createDeck = async (deck) => {
+  const createCard = async (deckId, card) => {
     try {
-      const res = await createDeckRequest(deck);
-      setDecks([...decks, res.data]);
+      const res = await createCardRequest(deckId, card);
+      setCards([...cards, res.data]);
       return res.data;
     } catch (error) {
       if (error.response) {
@@ -43,17 +43,16 @@ export const DeckProvider = ({ children }) => {
     }
   };
 
-  const deleteDeck = async (id) => {
-    const res = await deleteDeckRequest(id);
-    console.log("cardContext",res)
+  const deleteCard = async (deckId, id) => {
+    const res = await deleteCardRequest(deckId, id);
     if (res.status === 204) {
-      setDecks(decks.filter((deck) => deck.id !== id));
+      setCards(cards.filter((card) => card.id !== id));
     }
   };
 
-  const updateDeck = async (id, deck) => {
+  const updateCard = async (deckId, id, card) => {
     try {
-      const res = await updateDeckRequest(id, deck);
+      const res = await updateCardRequest(deckId, id, card);
       return res.data;
     } catch (error) {
       if (error.response) {
@@ -63,18 +62,18 @@ export const DeckProvider = ({ children }) => {
   };
 
   return (
-    <DeckContext.Provider
+    <CardContext.Provider
       value={{
-        decks,
-        loadDecks,
-        deleteDeck,
-        createDeck,
-        loadDeck,
+        cards,
+        loadCards,
+        deleteCard,
+        createCard,
+        loadCard,
         errors,
-        updateDeck
+        updateCard
       }}
     >
       {children}
-    </DeckContext.Provider>
+    </CardContext.Provider>
   );
 };

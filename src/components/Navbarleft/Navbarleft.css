@@ -32,7 +32,7 @@
   display: flex;  
   gap: 1rem;
   align-items: center;
-  padding: 1rem 1rem;
+  padding: 1rem 4.5rem;
   text-decoration: none;
 }
 
@@ -63,8 +63,6 @@
   padding: 1rem;
 }
 
-
-
 .cont-out{
   padding-top: 20rem;
 }
@@ -72,4 +70,9 @@
 .cont-out :hover{
   filter: invert(80%);
   
+}
+
+.button-new{
+  background-color: #00000000;
+  border:none;
 }
