@@ -23,13 +23,7 @@ function CardFormPage() {
         } else{
             deck = await updateDeck(params.id, data)
         }
-        
-
     });
-
-    const handleContinueCard = () => {
-        navigate(`/deck/${params.id}/new/card`);
-    }
 
     useEffect(()=>{
         if(params.id){

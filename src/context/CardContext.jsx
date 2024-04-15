@@ -50,9 +50,9 @@ export const CardProvider = ({ children }) => {
     }
   };
 
-  const updateCard = async (deckId, id, card) => {
+  const updateCard = async (deckId, cardId, card) => {
     try {
-      const res = await updateCardRequest(deckId, id, card);
+      const res = await updateCardRequest(deckId, cardId, card);
       return res.data;
     } catch (error) {
       if (error.response) {

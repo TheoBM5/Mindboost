@@ -12,7 +12,8 @@ function CardsContent({deck}) {
   };
 
   const handleEditClick = () => {
-      navigate(`/decks/${deck.id}/edit`);
+      // navigate(`/decks/${deck.id}/edit`);
+      navigate(`/decks/${deck.id}/card/edit`);
   };
 
   const handleDeleteClick = async () => {

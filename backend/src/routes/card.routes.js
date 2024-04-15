@@ -3,10 +3,10 @@ import { getAllCards, getCard, createCard, updateCard, deleteCard } from '../con
 
 const router = express.Router();
 
-router.get('/:deckid/cards', getAllCards);
-router.get('/:deckid/cards/:idcard', getCard);
+router.get('/decks/:deckid/cards', getAllCards);
+router.get('/decks/:deckid/cards/:idcard', getCard);
 router.post('/decks/:deckId/cards', createCard);
-router.put('/:deckid/cards/:id', updateCard);
-router.delete('/:deckid/cards/:id', deleteCard);
+router.put('/decks/:deckid/cards/:id', updateCard);
+router.delete('/decks/:deckid/cards/:id', deleteCard);
 
 export default router;

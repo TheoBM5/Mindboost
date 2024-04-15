@@ -31,14 +31,14 @@ function CardFormPage() {
             <form className="size-form2" onSubmit={onSubmit}>
                 <Label htmlFor="front">Front</Label>
                 <TextArea 
-                    {...register("Front")}
+                    {...register("front")}
                     placeholder="Front"
                     rows={3}
                 ></TextArea>
                 
                 <Label htmlFor="reverse">Reverse</Label>
                 <TextArea 
-                    {...register("Reverse")}
+                    {...register("reverse")}
                     placeholder="Reverse"
                     rows={3}
                 ></TextArea>
