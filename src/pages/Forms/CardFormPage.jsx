@@ -28,25 +28,39 @@ function CardFormPage() {
   return (
     <div className="size-form-card">
         <Card className="card-style">
-            <form className="size-form2" onSubmit={onSubmit}>
+            <form className="size-form-card-2" onSubmit={onSubmit}>
                 <Label htmlFor="front">Front</Label>
                 <TextArea 
-                    {...register("front")}
+                    {...register("front",{
+                        required: true,
+                    })}
                     placeholder="Front"
                     rows={3}
-                ></TextArea>
-                
+                />
+                {errors.front && (
+                    <p className="error-message">front text is required</p>
+                )
+                    
+                }
                 <Label htmlFor="reverse">Reverse</Label>
                 <TextArea 
-                    {...register("reverse")}
+                    {...register("reverse",{
+                        required: true,
+                    })}
                     placeholder="Reverse"
                     rows={3}
-                ></TextArea>
+                />
+                {
+                    errors.reverse && (
+                        <p className="error-message">Reverse text is required</p>
+                    )
+                    
+                }
                 <footer className="buttons-card">
-                    <Button className="add-button">
+                    <Button type="submit" className="add-button">
                         +
                     </Button>
-                    <Button>
+                    <Button type="submit">
                         {params.id ? "Edit Card" : "Create Card"}
                     </Button>
                 </footer>

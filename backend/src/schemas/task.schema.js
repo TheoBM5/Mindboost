@@ -15,7 +15,6 @@ export const createDeckSchema = z.object({
     })
     .min(1)
     .max(255)
-    .optional(),
 });
 
 export const updateDeckSchema = z.object({
@@ -25,7 +24,7 @@ export const updateDeckSchema = z.object({
       invalid_type_error: "El titulo debe ser un texto",
     })
     .min(1)
-    .max(255).optional(),
+    .max(255),
   description: z
     .string({
       required_error: "La descripcion es requerida",

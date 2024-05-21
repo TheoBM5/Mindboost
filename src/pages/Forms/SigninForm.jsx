@@ -15,6 +15,7 @@ function SigninForm() {
   const navigate = useNavigate()
 
   const onSubmit = handleSubmit(async (data) => {
+    console.log("Hola: ")
     const user = await signin(data);
 
     if(user){
@@ -36,11 +37,13 @@ function SigninForm() {
           }
           <h3 className="title-style">Sign-In</h3>
             <form onSubmit={onSubmit}>
-            <Label htmlFor="name">email</Label>
-            <Input type="email" placeholder = "Enter your email" 
+            <Label htmlFor="name">Email</Label>
+            <Input type="email" placeholder = "Enter your email" required
+            title="Por favor introduzca una direccion de email valida"
                 {...register('email',{
                   required: true,
                 })}
+                
               />
               {errors.email && <p className="error-message">Email is Required</p>}
               <Label htmlFor="name">Password</Label>
@@ -48,6 +51,7 @@ function SigninForm() {
                 {...register('password',{
                   required: true,
                 })}
+                
               />
               {errors.password && (<p className="error-message"> Password is Required</p>)}
               <Button type="submit">

@@ -1,3 +1,4 @@
+import { GiConsoleController } from 'react-icons/gi';
 import {pool} from '../db.js';
 
 export const getAllDecks = async (req, res, next) => {
@@ -21,11 +22,13 @@ export const getDeck = async (req, res) => {
 };
 
 export const createDeck = async (req, res, next) => {
-    const {title, description} = req.body;
+    const {title, description, icon} = req.body;
+    console.log(req.body)
+    console.log(icon)
     try{
         const result = await pool.query(
-        "INSERT INTO deck (title, description, user_id) VALUES ($1, $2, $3) RETURNING *",  
-        [title,description ,req.userId]
+        "INSERT INTO deck (title, description, user_id, icon_name) VALUES ($1, $2, $3, $4) RETURNING *",  
+        [title,description ,req.userId, icon]
     );   
     res.json(result.rows[0]);  
     } catch(error){
@@ -41,10 +44,10 @@ export const createDeck = async (req, res, next) => {
 export const updateDeck = async (req, res) => {
     console.log(req.userId)
     const id = req.params.id;
-    const {title, description} = req.body;
+    const {title, description, icon} = req.body;
 
     const result = await pool.query(
-        'UPDATE deck SET title = $1, description = $2 WHERE id = $3 RETURNING *', [title, description, id])
+        'UPDATE deck SET title = $1, description = $2, icon_name = $4 WHERE id = $3 RETURNING *', [title, description, id,icon ])
     if (result.rowCount === 0) {
         return res.status(404).json({
             message: "No existe una tarea con ese id",

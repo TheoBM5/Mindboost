@@ -4,7 +4,7 @@ import './FlashCard.css'
 function FlashCard() {
   return (
     <div className='card-size'>
-      <main className='content'>
+      <div className='content'>
         <Card className="estiloCard">
             <p>Hola como estas</p>
         </Card>
@@ -14,7 +14,7 @@ function FlashCard() {
             <Button type={"button-yellow"}>Bien</Button>
             <Button type={"button-green"}>Muy Bien</Button>
         </div>
-      </main>
+      </div>
     </div>
   )
 }

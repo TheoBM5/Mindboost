@@ -7,6 +7,7 @@ function NavBar() {
   return (
     <nav className="background-nav">
         <div className="cont">
+  
             <h1 className="title-bar">Mindboost</h1>
             <div className="link-container">
               <NavLink className="text-link" to="/about">

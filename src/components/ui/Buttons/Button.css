@@ -1,6 +1,6 @@
 .button-accept, .button-red, .button-green,
 .button-orange, .button-yellow{
-    position: relative;
+    position: inherit;
     display: inline-flex;
     column-gap: 0.375rem;
     border:  3px solid rgb(12, 11, 11);

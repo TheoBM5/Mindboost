@@ -1,5 +1,7 @@
 import {z} from 'zod'
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export const signupSchema = z.object({
     name: z.string({
         required_error: 'El nombre es requerido',
@@ -27,7 +29,11 @@ export const signinSchema = z.object({
     email: z.string({
         required_error: 'El email es requerido',
         invalid_type_error: 'El email debe ser un texto'
-    }).email({
+    }).refine(value => {
+        console.log('Value:', value);
+        console.log('Regex test:', emailRegex.test(value));
+        return emailRegex.test(value);
+    },{
         message: 'El email debe ser un email valido'
     }),
     password: z.string({

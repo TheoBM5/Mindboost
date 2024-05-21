@@ -43,3 +43,6 @@ CREATE TABLE user_card_parameters(
     interval_repeat INTEGER,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+ALTER TABLE deck
+ADD COLUMN icon_name VARCHAR(255) DEFAULT 'Star';

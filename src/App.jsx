@@ -17,7 +17,7 @@ import Profile from './pages/Profile/Profile';
 import FlashCard from './pages/FlashCard/FlashCard';
 import CardFormPage from './pages/Forms/CardFormPage';
 import EditCard from './pages/EditCard/EditCard';
-
+import Stars from './components/StarBackGround/Stars';
 function App() {
   const {isAuth, loading} = useAuth();
 
@@ -28,8 +28,8 @@ function App() {
     <>
           <Routes>
             <Route element={<ProtectedRoute isAllowed={!isAuth} redirectTo="/" />}>
-              <Route path="/sign-up" element={<><NavBar/><SignupForm/></>} />
-              <Route path="/sign-in" element={<><NavBar/><SigninForm/></>} />
+              <Route path="/sign-up" element={<><Stars><NavBar/><SignupForm/></Stars></>} />
+              <Route path="/sign-in" element={<><Stars><NavBar/><SigninForm/></Stars></>} />
               <Route path="/about" element={<About/>} />
             </Route>
             
@@ -48,7 +48,7 @@ function App() {
                 <Route path="/study" element={<FlashCard/>}/>
               </Route>
 
-              <Route path="/profile" element={<Profile/>}/>
+              <Route path="/profile" element={<><Stars><Profile/></Stars></>}/>
               <Route path="*" element={<NotFound/>} />
             </Route>
           </Routes>

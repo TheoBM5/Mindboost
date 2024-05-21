@@ -3,6 +3,8 @@ import {useForm} from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDecks } from "../../context/DeckContext"
 import {useEffect} from 'react'
+import { ICON_NAMES } from "../../constants/icon"; 
+import React, { useState } from 'react';
 import './FormsStyle.css'
 
 function CardFormPage() {
@@ -14,6 +16,7 @@ function CardFormPage() {
     const onSubmit = handleSubmit(async(data)=>{
         let deck;
         if(!params.id){
+            console.log(selectedIcon)
             deck = await createDeck(data);
             if(deck)
             {
@@ -28,11 +31,21 @@ function CardFormPage() {
     useEffect(()=>{
         if(params.id){
             loadDeck(params.id).then(deck=>{
+                console.log(deck)
                 setValue('title', deck.title);
                 setValue('description', deck.description);
+                setSelectedIcon(deck.icon_name); // Actualiza el estado de selectedIcon
+                setValue('icon', deck.icon_name); 
             });
         }
     }, []);
+    const [selectedIcon, setSelectedIcon] = useState('');
+
+    const handleIconClick = (name) => {
+      setSelectedIcon(name);
+      setValue('icon', name);
+    };
+
 
   return (
     <div className="size-form">
@@ -55,7 +68,7 @@ function CardFormPage() {
                 />
                 {
                     errors.title && (
-                        <span>Title is required</span>
+                        <p className="error-message">title is required</p>
                     )
                     
                 }
@@ -63,11 +76,38 @@ function CardFormPage() {
                 <TextArea 
                     placeholder="Description"
                     rows={3}
-                    {...register("description")}
-                 ></TextArea>
-                 <Button>
-                    {params.id ? "Edit Deck" : "Create Deck"}
-                 </Button>
+                    {...register("description",{
+                        required: true,
+                    })}
+                />
+                {
+                    errors.description && (
+                        <p className="error-message">description text is required</p>
+                    )
+                }
+                <Label htmlFor="icon">Icono</Label>
+                <div className="preview-icon" >
+                    {selectedIcon && React.createElement(ICON_NAMES[selectedIcon], {className: "selected-icon"})}
+                    <input type="hidden" {...register('icon')} value={selectedIcon || ''} />
+                    
+                </div>
+                    <Label htmlFor="icon">Select:</Label>
+                <div className="icon-box">
+                    {Object.entries(ICON_NAMES).map(([name, Icon]) => (
+                    <Icon
+                        key={name}
+                        className={`menu-iconos ${selectedIcon === name ? 'active' : ''}`}
+                        onClick={() => handleIconClick(name)}
+                        
+                    />
+                    ))}
+                </div>
+                
+                <div className="buton-button">
+                    <Button>
+                        {params.id ? "Edit Deck" : "Create Deck"}
+                    </Button>
+                </div>
             </form>
         </Card>
     </div>

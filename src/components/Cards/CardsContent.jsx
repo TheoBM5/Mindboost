@@ -2,18 +2,19 @@ import {Card, Button} from '../ui/index'
 import { useDecks } from '../../context/DeckContext'
 import { useNavigate } from 'react-router-dom'
 import "./CardsContent.css"
-
+import React, { useState, useEffect } from 'react';
+import { ICON_NAMES } from "../../constants/icon"; 
 function CardsContent({deck}) {
     const {deleteDeck} = useDecks();
     const navigate = useNavigate();
-
+    
   const handleAddClick = () => {
       navigate(`/deck/${deck.id}/new/card`);
   };
 
   const handleEditClick = () => {
-      // navigate(`/decks/${deck.id}/edit`);
-      navigate(`/decks/${deck.id}/card/edit`);
+      navigate(`/decks/${deck.id}/edit`);
+      //navigate(`/decks/${deck.id}/card/edit`);
   };
 
   const handleDeleteClick = async () => {
@@ -21,13 +22,22 @@ function CardsContent({deck}) {
           deleteDeck(deck.id);
       }
   };
-    
+  
+  const [selectedIcon, setSelectedIcon] = useState('');
+
+  useEffect(() => {
+    setSelectedIcon(deck.icon_name);
+}, [deck.icon_name]);
+  
   return (
     <div className='Tarjeta' href="/" key={deck.id} >
 
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="card-image item-3">
+        {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="card-image item-3">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23-.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
-        </svg>
+        </svg> */}
+        <div className="card-image item-3" >
+          {selectedIcon && React.createElement(ICON_NAMES[selectedIcon], {className: "card-image"})}
+        </div>
         <h1 className="title-card item-1">{deck.title}</h1>
         <p className='item-2'>{deck.description}</p>
         <div className='deck-buttons item-4'>

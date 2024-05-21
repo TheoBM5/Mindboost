@@ -45,17 +45,33 @@ function CardFormPageEdit({CardObject, onClose, handleUpdateRow }) {
             <form className="size-form-edit" onSubmit={onSubmit}>
                 <Label htmlFor="front">Front</Label>
                 <TextArea 
-                    {...register("front")}
+                    {...register("front",{
+                        required: true,
+                    })}
                     placeholder="Front"
                     rows={3}
-                ></TextArea>
+                />
+                {
+                    errors.front && (
+                        <p className="error-message">front text is required</p>
+                    )
+                    
+                }
                 
                 <Label htmlFor="reverse">Reverse</Label>
                 <TextArea 
-                    {...register("reverse")}
+                    {...register("reverse",{
+                        required: true,
+                    })}
                     placeholder="Reverse"
                     rows={3}
-                ></TextArea>
+                />
+                {
+                    errors.reverse && (
+                        <p className="error-message">reverse text is required</p>
+                    )
+                    
+                }
                 <footer className="buttons-card">
                     <Button onClick={handleDelete}>
                         Delete Card
