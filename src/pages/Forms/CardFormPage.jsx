@@ -10,11 +10,11 @@ function CardFormPage() {
     const {createCard, updateCard, loadCard, errors: CardErrors} = useCards();
     const params = useParams();
     const hasIdCard = params.hasOwnProperty('idcard');
-    const deckId = params.hasOwnProperty('deckid');
+
     const onSubmit = handleSubmit(async(data)=>{
         let deck;
         if(!hasIdCard){
-            deck = await createCard(params.deckid, data, 1);
+            deck = await createCard(params.deckid, data, params.id);
         } else{
             deck = await updateCard(params.id, data)
         }
@@ -61,7 +61,7 @@ function CardFormPage() {
                         +
                     </Button>
                     <Button type="submit">
-                        {params.id ? "Edit Card" : "Create Card"}
+                        {!params.id ? "Edit Card" : "Create Card"}
                     </Button>
                 </footer>
             </form>

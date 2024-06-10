@@ -32,6 +32,8 @@ CREATE TABLE card(
     relation TEXT
 );
 
+ALTER TABLE card ADD COLUMN user_id INTEGER REFERENCES users(id);
+
 ALTER TABLE card ADD COLUMN deck_id INTEGER REFERENCES deck(id);
 
 CREATE TABLE user_card_parameters(

@@ -11,6 +11,7 @@ function NavbarLeft() {
   const {signout} = useAuth();
   const [modalOpen, setModalOpen] = useState(false);
     return (
+      <>
         <nav className="leftsidebar">
           <div className='side'>
             <span className='header-tittle'><h2 className='appTitulo'>MindBoost</h2></span>
@@ -48,7 +49,7 @@ function NavbarLeft() {
                 />
                 New
               </button>
-              {modalOpen && <ModalCard setModalOpen={setModalOpen}/>}
+              
             </ul>
             
             <footer className="cont-out">
@@ -66,6 +67,8 @@ function NavbarLeft() {
             </footer>
           </div>
         </nav>
+        {modalOpen && <ModalCard setModalOpen={setModalOpen}/>}
+        </>
       )
     }
 export default NavbarLeft

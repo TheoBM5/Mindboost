@@ -45,10 +45,12 @@
 
 
     margin: auto;
-    grid-template-columns: [col-start] 7.5rem [mid-start] 7.5rem [mid] 7.5rem [mid-end] 7.5rem [col-end];
-    grid-template-rows: [row-start] 4.5rem [row-mid-start] 4.5rem [row-mid-end] 4.5rem [row-end];
+    grid-template-columns: [col-start] 22.5rem [mid-start] 22.5rem [mid] 22.5rem [mid-end] 22.5rem [col-end];
+    grid-template-rows: [row-start] 12.5rem [row-mid-start] 12.5rem [row-mid-end] 12.5rem [row-end];
     align-items: center;
     justify-content: center;
+    gap: 1rem;
+    
 }
 
 .cont-1{
@@ -58,6 +60,7 @@
     grid-row-start: row-start;
     grid-row-end: row-mid-start;
     text-align: center;
+    
 }
 .cont-2{
     grid-area: content2;
@@ -99,4 +102,40 @@
     grid-row-start: row-mid-end;
     grid-row-end: row-end;
     text-align: center;
+}
+
+.container-tile{
+    width: 100%;
+    height: 100%;
+    background-color: #512c86;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tooltip {
+    visibility: hidden;
+    position: absolute; /* Cambiar a absolute para posicionar relativo a .container-tile */
+    bottom: 0; /* Coloca el tooltip arriba del contenedor */
+    left: 0;
+
+    width: 100%;
+    height:100%;
+    background-color: #5e8fff;
+    
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    opacity: 0; /* Cambia a 0 para que sea completamente invisible */
+    transform: translateY(100%); /* Inicia fuera del contenedor, desde abajo */
+    z-index: 100;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; 
+    
+}
+
+.container-tile:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(4px);
 }

@@ -1,6 +1,4 @@
-import { useEffect } from "react"
-import { useState } from "react";
-import { useMemo } from "react";
+import { useMemo, useCallback, useState, useEffect} from "react";
 import {useForm} from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useCards } from "../../context/CardContext";
@@ -27,11 +25,13 @@ function DataTable() {
     const [rowSelection, setRowSelection] = useState("");
     const [showAdditionalComponent, setShowAdditionalComponent] = useState(false);
     
+    const memoizedLoadCards = useCallback(loadCards, []);
+
     useEffect(() => {
-      if (isParams) {
-          loadCards(params.deckid).then((data) => setCards(data)); // Cargar las tarjetas al montar el componente
-      }
-  }, [isParams, params.deckid,loadCards]);
+        if (isParams) {
+            memoizedLoadCards(params.deckid).then((data) => setCards(data)); // Load cards on component mount
+        }
+    }, [isParams, params.deckid, memoizedLoadCards]);
 
     const data = useMemo(() => (
         cards?.map(({ id, relation, content: { front, reverse } }) => ({

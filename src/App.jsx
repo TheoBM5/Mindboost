@@ -18,6 +18,7 @@ import FlashCard from './pages/FlashCard/FlashCard';
 import CardFormPage from './pages/Forms/CardFormPage';
 import EditCard from './pages/EditCard/EditCard';
 import Stars from './components/StarBackGround/Stars';
+import CardMode from './pages/CardMode/CardMode';
 function App() {
   const {isAuth, loading} = useAuth();
 
@@ -39,13 +40,16 @@ function App() {
                   <Outlet/> 
                 </DeckProvider>
               }>
-                <Route path='/' element={<><Container><Navbarleft/><Home/></Container></>} />
+                <Route path='/' element={<><Navbarleft/><Home/></>} />
                 <Route path="/deck/new" element={<DeckFormPage/>}/>
+                <Route path="/deck/new/mode" element={<CardMode/>}/>
+                <Route path="/deck/:id/:deckid/new/card" element={<CardProvider><CardFormPage/></CardProvider>} />
+
                 <Route path="/decks/:id/edit" element={<DeckFormPage/>}/>
-                <Route path='decks/:deckid/card/:idcard/edit' element={<CardFormPage/>} />
-                <Route path='decks/:deckid/card/edit' element={<CardProvider><EditCard/></CardProvider>} />
-                <Route path="/deck/:deckid/new/card" element={<CardProvider><CardFormPage/></CardProvider>} />
-                <Route path="/study" element={<FlashCard/>}/>
+                <Route path='/decks/:deckid/card/:idcard/edit' element={<CardFormPage/>} />
+                <Route path='/decks/:deckid/card/edit' element={<CardProvider><EditCard/></CardProvider>} />
+                
+                <Route path="/study/:id/:deckid" element={<CardProvider><FlashCard/></CardProvider>}/>
               </Route>
 
               <Route path="/profile" element={<><Stars><Profile/></Stars></>}/>

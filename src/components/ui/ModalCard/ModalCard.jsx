@@ -16,7 +16,8 @@ function ModalCard({ setModalOpen }) {
   };
 
   const handleCreateClick = () => {
-    navigate("/deck/new");
+    navigate("deck/new/mode")
+    // navigate("/deck/new");
 };
 
   return (

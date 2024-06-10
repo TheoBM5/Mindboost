@@ -9,7 +9,6 @@ function Profile() {
 
 
     return (
-    <div className='back'>
         <div className='shadow'>
                 <main className='prueba2'>
                     <Card>
@@ -35,10 +34,7 @@ function Profile() {
                         </div>
                     </Card>
                 </main>
-
         </div>
-
-    </div>
     )
 }
 export default Profile

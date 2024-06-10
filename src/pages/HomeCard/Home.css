@@ -6,12 +6,15 @@
     gap: 5rem;
     margin: 2rem 4rem;
     align-items: center;
-
+    position: relative;
+    z-index: 1;
 }
 
 .box{
     display: flex;
-    width: 82%;
-    margin-left: auto;
-
+    width: 75%;
+    height: 100%;
+    position: relative;
+    left: 20%;
+    z-index: 1;
 }
