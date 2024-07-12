@@ -14,7 +14,7 @@ function CardFormPage() {
     const onSubmit = handleSubmit(async(data)=>{
         let deck;
         if(!hasIdCard){
-            deck = await createCard(params.deckid, data, params.id);
+            deck = await createCard(params.deckid, data, params.id, 1);
         } else{
             deck = await updateCard(params.id, data)
         }
@@ -56,7 +56,7 @@ function CardFormPage() {
                     )
                     
                 }
-                <footer className="buttons-card">
+                <footer className="buttons-card-new">
                     <Button type="submit" className="add-button">
                         +
                     </Button>

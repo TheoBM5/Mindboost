@@ -1,0 +1,129 @@
+@keyframes float2 {
+    0% { 
+      transform: translateY(0) rotate(0);
+    }
+    25% { 
+      transform: translateY(0) rotate(-10deg);
+    }
+    40% { 
+      transform: translateY(4px) rotate(-10deg);
+    }
+    85% { 
+      transform: translateY(1px) rotate(10deg);
+    }
+    100% { 
+      transform: translateY(0) rotate(0);
+    }
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+.duck {
+    position: relative;
+    /* width: 200px; */
+    height: 200px;
+    animation: float 3s ease-in-out infinite;
+    z-index: 5;
+}
+.duck-body {
+  --size: 150px;
+  --half-size: calc(var(--size) / 2);
+  --gradient: linear-gradient(#e3b882, #3f2a10);
+  position: absolute;
+  width: var(--size);
+  height: calc(var(--size)* 1.3);
+  background: #fdca3d;
+  border-radius: 50% / 65% 65% var(--half-size) var(--half-size);
+  transform: rotate(80deg);
+  top: 20px;
+  left: 80px;
+  
+
+}
+
+.duck-wing {
+  --size: 70px;
+  --half-size: calc(var(--size) / 2);
+  --gradient: linear-gradient(#e3b882, #3f2a10);
+  position: absolute;
+  width: var(--size);
+  height: calc(var(--size)* 1.35);
+  background: #fdca3d;
+  border-radius: 50% / 65% 65% var(--half-size) var(--half-size);
+  transform: rotate(60deg);
+    top: 50px;
+    left: 130px;
+  z-index: 5;
+    transform: rotate(80deg);
+  box-shadow: -6px 3px #F2B302 inset
+}
+.duck-head {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #fdca3d;
+    border-radius: 50%;
+    top: 20px;
+    left: 40px;
+    box-shadow: -7px -7px #F2B302 inset
+}
+.duck-eye {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: black;
+    border-radius: 50%;
+    top: 60px;
+    left: 90px;
+}
+.duck-eye::before{
+content: "";
+display: block;
+width: 30%;
+height: 30%;
+background: white;
+border-radius: 50%;
+}
+.duck-beak {
+    position: absolute;
+    --size: 40px;
+--half-size: calc(var(--size) / 2);
+
+width: var(--size);
+height: var(--half-size);
+background: orange;
+border-radius: 50% 50% / var(--half-size) var(--half-size) 0 0;
+   transform: rotate(180deg);
+  left: 40px;
+  top: 70px
+}
+
+.duck-eye-left
+{
+position: absolute;
+    width: 20px;
+    height: 20px;
+    background: black;
+    border-radius: 50%;
+    top: 60px;
+    left: 30px;
+    z-index: -1;
+}
+.duck-eye-left::before{
+content: "";
+display: block;
+width: 30%;
+height: 30%;
+background: white;
+border-radius: 50%;
+}

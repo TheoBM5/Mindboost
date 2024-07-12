@@ -1,4 +1,3 @@
-import { GiConsoleController } from 'react-icons/gi';
 import {pool} from '../db.js';
 
 export const getAllDecks = async (req, res, next) => {
@@ -68,3 +67,25 @@ export const deleteDeck = async (req, res) => {
 
     return res.sendStatus(204);
 }
+
+export const getDeckReview = async (req, res) => {
+    try {
+        console.log('Controller getDeckReview - User ID:', req.userId); // Añadir registro
+
+        const result = await pool.query(`
+            SELECT DISTINCT d.id AS deck_id
+            FROM user_card_parameters p
+            JOIN Card c ON p.card_id = c.id
+            JOIN Deck d ON c.deck_id = d.id
+            WHERE p.review_date <= CURRENT_DATE
+            AND d.user_id = $1
+        `, [req.userId]);
+
+        console.log('Query Result:', result.rows); // Añadir registro
+
+        return res.json(result.rows);
+    } catch (error) {
+        console.error('Error en getDeckReview:', error.message); // Añadir registro
+        return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+};

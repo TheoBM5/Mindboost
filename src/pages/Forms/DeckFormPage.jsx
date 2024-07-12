@@ -16,7 +16,7 @@ function CardFormPage() {
     const onSubmit = handleSubmit(async(data)=>{
         let deck;
         if(!params.id){
-            console.log(selectedIcon)
+
             deck = await createDeck(data);
             if(deck)
             {

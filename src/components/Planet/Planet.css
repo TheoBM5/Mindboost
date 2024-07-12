@@ -1,0 +1,62 @@
+:root {
+    --size: 200px;
+    --texture: radial-gradient(
+      200% 100% at 50% 105%,
+      #81ADA8 10%,
+      #28B0E2 15% 30%,
+      #25BEF5 35% 75%,
+      #28B0E2 80% 88%,
+      #81ADA8 100%
+    );
+    --texture2: linear-gradient(#ea6043, #c38b80);
+    --border-width: calc(var(--size, 150px) * 0.06);
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+.container-planet {
+    width: var(--size, 150px);
+    height: var(--size, 150px);
+    background: var(--texture);
+    box-shadow:
+        30px 0px 0 #0003 inset,
+        5px 5px 10px #0006;
+    border: var(--border-width) solid #fff;
+    border-radius: 50%;
+    position: relative;
+    box-sizing: border-box;
+    animation: float 3s ease-in-out infinite;
+    }
+
+    .container-planet::before {
+    --width: calc(var(--size, 150px) * 0.05);
+    --height: calc(var(--size, 150px) * 0.05);
+    inset: 15% 0 0 77%;
+    }
+
+    .container-planet::after {
+    --width: calc(var(--size, 150px) * 0.12);
+    --height: calc(var(--size, 150px) * 0.06);
+    inset: 9% 0 0 65%;
+    transform: rotate(25deg);
+    }
+
+    .container-planet::before,
+    .container-planet::after {
+    content: "";
+    background: #fff4;
+    border-radius: 50%;
+    position: absolute;
+    width: var(--width);
+    height: var(--height);
+    }

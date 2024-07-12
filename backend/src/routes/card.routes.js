@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllCards, getCard, createCard, updateCard, deleteCard, getAllReviewCards } from '../controllers/card.controller.js';
+import { getAllCards, getCard, createCard, updateCard, deleteCard, getAllReviewCards, updateReviewCard } from '../controllers/card.controller.js';
 import {createCardSchema, updateCardSchema} from '../schemas/card.schema.js'
 import { isAuth } from '../middlewares/auth.middleware.js';
 import { validateSchema } from '../middlewares/validate.middleware.js';
@@ -11,4 +11,5 @@ router.post('/decks/:userId/:deckId/cards',isAuth, createCard, validateSchema(cr
 router.put('/decks/:deckid/cards/:id',isAuth, updateCard, validateSchema(updateCardSchema));
 router.delete('/decks/:deckid/cards/:id',isAuth, deleteCard);
 router.get('/decks/:id/:deckId/cards',isAuth, getAllReviewCards);
+router.put('/decks/:id/cards',isAuth, updateReviewCard);
 export default router;

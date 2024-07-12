@@ -1,0 +1,88 @@
+.survey-container{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(10, 95, 174);
+  margin-bottom: 0;
+  gap: 20px;
+}
+
+.progress-bar-container {
+  width: 90%;
+  background-color: #e0e0df;
+  border-radius: 25px;
+  margin: 25px auto;
+  margin-bottom: 0;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: #76c7c0;
+  border-radius: 25px;
+  transition: width 0.4s ease;
+}
+
+.Question-style{
+  font-size: 2rem;
+}
+
+.button-option-survey{
+  width: 100%;
+  height: 250px;
+  margin: 5px; /* Añade un margen pequeño para el espaciado */
+  border-radius: 1rem;
+}
+
+.buttons-survey{
+  display: grid;
+  width: 50vw;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px; 
+  margin: auto 0;
+
+}
+.buttons-survey-4{
+  display: grid;
+  width: 50vw;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 15px; 
+}
+
+.buttons-container-survey
+{
+  display: flex;
+  background-color: rgb(0, 19, 40);
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  height: 19vh;
+  
+  margin-top: auto;
+}
+
+.buttons-prev-next{
+  width: 125px;
+  height: 80px;
+  margin: 0 3rem;
+  border-radius: 10px;
+  border:none;
+  background-color: rgb(0, 46, 138);
+  color: white;
+}
+
+.buttons-prev-next:hover{
+  border: 2px solid #fff;
+}
+
+.button-option-survey:focus {
+  background-color: #9debff;
+  color: rgb(150, 150, 150);
+}
+
+.button-option-survey:hover {
+  background-color: #456dff;
+  color: rgb(255, 255, 255);
+}

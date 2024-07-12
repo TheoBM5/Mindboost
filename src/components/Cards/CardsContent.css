@@ -24,6 +24,10 @@
     z-index: 1;
 }
 
+.borde-1{
+  border: 2px solid #ff0000; 
+}
+
 .item-1 { 
   grid-area: title;
   grid-column-start: mid-start;
@@ -54,6 +58,7 @@
   grid-column-end: col-end;
   grid-row-start: row-mid-end;
   grid-row-end: row-end;
+  z-index: 2;
 }
 
 

@@ -1,0 +1,41 @@
+.Container-notfound{
+    width: 100vw;
+    height: 100vh;
+    display: relative;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #00142c;
+}
+
+.card-notfound{
+    
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30rem;
+    height: 15rem;
+
+}
+.svg-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+  }
+  
+  .svg {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .svg-path {
+    stroke: none;
+    fill: rgb(166, 166, 166)
+  }
+
+  .style-error{
+    font-size: 55px;
+  }

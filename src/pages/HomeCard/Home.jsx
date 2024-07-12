@@ -1,13 +1,21 @@
 import { useEffect } from "react"
 import CardsContent from "../../components/Cards/CardsContent";
-import {useState} from 'react'
-import {useDecks} from '../../context/DeckContext'
-import './Home.css'
+import {useState} from 'react';
+import {useDecks} from '../../context/DeckContext';
+import './Home.css';
+
+import NavbarLeft from "../../components/Navbarleft/NavbarLeft";
 function Home() {
-  const {decks, loadDecks} = useDecks();
+  const {decks, loadDecks, getDeckReview} = useDecks();
+  const [reviewDecks, setReviewDecks] = useState([]);
+
   
-  useEffect(()=>{
-      loadDecks()
+  useEffect(() => {
+    loadDecks();
+    getDeckReview().then((reviewDecksData) => {
+      const reviewDeckIds = reviewDecksData.map((deck) => deck.deck_id);
+      setReviewDecks(reviewDeckIds);
+    });
   }, []);
 
   if (decks.length === 0) return (
@@ -18,10 +26,13 @@ function Home() {
   
   return (
     <div className="box">
+      <NavbarLeft/>
       <div className="deck-space">
         {decks.map((deck) => (
-          <CardsContent key={deck.id} deck={deck}/>
-        ))}
+          <CardsContent key={deck.id} deck={deck} 
+          className={reviewDecks.includes(deck.id) ? "borde-1" : "borde-2"}
+        />
+      ))}
       </div>
     </div>
 

@@ -1,0 +1,164 @@
+.page-logro-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, rgb(18, 184, 62) 0%, rgba(0,0,0,1) 100%);
+}
+.logro-style-card{
+    width: 70%;
+    height: 60%;
+}
+
+.logro-content{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 50px;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    
+}
+
+.logro-content::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: calc(100% / 3);
+    width: 5px; 
+    height: 100%;
+    background-color: rgb(28, 28, 28);
+    z-index: 1; 
+  }
+
+  .image-logro{
+    height: 100%;
+    width: 90%;
+    background-color: rgb(48, 48, 48);
+    border-radius: 12px;
+    grid-row: 1/3;
+  }
+
+  .cont-image-logro{
+    display: grid;
+    width: 100%;
+    height: 300px;
+    grid-template-columns: 1fr 50px;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  .text-area-logro{
+    
+    width: 100%;
+    height: 90%;
+    border-radius: 10px;
+    background-color: rgb(31, 31, 31);
+    border: none;
+    color:white;
+    padding: 5px 1rem;
+    font-size: 16px;
+    resize: none;
+  }
+
+  .input-logro{
+    width: 90%;
+    background-color: rgb(36, 36, 36);
+    border-radius: 10px;
+    height: 2rem;
+    border:none;
+    color:white;
+    padding: 5px 1rem;
+    font-size: 15px;
+  }
+
+  .button-logro{
+    
+    width: 5rem;
+  }
+
+  .label-container-logro{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/2;
+    grid-row: 1/4;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .preview-image-logro{
+    width: 200px;
+    height: 200px;
+    background-color: rgb(41, 41, 41);
+    border-radius: 10px;
+    padding: 0.7rem 0.75rem;
+    margin: 0.8rem auto;
+    grid-row: 1/6;
+    grid-column: 1/2;
+  }
+
+  .image-box-modal{
+    width: 17rem;
+    height: 5rem;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas con igual anchura */
+    gap: 8px; /* Espacio entre los iconos */
+    justify-items: center; 
+    background: rgb(31, 31, 31);
+    padding: 0.7rem 0.75rem;
+    border-radius: 15px;
+    overflow-y: auto;
+  }
+
+  .button-terminar
+  {
+    
+    width: 80px;
+
+  }
+
+  .button-aplicar-contenedor{
+    width: 95%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    grid-column: 1/2;
+    grid-row: 4/5;
+  }
+
+  .text-area-logro-cont{
+    width: 100%;
+    height: 90%;
+    grid-row: 1/4;
+  }
+
+  .finish-button-content{
+    grid-column: 2/3;
+    grid-row: 4/5;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    
+  }
+
+  .icon-logro-up{
+    grid-column: 2/3;
+    grid-row: 2/3;
+  }
+  .image-logro-up{
+    grid-column: 2/3;
+    grid-row: 4/5;
+  }
+
+  .img-cont-logro{
+    width: 200px;
+    height: 200px;
+  }

@@ -43,7 +43,8 @@ CREATE TABLE user_card_parameters(
     racha INTEGER,
     ef FLOAT,
     interval_repeat INTEGER,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    review_date DEFAULT Date
 );
 
 ALTER TABLE deck

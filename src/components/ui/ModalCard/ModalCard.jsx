@@ -16,8 +16,14 @@ function ModalCard({ setModalOpen }) {
   };
 
   const handleCreateClick = () => {
-    navigate("deck/new/mode")
-    // navigate("/deck/new");
+    if(selectedCard === "card1"){
+      //navigate("deck/new/mode")
+      navigate("/deck/new/modes");
+    }
+    else{
+      navigate("/deck/new");
+
+    }
 };
 
   return (
@@ -40,7 +46,7 @@ function ModalCard({ setModalOpen }) {
 
               <img className="radio-img" src={"src/assets/icons/cards.svg"} alt="Card Icon" />
               <label htmlFor="card1">
-                <h6>Flash Card</h6>
+                <h6>Card</h6>
               </label>
             </div>
             <div className="tile" onClick={() => handleContainerClick("card2")}>
@@ -52,19 +58,7 @@ function ModalCard({ setModalOpen }) {
               </div>
               <img className="radio-img" src={"src/assets/icons/cards.svg"} alt="Card Icon" />
               <label htmlFor="card2">
-                <h6>Mindmap</h6>
-              </label>
-            </div>
-            <div className="tile" onClick={() => handleContainerClick("card3")}>
-              <div className="radio-select">
-                <input type="radio" name="card" id="card3"
-                  checked={selectedCard === "card3"}
-                  onChange={() => {}}
-                />
-              </div>
-              <img className="radio-img" src={"src/assets/icons/cards.svg"} alt="Card Icon" />
-              <label htmlFor="card3">
-                <h6>Mapa Conceptual</h6>
+                <h6>Deck</h6>
               </label>
             </div>
           </article>

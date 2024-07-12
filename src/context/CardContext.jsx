@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useCallback } from "react";
 import {
   getAllCardsRequest,
   getCardRequest,
@@ -6,6 +6,7 @@ import {
   updateCardRequest,
   deleteCardRequest,
   getAllReviewCardsRequest,
+  updateReviewCardRequest,
 } from "../api/card.api";
 
 const CardContext = createContext();
@@ -32,10 +33,9 @@ export const CardProvider = ({ children }) => {
     return res.data;
   };
 
-  const createCard = async (deckId, card, user_id) => {
-    console.log     
+  const createCard = async (deckId, card, user_id, typeCard) => { 
     try {
-      const res = await createCardRequest(deckId, card, user_id);
+      const res = await createCardRequest(deckId, card, user_id, typeCard);
       console.log(res)
       setCards([...cards, res.data]);
       return res.data;
@@ -64,17 +64,30 @@ export const CardProvider = ({ children }) => {
     }
   };
 
-  const loadReviewCards = async (user_id, deckId) => {
-    
+  const loadReviewCards = useCallback(async (user_id, deckId) => {
     const res = await getAllReviewCardsRequest(user_id, deckId);
-    console.log(res.data);
+    console.log(res.data)
     setCards(res.data);
-  };
+  }, []);
 
-  const updateReviewCards = async (user_id, deckId) => {
-    
-    const res = await (user_id, deckId);
-    setCards(res.data);
+  const updateReviewCards = async (racha, ef, interval_repeat, review_date, id) => {
+    try{
+      
+      const data = {
+        racha,
+        ef,
+        interval_repeat,
+        review_date
+      };
+      console.log("contexto antes: ",data,id);
+      const res = await updateReviewCardRequest(id, data);
+      console.log("contexto despues",res.data)
+      return res.data;
+    } catch(error){
+      if (error.response) {
+        setErrors([error.response.data.message]);
+      }
+    }
   };
 
   return (

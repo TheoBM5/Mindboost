@@ -1,0 +1,188 @@
+.text-area-2{
+    width: 100%;
+    height: 10rem;
+    border-radius: 10px;
+    background-color: rgb(31, 31, 31);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    font-size: 16px;
+    resize: none;
+    margin: auto auto;
+}
+
+.text-area-2:disabled {
+    background-color: #171717; /* Color de fondo para cuando está deshabilitado */
+    border: 1px solid #000000; /* Bordes para cuando está deshabilitado */
+    color: #666; /* Color del texto cuando está deshabilitado */
+    cursor: not-allowed; /* Cambia el cursor cuando está deshabilitado */
+}
+
+.form-clock{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.clock-grid{
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 450px;
+    background: linear-gradient(180deg, rgb(240, 159, 53) 0%, rgba(0,0,0,1) 100%);
+
+}
+
+.card-style-clock{
+    width: 60%;
+    height: 55%;
+}
+
+.buttons-card-clock{
+    width: 100%;
+    height: 5%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas: "back . . add-edit finish . . next";
+}
+
+
+.area-card-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    grid-column: 1/2;
+
+}
+
+.card-time{
+    display: flex;
+    width: 50%;
+    height: 75%;
+}
+
+.time-selection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+}
+
+.order-card-time{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.button-minutes{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+}
+
+.buttons-time{
+    width: 100px;
+}
+
+.buttons-time:focus{
+    border: 1px solid white;
+}
+
+.menu-time{
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+}
+
+.clock-cont 
+{
+    display: flex;
+    grid-column: 2/3;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.card-clock
+{
+    position: relative;
+    width: 50%;
+    height: 55%;
+}
+
+.times-box{
+    width: 100%;
+    height: 50%;
+    background-color: rgb(31, 31, 31);
+    display: grid;
+    margin: 2rem 0;
+    border-radius: 15px;
+    padding: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 40px;
+    overflow-y: auto;
+    gap: 10px;
+}
+
+.card-cont-clock{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    
+}
+
+.button-cards-box{
+    width: 35px;
+    height: 35px;
+    
+}
+
+.selected{
+    border: 4px solid #ffd83c;
+}
+
+.edit-message{
+    
+    color: rgb(67, 201, 67);
+    text-align: end;
+}
+
+.edit-button{
+    display: flex;
+    width: 100%;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.add-button-clock{
+    cursor: pointer;
+    grid-area: add-edit;
+}
+
+.next-button-clock{
+    cursor: pointer;
+    grid-area: next;
+}
+
+.back-button-clock{
+    cursor: pointer;
+    grid-area: back;
+}
+
+.finish-button-clock{
+    cursor: pointer;
+    grid-area: finish;
+}

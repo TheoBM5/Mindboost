@@ -5,6 +5,7 @@ import {
   createDeckRequest,
   getDeckRequest,
   updateDeckRequest,
+  getDeckReviewRequest,
 } from "../api/tasks.api";
 
 const DeckContext = createContext();
@@ -62,6 +63,12 @@ export const DeckProvider = ({ children }) => {
     }
   };
 
+  const getDeckReview = async () => {
+    console.log("ressssssss")
+    const res = await getDeckReviewRequest();
+    return res.data;
+  };
+
   return (
     <DeckContext.Provider
       value={{
@@ -71,7 +78,8 @@ export const DeckProvider = ({ children }) => {
         createDeck,
         loadDeck,
         errors,
-        updateDeck
+        updateDeck,
+        getDeckReview
       }}
     >
       {children}

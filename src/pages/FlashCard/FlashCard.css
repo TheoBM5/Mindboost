@@ -28,3 +28,15 @@
     justify-content: center;
     position: inherit;
 }
+
+.continue-button{
+    display: flex;
+    width: 100%;
+    padding: 2rem 0rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.continue-style{
+    width: 50rem;
+}

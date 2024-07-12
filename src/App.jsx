@@ -11,7 +11,7 @@ import About from './pages/About/About';
 import SigninForm from './pages/Forms/SigninForm';
 import SignupForm from './pages/Forms/SignupForm';
 import Navbarleft from './components/Navbarleft/NavbarLeft';
-import NotFound from './pages/NotFound';
+import NotFound from './pages/NotFound/NotFound';
 import DeckFormPage from './pages/Forms/DeckFormPage';
 import Profile from './pages/Profile/Profile';
 import FlashCard from './pages/FlashCard/FlashCard';
@@ -19,6 +19,12 @@ import CardFormPage from './pages/Forms/CardFormPage';
 import EditCard from './pages/EditCard/EditCard';
 import Stars from './components/StarBackGround/Stars';
 import CardMode from './pages/CardMode/CardMode';
+import Survey from './pages/Survey/Survey';
+import Contrarreloj from './pages/Contrarreloj/Contrarreloj';
+import Logro from './pages/Logro/Logro';
+import Pomodoro from './pages/Pomodoro/Pomodoro';
+import RubberDuck from './pages/RubberDuck/RubberDuck';
+import ImageCut from './pages/ImageRecorte/ImageCut';
 function App() {
   const {isAuth, loading} = useAuth();
 
@@ -40,10 +46,17 @@ function App() {
                   <Outlet/> 
                 </DeckProvider>
               }>
-                <Route path='/' element={<><Navbarleft/><Home/></>} />
+                <Route path='/' element={<><Home/></>} />
                 <Route path="/deck/new" element={<DeckFormPage/>}/>
-                <Route path="/deck/new/mode" element={<CardMode/>}/>
+                <Route path="/deck/:id/:deckid/clock" element={<CardProvider><Contrarreloj/></CardProvider>}/>
+                <Route path="/deck/:id/:deckid/achievement" element={<CardProvider><Logro/></CardProvider>}/>
+                <Route path="/pomodoro" element={<CardProvider><Pomodoro/></CardProvider>}/>
+                <Route path="/deck/:id/:deckid/duck" element={<CardProvider><RubberDuck/></CardProvider>}/>
+                <Route path="/survey" element={<Survey/>}/>
+                <Route path="/deck/:id/:deckid/new/modes" element={<CardMode/>}/>
+                <Route path="/deck/new/modes" element={<CardMode/>}/>
                 <Route path="/deck/:id/:deckid/new/card" element={<CardProvider><CardFormPage/></CardProvider>} />
+                <Route path="/prueba" element={<CardProvider><ImageCut/></CardProvider>} />
 
                 <Route path="/decks/:id/edit" element={<DeckFormPage/>}/>
                 <Route path='/decks/:deckid/card/:idcard/edit' element={<CardFormPage/>} />

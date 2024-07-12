@@ -25,12 +25,12 @@ export const createCard = async (req, res, next) => {
     const { card } = req.body; 
     const { deckId } = req.body;
     const {userId} = req.body;
-    console.log("user", userId)
-    const relacion = 1;
+    const {typeCard} = req.body;
+    console.log("tipo", typeCard)
     try{
         const result = await pool.query(
-        "INSERT INTO card (content, deck_id, relation, user_id) VALUES ($1, $2, $3, $4) RETURNING *",  
-        [card, deckId, relacion, userId]
+        "INSERT INTO card (content, deck_id, typeCard, user_id) VALUES ($1, $2, $3, $4) RETURNING *",  
+        [card, deckId, typeCard, userId]
     );   
     res.json(result.rows[0]);  
     } catch(error){
@@ -66,20 +66,30 @@ export const deleteCard = async (req, res) => {
 
 export const getAllReviewCards = async (req, res, next) => {
     const { id, deckId } = req.params;
-    console.log("user", id, "deck", deckId);
     const result = await pool.query(
-        `SELECT ucp.*
+        `SELECT ucp.*, c.content
         FROM user_card_parameters ucp
         JOIN deck d ON ucp.user_id = d.user_id
-        WHERE ucp.user_id = $1 AND ucp.updated_at <= CURRENT_DATE AND d.user_id = $1 AND d.id = $2`,[
+        JOIN card c ON ucp.card_id = c.id
+        WHERE ucp.user_id = $1 
+            AND ucp.review_date <= CURRENT_DATE 
+            AND d.user_id = $1 
+            AND d.id = $2`,[
         id, deckId
     ]);
     return res.json(result.rows);
 };
 
 export const updateReviewCard = async (req, res, next) => {
-    const result = await pool.query("UPDATE card SET content = $1, relation = $2 WHERE id = $3 RETURNING *', [card, relation, id]",[
-        req.params.deckid,
-    ]);
+    const { racha, ef, interval_repeat, review_date } = req.body;
+    console.log("nuevo",racha, ef, interval_repeat, review_date)
+    const result = await pool.query(
+        `UPDATE user_card_parameters 
+         SET racha = $1, ef = $2, interval_repeat = $3, review_date = $4 
+         WHERE idcard = $5 
+         RETURNING *`,
+        [racha, ef, interval_repeat, review_date, req.params.id]
+    );
+    
     return res.json(result.rows);
 };
