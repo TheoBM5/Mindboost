@@ -3,13 +3,14 @@
       transform: translateY(0) rotate(0);
     }
     25% { 
-      transform: translateY(0) rotate(-10deg);
+      
+      transform: translateY(10px) rotate(15deg);
     }
     40% { 
-      transform: translateY(4px) rotate(-10deg);
+      transform: translateY(4px) rotate(0deg);
     }
-    85% { 
-      transform: translateY(1px) rotate(10deg);
+    75% { 
+      transform: translateY(60px) rotate(-15deg);
     }
     100% { 
       transform: translateY(0) rotate(0);
@@ -35,24 +36,43 @@
     animation: float 3s ease-in-out infinite;
     z-index: 5;
 }
-.duck-body {
-  --size: 150px;
+/* .duck-body {
+  --size: 170px;
   --half-size: calc(var(--size) / 2);
   --gradient: linear-gradient(#e3b882, #3f2a10);
   position: absolute;
   width: var(--size);
-  height: calc(var(--size)* 1.3);
+  height: calc(var(--size)* 1.12);
   background: #fdca3d;
-  border-radius: 50% / 65% 65% var(--half-size) var(--half-size);
-  transform: rotate(80deg);
-  top: 20px;
-  left: 80px;
-  
+  border-radius: 74% 26% 60% 40% / 65% 33% 67% 35%;
+  transform: rotate(20deg);
+  top: 18px;
+  left: 66px;
+} */
+
+.duck-body{
+  position: absolute;
+  width: 225px;
+  height: 235px;
+  background-image: url("../../assets/img/body.svg");
+  background-repeat: no-repeat;
+  top: 15px;
+  left: 38px;
+}
+
+.pico{
+  position: absolute;
+  width: 55px;
+  height: 35px;
+  top:88px;
+  left: 30px;
+  background-image: url("../../assets/img/pico.svg");
+  background-repeat: no-repeat;
 
 }
 
 .duck-wing {
-  --size: 70px;
+  --size: 85px;
   --half-size: calc(var(--size) / 2);
   --gradient: linear-gradient(#e3b882, #3f2a10);
   position: absolute;
@@ -61,20 +81,20 @@
   background: #fdca3d;
   border-radius: 50% / 65% 65% var(--half-size) var(--half-size);
   transform: rotate(60deg);
-    top: 50px;
-    left: 130px;
+    top: 70px;
+    left: 140px;
   z-index: 5;
-    transform: rotate(80deg);
-  box-shadow: -6px 3px #F2B302 inset
+    transform: rotate(60deg);
+  box-shadow: -8px 3px #F2B302 inset
 }
 .duck-head {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     background: #fdca3d;
     border-radius: 50%;
     top: 20px;
-    left: 40px;
+    left: 38px;
     box-shadow: -7px -7px #F2B302 inset
 }
 .duck-eye {
@@ -83,8 +103,8 @@
     height: 20px;
     background: black;
     border-radius: 50%;
-    top: 60px;
-    left: 90px;
+    top: 80px;
+    left: 85px;
 }
 .duck-eye::before{
 content: "";

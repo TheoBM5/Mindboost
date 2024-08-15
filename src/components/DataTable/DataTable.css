@@ -28,6 +28,13 @@ th, td{
     text-Align: "center";
 }
 
+.cont-prueba
+{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
 .table-space{
     padding: 0.5rem;
     max-width: 64rem;

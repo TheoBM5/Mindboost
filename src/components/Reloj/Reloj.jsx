@@ -35,7 +35,12 @@ function Reloj({ tipo, initialTime, onTimeEnd, onTimeStart, size }) {
     };
 
     const stop = () => {
-        secondsSphereRef.current.style.transform = 'rotate(-90deg) translateX(60px)';
+        if(tipo===1){
+            secondsSphereRef.current.style.transform = 'rotate(-90deg) translateX(60px)';
+        }
+        else{
+            secondsSphereRef.current.style.transform = 'rotate(-90deg) translateX(325px)';
+        }
         secondsSphereRef.current.style.animation = 'none';
         playPauseButtonRef.current.classList.remove('running');
         setRemainingTime(initialTime);
@@ -43,6 +48,7 @@ function Reloj({ tipo, initialTime, onTimeEnd, onTimeStart, size }) {
         stopwatchRef.current.textContent = '00:00';
         setIsRunning(false);
     };
+
 
     const calculateTime = (remainingTime) => {
         const total_seconds = Math.floor(remainingTime / 1000);
@@ -53,7 +59,12 @@ function Reloj({ tipo, initialTime, onTimeEnd, onTimeStart, size }) {
     };
 
     const start = () => {
-        secondsSphereRef.current.style.animation = 'rotacion 60s linear infinite';
+        if(tipo === 1){
+            secondsSphereRef.current.style.animation = 'rotacion 60s linear infinite';
+        }
+        else{
+            secondsSphereRef.current.style.animation = 'rotacion2 60s linear infinite';
+        }
         let endTime = Date.now() + remainingTime;
         onTimeStart();
         secondsSphereRef.current.style.animationPlayState = 'running';
@@ -69,7 +80,13 @@ function Reloj({ tipo, initialTime, onTimeEnd, onTimeStart, size }) {
                 setIsRunning(false);
                 onTimeEnd(); // Llama a la función cuando el tiempo llegue a cero
                 secondsSphereRef.current.style.animation = 'none'; // Detén la animación
-                secondsSphereRef.current.style.transform = 'rotate(-90deg) translateX(60px)';
+                if(tipo === 1){
+                    secondsSphereRef.current.style.transform = 'rotate(-90deg) translateX(60px)';
+                }
+                else{
+                    secondsSphereRef.current.style.transform = 'rotate(-90deg) translateX(325px)';
+                    
+                }
             } else {
                 setRemainingTime(newRemainingTime);
                 stopwatchRef.current.textContent = calculateTime(newRemainingTime);
@@ -79,15 +96,15 @@ function Reloj({ tipo, initialTime, onTimeEnd, onTimeStart, size }) {
 
     return (
         <main className='position-clock'  style={{ '--size': size }} >
-            <div className="circle">
+            <div className={`${tipo === 1 ? 'circle' : 'circle2'}`}>
                 <div id="stopwatch" className="stopwatch"  ref={stopwatchRef}>00:00</div>
-                <div className="buttons">
+                <div className={`${tipo === 1 ? 'buttons' : 'buttons-g-clock'}`}>
                     {tipo !== 1 ? (
                         <>
                             {!isRunning && (
-                                <div id="play-pause" className='paused' ref={playPauseButtonRef} onClick={playPause}></div>
+                                <div id="play-pause" className='paused2' ref={playPauseButtonRef} onClick={playPause}></div>
                             )}
-                            <div className='stop' onClick={stop}></div>
+                            <div className='stop2' onClick={stop}></div>
                         </>
                     ) : (
                         !isRunning && (
@@ -96,7 +113,7 @@ function Reloj({ tipo, initialTime, onTimeEnd, onTimeStart, size }) {
                     )}
                 </div>
             </div>
-            <div id="seconds-sphere" className="seconds-sphere" ref={secondsSphereRef}></div>
+            <div id="seconds-sphere" className={`${tipo === 1 ? 'seconds-sphere' : 'seconds-sphere-g-clock'}`} ref={secondsSphereRef}></div>
         </main>
     );
 }

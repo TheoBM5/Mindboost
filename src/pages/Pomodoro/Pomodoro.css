@@ -7,3 +7,15 @@
     justify-content: center;
     
 }
+
+.effect-background-clock
+{
+    position: absolute;
+    border-radius: 100%;
+    width: 600px;
+    height: 600px;
+    background-color: rgb(220, 220, 220);
+    filter: blur(75px);
+
+    z-index: 1;
+}

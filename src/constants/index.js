@@ -22,7 +22,7 @@ export const navigation = [
         label: "Prueba",
     },
     {
-        imgURL:"src/assets/icons/settings.svg",
+        imgURL: "src/assets/icons/alarm.svg",
         route: "/pomodoro",
         label: "Pomodoro",
     },

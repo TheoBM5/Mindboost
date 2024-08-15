@@ -1,4 +1,5 @@
 .tile-mode{
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 65vh;
@@ -76,4 +77,130 @@
 
 .tile-mode.selected {
   border: 5px solid white;
+}
+
+.help-mode-button{
+  position: absolute;
+  border: 3px solid white;
+  font-weight: bold;
+  border-radius: 100%;
+  background-color: transparent;
+  color: white;
+  width: 30px;
+  height: 30px;
+  top: 20px;
+  right: 20px;
+  cursor: help;
+}
+
+.modal-modes-cont
+{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-modal-help
+{
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid white;
+  color: white;
+  background-color: transparent;
+  font-weight: bolder;
+  top: 15px;
+  right: 15px;
+}
+
+.circle-help{
+  width: 10px;
+  height: 10px;
+  background-color: rgb(85, 85, 85);
+  border-radius: 50%;
+}
+
+.active-circle{
+  width: 15px;
+  height: 15px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+}
+
+.circles-content-mode{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  grid-column: 3/4;
+  grid-row: 7/8;
+}
+
+.modal-content-help{
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  justify-items: center;
+}
+
+.prev-button-help{
+  width: 15px;
+  height: 15px;
+  grid-row: 7/8;
+  grid-column: 1/2;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 40px;
+}
+
+.next-button-help{
+  width: 15px;
+  height: 15px;
+  grid-row: 7/8;
+  grid-column: 5/6;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 40px;
+}
+
+.title-help-modal{
+  grid-column: 2/5;
+  grid-row: 1/2;
+}
+
+
+
+.img-modal-help
+{
+  height: 100%;
+  width: 25%;
+  grid-column: 1/6;
+  grid-row: 2/4;
+}
+
+.text-modal-help
+{
+  display: block;
+  grid-column: 2/5;
+  grid-row: 5/7;
+  font-size: 20px;
+}
+
+.subtitle-help-mode
+{
+  display: block;
+  grid-column: 1/6;
+  grid-row: 4/5;
+  font-weight: bold;
+  font-size: 25px;
 }

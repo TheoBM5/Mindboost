@@ -50,21 +50,21 @@ function NavbarLeft() {
                 New
               </button>
               
+              <footer className="cont-out">
+                  <a className="link-out"
+                      onClick={()=>{
+                        signout()
+                      }}
+                      >
+                      <img  className="logout-img"
+                        src={"src/assets/icons/logout-2.svg"}
+                      />
+                      <p>Salir</p>
+                  </a>
+
+              </footer>
             </ul>
             
-            <footer className="cont-out">
-                <a className="link-out"
-                    onClick={()=>{
-                      signout()
-                    }}
-                    >
-                    <img  className="logout-img"
-                      src={"src/assets/icons/logout-2.svg"}
-                    />
-                    <p>Salir</p>
-                </a>
-
-            </footer>
           </div>
         </nav>
         {modalOpen && <ModalCard setModalOpen={setModalOpen}/>}

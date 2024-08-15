@@ -88,7 +88,7 @@ function CardFormPage() {
                 <Label htmlFor="icon">Icono</Label>
                 <div className="preview-icon" >
                     {selectedIcon && React.createElement(ICON_NAMES[selectedIcon], {className: "selected-icon"})}
-                    <input type="hidden" {...register('icon')} value={selectedIcon || ''} />
+                    <input type="hidden" {...register('img')} value={selectedIcon || ''} />
                     
                 </div>
                     <Label htmlFor="icon">Select:</Label>

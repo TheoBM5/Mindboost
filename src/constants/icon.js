@@ -16,6 +16,8 @@ import { CiApple,
     CiPickerHalf,
     CiStar} from 'react-icons/ci';
 
+import { GiTomato } from "react-icons/gi";
+
 export const ICON_NAMES = {
     Apple : CiApple,
     Avocado : CiAvocado,
@@ -34,4 +36,5 @@ export const ICON_NAMES = {
     Microchip:CiMicrochip,
     Pill:CiPill,
     PickerHalf:CiPickerHalf,
+    Tomato: GiTomato
   };

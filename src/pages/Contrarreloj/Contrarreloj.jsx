@@ -222,10 +222,8 @@ function Contrarreloj() {
             </>
         )}
 
-    </div>
-
-                    
-                </form>
+    </div>      
+        </form>
             </Card>
             </div>
                 

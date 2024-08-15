@@ -34,9 +34,9 @@ function DataTable() {
     }, [isParams, params.deckid, memoizedLoadCards]);
 
     const data = useMemo(() => (
-        cards?.map(({ id, relation, content: { front, reverse } }) => ({
+        cards?.map(({ id, typecard, content: { front, reverse } }) => ({
             id,
-            relation,
+            typecard,
             front,
             reverse,
         })) ?? []
@@ -45,13 +45,18 @@ function DataTable() {
     const handleRowClick  = (row) => {
       row.getToggleSelectedHandler();
       setShowAdditionalComponent(true);
-      setSelectedRowData(row.original);
+      const originalCard = cards.find(card => card.id === row.original.id);
+      setSelectedRowData(originalCard);
     };
 
     const columns = [
         {
             header: "ID",
             accessorKey: 'id'
+        },
+        {
+            header: "Tipo",
+            accessorKey: 'typecard'
         },
         {
             header: "Front",
@@ -227,7 +232,13 @@ function DataTable() {
         </div>
       </div>
       <div className={`${showAdditionalComponent ? 'form-card-edit' : ''}`}>
-        {showAdditionalComponent && <CardFormPageEdit CardObject={selectedRowData} onClose={handleCloseFormulario} handleUpdateRow={handleUpdateRow} />}
+
+      {showAdditionalComponent && (
+          <CardFormPageEdit CardObject={selectedRowData} onClose={handleCloseFormulario} handleUpdateRow={handleUpdateRow} />
+      )}
+      {/* {showAdditionalComponent && selectedRowData.typecard === '2' && (
+          <button>hl</button>
+      )} */}
       </div>
     </div>
   )

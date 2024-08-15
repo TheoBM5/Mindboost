@@ -31,7 +31,7 @@ function About() {
         </div>
         <div className='slides slides3 '>
           <div>
-
+            <p>Realiza la encuesta que te permitira encontrar la mejor forma para estudiar</p> 
           </div>
         </div>
       </div>

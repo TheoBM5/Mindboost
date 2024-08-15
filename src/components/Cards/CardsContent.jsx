@@ -10,9 +10,7 @@ function CardsContent({deck, className}) {
     const [isOpen, setIsOpen] = useState(false);
     const [isOpen2, setIsOpen2] = useState(false);
     const menuRef = useRef();
-    const menuMode = useRef();
-    console.log(className)
-  
+    const menuMode = useRef();  
 
     const handleAddClick = (event) => {
       event.stopPropagation();

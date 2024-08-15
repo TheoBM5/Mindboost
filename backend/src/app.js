@@ -2,6 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import taskRoutes from './routes/tasks.routes.js';
 import authRoutes from './routes/auth.routes.js';
+import pythonRoutes from './routes/python.routes.js';
 import cardRoutes from './routes/card.routes.js';
 import cookieParse from 'cookie-parser';
 import cors from 'cors';
@@ -24,7 +25,7 @@ app.get("/", (req, res) => res.json({message: "welcome to my API"}));
 app.use('/api', taskRoutes);
 app.use('/api', authRoutes);
 app.use('/api', cardRoutes);
-
+app.use('/api', pythonRoutes);
 
 //Error Hander
 app.use((err, req, res, next)=>{

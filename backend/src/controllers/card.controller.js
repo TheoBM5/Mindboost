@@ -53,6 +53,8 @@ export const updateCard = async (req, res) => {
 };
 
 export const deleteCard = async (req, res) => {
+    await pool.query('DELETE FROM user_card_parameters_copies WHERE parameter_id IN (SELECT parameter_id FROM user_card_parameters WHERE card_id = $1)', [req.params.id]);
+    await pool.query('DELETE FROM user_card_parameters WHERE card_id = $1', [req.params.id]);
     const result = await pool.query('DELETE FROM card WHERE id = $1 RETURNING *',[req.params.id])
     if(result.rowCount === 0){
         return res.status(404).json({

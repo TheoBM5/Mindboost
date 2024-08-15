@@ -26,6 +26,24 @@
     z-index: 1;
 }
 
+.circle2{
+    border-radius: 50%;
+    width: var(--size);
+    height: var(--size);
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    font-size: 80px;
+    align-items: center;
+    flex-direction: column;
+    position: absolute; /* Cambiado a absolute */
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%); /* Centro el elemento */
+}
+
 .position-clock{
     position: relative; /* Cambiado a relative */
     width: 100%; /* Ajusta según tus necesidades */
@@ -43,12 +61,28 @@
     animation: rotacion 60s linear infinite;
     animation-play-state: paused;
     z-index: 3;
+}
 
+.seconds-sphere-g-clock{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    left: calc(50% - 10px);
+    top: calc(50% - 10px);
+    animation: rotacion2 60s linear infinite;
+    animation-play-state: paused;
+    z-index: 3;
 }
 
 @keyframes rotacion {
-	from { 	transform: rotate(-90deg) translateX(60px); }
-	to   {  transform: rotate(270deg) translateX(60px); }
+	from { 	transform: rotate(-90deg) translateX(160px); }
+	to   {  transform: rotate(270deg) translateX(160px); }
+}
+@keyframes rotacion2 {
+	from { 	transform: rotate(-90deg) translateX(325px); }
+	to   {  transform: rotate(270deg) translateX(325px); }
 }
 
 .buttons {
@@ -69,6 +103,18 @@
     border-style: solid;
 }
 
+.paused2 {
+    height: 20px;
+    border-width: 10px 0 10px 20px;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin-left: 15px;
+    border-color: transparent transparent transparent #ff2626;
+    transition: 100ms all ease;
+    will-change: border-width;
+    border-style: solid;
+}
+
 .running {
     border-style: double;
     border-width: 0 0 0 10px;
@@ -82,7 +128,22 @@
     cursor: pointer;
 
 }
+
+.stop2{
+    background-color: #ff0000;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+}
+
 .stopwatch{
     z-index: 5;
 
+}
+
+.buttons-g-clock{
+    padding: 30px;
+    display: inline-flex;
+    gap: 40px;
+    z-index: 5;
 }

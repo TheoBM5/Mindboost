@@ -1,112 +1,95 @@
 import { Card, Button } from '../../components/ui/index';
 import React, { useState, useEffect } from 'react';
+import {decisionTree} from '../../constants/tree.js'
+import {runPythonScript} from '../../api/python.api.js'
 import './Survey.css'
 
 
 function Survey() {
-
-  const questions = [
-    {
-      question: '¿Cuál es la capital de Francia?',
-      options: ['Madrid', 'Berlín', 'Paris'],
-      correctAnswer: 'París',
-    },
-    {
-      question: '¿Cuál es el río más largo del mundo?',
-      options: ['Nilo', 'Amazonas', 'Misisipi', 'Yangtsé'],
-      correctAnswer: 'Amazonas',
-    },
-    {
-      question: '¿Escribir o dibujar?',
-      options: ['Escribir', 'Leer'],
-      correctAnswer: 'Amazonas',
-    },
-    // Agrega más preguntas según sea necesario
-  ];
-
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentNode, setCurrentNode] = useState(decisionTree);
   const [userAnswers, setUserAnswers] = useState([]);
-  const [score, setScore] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [binaryAnswers, setBinaryAnswers] = useState([]);
+  const [output, setOutput] = useState('');
 
 
-  const handleAnswerClick = (selectedAnswer) => {
-    setSelectedAnswer(selectedAnswer);
-  };
-
-  const handleContinueClick = () => {
-    if (selectedAnswer !== null) {
-      setUserAnswers([...userAnswers, { question: currentQuestion, answer: selectedAnswer}]);
-      setCurrentQuestion(currentQuestion + 1);
-      setSelectedAnswer(null);
+  const handleAnswerClick = (selectedOption, index) => {
+    setUserAnswers([...userAnswers, { question: currentNode.question, answer: selectedOption.answer }]);
+    const newBinaryAnswer = index === 0 ? 0 : 1;  
+    setBinaryAnswers([...binaryAnswers, newBinaryAnswer]);
+    if (selectedOption.nextNode) {
+      setCurrentNode(selectedOption.nextNode);
+    } else {
+      setCurrentNode(null);  // Fin del árbol
     }
-  };
-
-  const handleBackClick = () => {
-    setCurrentQuestion(currentQuestion - 1);
-    const updatedAnswers = [...userAnswers];
-    const lastAnswer = updatedAnswers.pop();
-    if (lastAnswer.correct) {
-      setScore(score - 1);
-    }
-    setUserAnswers(updatedAnswers);
   };
 
   const restartQuiz = () => {
-    setCurrentQuestion(0);
+    setCurrentNode(decisionTree);
     setUserAnswers([]);
-    setScore(0);
-    setSelectedAnswer(null);
+    setBinaryAnswers([]);
   };
 
   const getProgress = () => {
-    return ((currentQuestion + 1) / questions.length) * 100;
+    const totalQuestions = userAnswers.length + 1;  // Pregunta actual + respuestas anteriores
+    return (totalQuestions / (totalQuestions + 1)) * 100;
+  };
+
+  const handleIa = async () => {
+    try {
+      console.log(Array.isArray(binaryAnswers)); 
+      const result = await runPythonScript(binaryAnswers);
+      console.log("gg", result)
+      setOutput(result.prediction);
+    } catch (error) {
+      console.error('Error ejecutando el script de Python:', error);
+    }
   };
 
   return (
     <div>
-      
-      {currentQuestion < questions.length ? (
-        
-        <div className='survey-container'>
-          <div className="progress-bar-container">
-            <div className="progress-bar" style={{ width: `${getProgress()}%` }}></div>
-          </div>
-          <p className='Question-style'>{questions[currentQuestion].question}</p>
-          <div className={(questions[currentQuestion].options.length)>3?'buttons-survey-4':'buttons-survey'}>
-            {questions[currentQuestion].options.map((option, index) => (
-              <button 
-              key={index} 
-              className={`button-option-survey ${selectedAnswer === option ? 'selected' : ''}`}
-              onClick={() => handleAnswerClick(option)}
-            >
-              {option}
-            </button>
-            ))}
-          </div>
-          <div className='buttons-container-survey'>
-            {currentQuestion > 0 && (
-              <button className='buttons-prev-next' onClick={handleBackClick}>Regresar</button>
-            )}
+    {currentNode ? (
+      <div className='survey-container'>
+        <div className="progress-bar-container">
+          <div className="progress-bar" style={{ width: `${getProgress()}%` }}></div>
+        </div>
+        <p className='Question-style'>{currentNode.question}</p>
+        <div className={(currentNode.options.length > 3) ? 'buttons-survey-4' : 'buttons-survey'}>
+          {currentNode.options.map((option, index) => (
             <button 
-              className='buttons-prev-next' 
-              onClick={handleContinueClick} 
-              style={{ margin: currentQuestion > 0 ? null : '0 auto' }}
-              disabled={selectedAnswer === null}
+              key={index} 
+              className='button-option-survey'
+              onClick={() => handleAnswerClick(option, index)}
             >
-              Continuar
+              {option.answer}
             </button>
-          </div>
+          ))}
         </div>
-      ) : (
+      </div>
+    ) : (
+      <div>
+        <h2>Encuesta completada</h2>
+        <ul>
+          {userAnswers.map((answer, index) => (
+            <li key={index}>{answer.question}: {answer.answer}</li>
+          ))}
+        </ul>
+        <button onClick={restartQuiz}>Reiniciar Encuesta</button>
         <div>
-          <h2>Quiz completado</h2>
-          <p>Puntaje: {score}</p>
-          <button onClick={restartQuiz}>Reiniciar Quiz</button>
-        </div>
-      )}
-    </div>
-  );
+        <h3>Array de respuestas binarias:</h3>
+        <ul>
+          {binaryAnswers.map((answer, index) => (
+            <li key={index}>{answer}</li>
+          ))}
+          
+        </ul>
+          <button onClick={handleIa}>Ea</button>
+          {output && <p>Resultado del AI: {output}</p>}  {/* Mostrar el resultado del AI */}
+      </div>
+      </div>
+      
+    )}
+    
+  </div>
+);
 };
-
 export default Survey
