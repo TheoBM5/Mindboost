@@ -30,9 +30,32 @@ function About() {
 
         </div>
         <div className='slides slides3 '>
-          <div>
-            <p>Realiza la encuesta que te permitira encontrar la mejor forma para estudiar</p> 
+          <div className='panel-information1'>
+            <h3 className='info-1'>Apuntes</h3>
+            <h3 className='info-2'>Tiempo</h3>
+            <h3 className='info-3'>Metodo</h3>
+            <p className='info-g'>Img</p>
           </div>
+        </div>
+        <div className='slides slides4'>
+          <div className='panel-detail-information'>
+            <h3 className='info-detail-1'>Apuntes</h3>
+            <h3 className='info-detail-2'>Tiempo</h3>
+            <h3 className='info-detail-3'>Metodo</h3>
+            <p className='info-img'>Img</p>
+          </div>
+        </div>
+        <div className='slides slides5'>
+            <img alt='IA'/>
+            <h2>Intelegencia artificial</h2>
+        </div>
+        <div className='slides slides6'>
+            <h2>Repeticion Espaciada</h2>
+            <img alt='IA'/>
+        </div>
+        <div className='slides slides7'>
+            <img alt='Progress'/>
+            <h2>Progreso</h2>
         </div>
       </div>
   )

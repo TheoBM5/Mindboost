@@ -36,6 +36,15 @@
     background-color: linear-gradient(454deg, #806240, #ff5353);
 }
 
+.slides4{
+    background-color: linear-gradient(454deg, #5eacb4, #349292);
+}
+
+.slides5{
+    background-color: linear-gradient(454deg, #408046, #25ff3b);
+}
+
+
 
 .panel-content{
     display: grid;
@@ -138,4 +147,72 @@
     opacity: 1;
     transform: translateY(0);
     filter: blur(4px);
+}
+
+.panel-information1{
+    display: grid;
+    grid-template-areas: "content1 content2 content3"
+                         "info info info";
+    grid-template-columns: [col-start] 22.5rem [mid-start] 22.5rem [mid] 22.5rem [col-end];
+    grid-template-rows: [row-start] 12.5rem [row-mid] 12.5rem [row-end];
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.info-1{
+    grid-area: content1;
+    text-align: center;
+}
+
+.info-2{
+    grid-area: content2;
+    text-align: center;
+}
+
+.info-3{
+    grid-area: content3;
+    text-align: center;
+}
+
+.info-g{
+    grid-area: info;
+    text-align: center;
+}
+
+.panel-detail-information{
+    display: grid;
+    grid-template-areas: "info1 imgdetail"
+                         "info2 imgdetail"
+                         "info3 imgdetail";
+    grid-template-columns: [col-start] 23.5rem [mid] 23.5rem [col-end];
+    grid-template-rows: [row-start] 12.5rem [row-mid] 12.5rem [row-mid-end] 12.5rem [row-end];
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.info-detail-1{
+    grid-area: info1;
+    text-align: center;
+}
+
+.info-detail-2{
+    grid-area: info2;
+    text-align: center;
+}
+
+.info-detail-3{
+    grid-area: info3;
+    text-align: center;
+}
+
+.info-img{
+    grid-area: imgdetail;
+}
+
+.panel-ia
+{
+    display: flex;
+
 }
