@@ -1,6 +1,7 @@
 import './UserCard.css'; 
 import {useAuth} from '../../context/AuthContext';
 import { Link } from 'react-router-dom'
+import React from "react";
 export function UserCard() {
 
   const {user} = useAuth()

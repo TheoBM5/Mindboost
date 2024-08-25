@@ -26,6 +26,7 @@ import Pomodoro from './pages/Pomodoro/Pomodoro';
 import RubberDuck from './pages/RubberDuck/RubberDuck';
 import ImageCut from './pages/ImageRecorte/ImageCut';
 import Three from './components/Three/Three'
+import TreeResult from './pages/TreeResult/TreeResult';
 function App() {
   const {isAuth, loading} = useAuth();
 
@@ -57,7 +58,7 @@ function App() {
                 <Route path="/deck/:id/:deckid/new/modes" element={<CardMode/>}/>
                 <Route path="/deck/new/modes" element={<CardMode/>}/>
                 <Route path="/deck/:id/:deckid/new/card" element={<CardProvider><CardFormPage/></CardProvider>} />
-                <Route path="/prueba" element={<CardProvider><Three/></CardProvider>} />
+                <Route path="/prueba" element={<CardProvider><TreeResult/></CardProvider>} />
 
                 <Route path="/decks/:id/edit" element={<DeckFormPage/>}/>
                 <Route path='/decks/:deckid/card/:idcard/edit' element={<CardFormPage/>} />

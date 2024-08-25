@@ -1,3 +1,4 @@
+import React from "react";
 import './Duck.css';
 function Duck({top, left,bottom, right, isTyping }) {
 

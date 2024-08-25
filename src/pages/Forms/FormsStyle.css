@@ -14,9 +14,12 @@
 }
 
 .size-form-card-2{
-    height: 50vh;
-    width: 90vw;
-    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    
+    /* margin-top: 5rem; */
 }
 
 
@@ -25,18 +28,21 @@
 }
 
 .card-style{
-    display: flex;
-    width: 50rem;
-    height: 20rem;
-    padding: 5.5rem;
+    position: relative;
     text-align: center;
     align-items: center;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 50rem;
+    padding: 20px;
+    height: 60%;
+    box-sizing: border-box;
+    border-radius: 8px;
+
     
 }
-
-
-
 
 .add-button{
     border-radius: 90rem;
@@ -180,4 +186,8 @@
 .img-edit-logro{
     width: 100px;
     height: 100px;
+}
+
+.text-form-card{
+    width: 90%;
 }

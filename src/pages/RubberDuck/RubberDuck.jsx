@@ -2,7 +2,7 @@ import Duck from "../../components/Duck/Duck"
 import React, { useState, useEffect, useRef } from 'react';
 import {useForm} from "react-hook-form";
 import { BlockPicker } from 'react-color'
-import Lines from "./lines";
+import Lines from "./Lines";
 import Onda from "./Onda";
 import Wave from "./Wave";
 import {Card, Input, TextArea, Button, Label} from "../../components/ui/index";

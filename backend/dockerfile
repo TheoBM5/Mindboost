@@ -1,13 +1,12 @@
-FROM node:18
+FROM node:18-alpine
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package*.json ./
-
+COPY package.json package-lock.json ./
 RUN npm install
 
-COPY . .
-
+COPY ./src ./src
+COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["node", "./src/index.js"]

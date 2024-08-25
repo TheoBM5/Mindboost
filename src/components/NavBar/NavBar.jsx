@@ -3,7 +3,6 @@ import {Container} from "../ui/index"
 import "./NavBar.css"
 function NavBar() {
   const location = useLocation();
-  console.log(location)
   return (
     <nav className="background-nav">
         <div className="cont">

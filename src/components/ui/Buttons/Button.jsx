@@ -1,5 +1,5 @@
+import React from "react";
 import '../Buttons/Button.css'
-
 const STYLES = [
   'button-accept',
   'button-green',

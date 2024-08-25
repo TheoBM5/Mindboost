@@ -30,12 +30,14 @@ function CardFormPage() {
         <Card className="card-style">
             <form className="size-form-card-2" onSubmit={onSubmit}>
                 <Label htmlFor="front">Front</Label>
+                <button>hola</button>
                 <TextArea 
                     {...register("front",{
                         required: true,
                     })}
                     placeholder="Front"
                     rows={3}
+                    
                 />
                 {errors.front && (
                     <p className="error-message">front text is required</p>
@@ -67,7 +69,7 @@ function CardFormPage() {
             </form>
         </Card>
 
-    </div>
+   </div>
     )
 }
 export default CardFormPage

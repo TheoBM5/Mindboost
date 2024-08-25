@@ -25,4 +25,4 @@ dist-ssr
 .db.js
 src/api/cloudinary.js
 backend/src/db.js
-env
+.env

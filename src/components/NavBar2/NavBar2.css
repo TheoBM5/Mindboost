@@ -1,0 +1,30 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:1rem 3rem;
+    background-color: #121212;
+    color: white;
+  }
+  
+  .navbar-logo img {
+    height: 60px;
+  }
+  
+  .navbar-buttons-2 {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .navbar-button {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-button:hover {
+    background-color: #777;
+  }

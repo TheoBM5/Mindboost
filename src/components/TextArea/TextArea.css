@@ -1,3 +1,12 @@
-.fieldInput{
+.text-area-comp{
+    width: 95%;
+    background: rgb(31, 31, 31);
+    color: white;
+    display: block;
+    border: 10px;
+    border-radius: 15px;
+    padding: 0.7rem 0.75rem;
+    margin: 0.8rem auto;
     resize: none;
+    /* height: 100%; */
 }

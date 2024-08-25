@@ -84,20 +84,11 @@ function Logro() {
       console.log(formData)
       let data = {};
       if(!iconUploaded){
-        // Crear una instancia de FormData
-        const imageFormData = new FormData();
-        imageFormData.append('file', ImageLogro.current);
-        imageFormData.append('upload_preset', 'Preset_react');
-        
-        // // Subir la imagen a Cloudinary
-        const response = await axios.post('https://api.cloudinary.com/v1_1/dwnhr8bue/image/upload', imageFormData);
-        const imageUrl = response.data.secure_url;
+        const imageUrl = await uploadImageToCloudinary(ImageLogro.current);
         delete formData.icon;
-      
         data = { ...formData, imageUrl };
-      }
-      else{
-        data = { ...formData};
+      } else {
+        data = { ...formData };
       }
 
       // Combinar los datos del formulario con la URL de la imagen
