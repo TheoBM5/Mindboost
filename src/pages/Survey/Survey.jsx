@@ -2,6 +2,9 @@ import { Card, Button } from '../../components/ui/index';
 import React, { useState, useEffect } from 'react';
 import {decisionTree} from '../../constants/tree.js'
 import {runPythonScript} from '../../api/python.api.js'
+import {answersClass} from '../../constants/result-ia.js'
+import TreeResult from '../TreeResult/TreeResult.jsx';
+import { useParams } from 'react-router-dom';
 import './Survey.css'
 
 
@@ -10,8 +13,9 @@ function Survey() {
   const [userAnswers, setUserAnswers] = useState([]);
   const [binaryAnswers, setBinaryAnswers] = useState([]);
   const [output, setOutput] = useState('');
-
-
+  const [clasesIa, setClasesIa] = useState(null);
+  const params = useParams();
+  console.log("par",params.opc)
   const handleAnswerClick = (selectedOption, index) => {
     setUserAnswers([...userAnswers, { question: currentNode.question, answer: selectedOption.answer }]);
     const newBinaryAnswer = index === 0 ? 0 : 1;  
@@ -27,6 +31,7 @@ function Survey() {
     setCurrentNode(decisionTree);
     setUserAnswers([]);
     setBinaryAnswers([]);
+    setClasesIa(null);
   };
 
   const getProgress = () => {
@@ -38,12 +43,22 @@ function Survey() {
     try {
       console.log(Array.isArray(binaryAnswers)); 
       const result = await runPythonScript(binaryAnswers);
-      console.log("gg", result)
+      console.log("Resultado", result)
+      const clasesIa = answersClass[result];
+      setClasesIa(clasesIa);
       setOutput(result.prediction);
+
+      // 
     } catch (error) {
       console.error('Error ejecutando el script de Python:', error);
     }
   };
+
+  useEffect(() => {
+    if (!currentNode) {
+      handleIa();  // Ejecutar la IA cuando se completa la encuesta
+    }
+  }, [currentNode]);
 
   return (
     <div>
@@ -66,30 +81,11 @@ function Survey() {
         </div>
       </div>
     ) : (
-      <div>
-        <h2>Encuesta completada</h2>
-        <ul>
-          {userAnswers.map((answer, index) => (
-            <li key={index}>{answer.question}: {answer.answer}</li>
-          ))}
-        </ul>
-        <button onClick={restartQuiz}>Reiniciar Encuesta</button>
-        <div>
-        <h3>Array de respuestas binarias:</h3>
-        <ul>
-          {binaryAnswers.map((answer, index) => (
-            <li key={index}>{answer}</li>
-          ))}
-          
-        </ul>
-          <button onClick={handleIa}>Ea</button>
-          {output && <p>Resultado del AI: {output}</p>}  {/* Mostrar el resultado del AI */}
-      </div>
-      </div>
-      
+      clasesIa && (
+        <TreeResult type1={clasesIa[0]} type2={clasesIa[1]} type3={clasesIa[2]} type4={params.opc} />
+      )
     )}
-    
-  </div>
+    </div>
 );
 };
 export default Survey

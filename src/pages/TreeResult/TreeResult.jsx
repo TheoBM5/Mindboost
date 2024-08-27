@@ -3,14 +3,14 @@ import NavBar2 from "../../components/NavBar2/NavBar2"
 import Buton from "../../components/ui/Boton/Buton";
 import './TreeResult.css'
 import CardR from "../../components/CardResult/CardR";
-import {answers} from "../../constants/treeAns";
+import {answersTree} from "../../constants/treeAns.js";
+import { useNavigate } from 'react-router-dom';
 const buttons = [
   { label: 'Home', onClick: () => alert('Home clicked!') },
-  { label: 'About', onClick: () => alert('About clicked!') },
-  { label: 'Contact', onClick: () => alert('Contact clicked!') },
 ];
-function TreeResult() {
-  const cards = [answers[1], answers[5], answers[3], answers[4]]; 
+function TreeResult({type1, type2, type3, type4}) {
+  const navigate = useNavigate();
+  const cards = [ answersTree[type3], answersTree[type1], answersTree[type2], answersTree[type4]];
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [currentCardActive, setCurrentCardActive] = useState(null);
@@ -45,7 +45,7 @@ function TreeResult() {
   return (
     <>
       <header>
-        <NavBar2 logoSrc="src/assets/img/logo.svg"
+        <NavBar2 logoSrc="/img/logo2.webp"
         logoAlt="My Logo"
         buttons={buttons}
         className={"logo-size-2"}
@@ -62,6 +62,8 @@ function TreeResult() {
                 imageSrc={answer.img}
                 imageAlt={`Image of ${answer.name}`}
                 title={answer.name}
+                subtitle={answer.type}
+                classNameSub = {"subtitle-result"}
                 className={`card-style-select-tree ${selectedIndex === answer.id ? 'selected' : ''}`}
               />
             );
@@ -74,6 +76,7 @@ function TreeResult() {
                 imageSrc="https://example.com/image.jpg"
                 imageAlt={`Example Image ${currentCardIndex + 1}`}
                 title={`This is ${cards[currentCardIndex]}`}
+                
                 className="card-r-uniq"
               />
              <div className="navigation-buttons">
@@ -89,13 +92,14 @@ function TreeResult() {
         <Buton
         // key={index}
         label={"Reintentar"}
-        onClick={""}
-        className="navbar-button-2"/>
+        className={"button-tree-respond"}
+        // onClick={""}
+        />
         <Buton
         // key={index}
         label={"Inicio"}
-        onClick={""}
-        className="navbar-button-2"/>
+        // onClick={""}
+        className={"button-tree-respond"}/>
       </footer>
     </>
   )
