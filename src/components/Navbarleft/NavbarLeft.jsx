@@ -14,7 +14,7 @@ function NavbarLeft() {
       <>
         <nav className="leftsidebar">
           <div className='side'>
-            <span className='header-tittle'><h2 className='appTitulo'>MindBoost</h2></span>
+            <span className='header-tittle'><img className="logo-left" src="/img/logo2.webp" alt="Mindboost"/></span>
             <UserCard/>
             <ul className="list-Unorded">
                 {navigation.map((link) => {    

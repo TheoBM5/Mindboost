@@ -62,9 +62,6 @@
     align-items: center;
   }
 
-  .button-checkbox input[type="checkbox"] {
-    
-  }
   
   .button-checkbox:hover {
     background-color: #0056b3;

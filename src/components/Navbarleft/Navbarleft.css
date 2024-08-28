@@ -12,7 +12,9 @@
   }
 
 .header-tittle{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+    display: flex;
+    margin: auto  ;
   }
 
 .appTitulo{
@@ -79,4 +81,10 @@
 .button-new{
   background-color: #00000000;
   border:none;
+}
+
+.logo-left{
+  width: 50%;
+  /* height: 10%; */
+  margin: auto;
 }
