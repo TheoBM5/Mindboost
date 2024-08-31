@@ -2,6 +2,7 @@ import {Input, Card, Button, Label} from "../../components/ui/index.js"
 import {useForm} from 'react-hook-form'
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
+import ButtonSign from "../../components/ButtonSign/ButtonSign.jsx";
 import './FormsStyle.css'
 
 function SigninForm() {
@@ -36,7 +37,7 @@ function SigninForm() {
               ))
           }
           <h3 className="title-style">Sign-In</h3>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className="form-sign">
             <Label htmlFor="name">Email</Label>
             <Input type="email" placeholder = "Enter your email" required
             title="Por favor introduzca una direccion de email valida"
@@ -53,6 +54,7 @@ function SigninForm() {
                 })}
                 
               />
+              {/* <ButtonSign/> */}
               {errors.password && (<p className="error-message"> Password is Required</p>)}
               <Button type="submit">
                 Sign-in

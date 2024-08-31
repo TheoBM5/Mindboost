@@ -17,9 +17,9 @@ export const navigation = [
         label:"Configuracion",
     },
     {
-        imgURL:"src/assets/icons/settings.svg",
-        route: "/prueba",
-        label: "Prueba",
+        imgURL:"src/assets/icons/search.svg",
+        route: "/test",
+        label: "Test",
     },
     {
         imgURL: "src/assets/icons/alarm.svg",

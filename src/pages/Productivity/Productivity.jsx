@@ -23,7 +23,7 @@ function Productivity() {
   return (
     <form onSubmit={handleSubmit}>
     <div className='cont-productivity'>
-        <h1>Selecciona alguno de tus habitos de gestion de tiempo</h1>
+        <h1>Selecciona alguno de tus habitos de <span className='tiempo-ad'>Gestion de Tiempo</span></h1>
         <div className="panel-select-pro">
             <label className="button-checkbox"><input name="opcProd" type="checkbox" value="option1"/> Dejar todo al ultimo</label>
             <label className="button-checkbox"><input name="opcProd" type="checkbox" value="option2"/> Uso un calendario o agenda para planificar mis actividades con anticipación</label>

@@ -4,6 +4,7 @@ import { CiTurnR1, CiTurnL1  } from "react-icons/ci";
 import { GoChevronRight, GoChevronLeft } from "react-icons/go";
 import { useNavigate, useParams } from 'react-router-dom';
 import Modal from '../../components/ui/Modal/Modal';
+
 import "./CardMode.css"
 function CardMode() {
   const [selectedCard, setSelectedCard] = useState(null);
@@ -16,9 +17,9 @@ function CardMode() {
   
   const navigate = useNavigate();
   const modes = [
-    { id: "0", label: "Normal" },
-    { id: "1", label: "Logro/Trofeo" },
-    { id: "2", label: "Cronometro" },
+    { id: "0", label: "Normal", img: `/img/flashw.webp`},
+    { id: "1", label: "Logro/Trofeo", img: `/img/trofeo.webp` },
+    { id: "2", label: "Cronometro", img: `/img/cronometro.webp` },
     { id: "3", label: "Rubber Duck" },
     { id: "4", label: "Canva" },
     { id: "5", label: "Analogia" },
@@ -67,20 +68,21 @@ function CardMode() {
   }
 
   const handleConfirm = () =>{
-      if(selectedCard == "card1"){
+      console.log("selected", selectedCard)
+      if(selectedCard == 0){
         navigate(`/deck/${params.id}/${params.deckid}/new/card`);
   
       }
-      if(selectedCard == "card2"){
+      if(selectedCard == 1){
         navigate(`/deck/${params.id}/${params.deckid}/achievement`);
       }
-      if(selectedCard == "card3"){
+      if(selectedCard == 2){
         navigate(`/deck/${params.id}/${params.deckid}/clock`);
       }
-      if(selectedCard == "card4"){
+      if(selectedCard == 3){
         navigate(`/deck/${deck.user_id}/${deck.id}/duck`);
       }
-      if(selectedCard == "card5"){
+      if(selectedCard == 4){
 
       }
   }
@@ -166,7 +168,7 @@ function CardMode() {
               />
             </div>
             <button className='help-mode-button' onClick={(e) => handleHelpMode(e, startIndex+1, mode.id)}>?</button>
-            <div className="PruebaAnimation"></div>
+            <div className="PruebaAnimation"><img className="imagen-tile-modes" src={mode.img}/></div>
             <label htmlFor={mode.id}>
               {mode.label}
             </label>

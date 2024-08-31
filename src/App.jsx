@@ -56,7 +56,7 @@ function App() {
                 <Route path="/deck/:id/:deckid/new/modes" element={<CardMode/>}/>
                 <Route path="/deck/new/modes" element={<CardMode/>}/>
                 <Route path="/deck/:id/:deckid/new/card" element={<CardProvider><CardFormPage/></CardProvider>} />
-                <Route path="/prueba" element={<CardProvider><Productivity/></CardProvider>} />
+                <Route path="/test" element={<CardProvider><Productivity/></CardProvider>} />
 
                 <Route path="/decks/:id/edit" element={<DeckFormPage/>}/>
                 <Route path='/decks/:deckid/card/:idcard/edit' element={<CardFormPage/>} />

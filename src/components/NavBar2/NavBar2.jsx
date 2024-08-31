@@ -19,7 +19,7 @@ const NavBar2 = ({ logoSrc, logoAlt, buttons, className}) => {
             key={index}
             label={button.label}
             onClick={button.onClick}
-            className="navbar-button-2"
+            className="navbar-buttons-2"
           />
         ))}
       </div>

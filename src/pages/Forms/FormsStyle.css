@@ -170,6 +170,11 @@
     height: 100%;
 }
 
+.form-sign{
+    display: flex;
+    flex-direction: column;
+}
+
 .menu-iconos.active {
     border: 1px solid white; /* Resalta el borde cuando el ícono está activo */
     border-radius: 10px;

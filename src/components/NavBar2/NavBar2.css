@@ -11,14 +11,20 @@
     height: 60px;
   }
   
-  .navbar-buttons-2 {
+  .navbar-buttons-2{
     display: flex;
     gap: 10px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    border-radius: 12px;
+    padding: 10px
   }
   
-  .navbar-button {
-    background-color: #555;
+  .navbar-buttons {
+    display: flex;
     color: white;
+    gap: 10px;
     border: none;
     padding: 10px 20px;
     cursor: pointer;

@@ -73,7 +73,7 @@ function TreeResult({type1, type2, type3, type4}) {
             <>
             <div className="extra-card">
               <CardR
-                imageSrc="https://example.com/image.jpg"
+                imageSrc="/img/duck.webp"
                 imageAlt={`Example Image ${currentCardIndex + 1}`}
                 title={`This is ${cards[currentCardIndex]}`}
                 

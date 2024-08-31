@@ -20,7 +20,7 @@ function CardFormPage() {
             deck = await createDeck(data);
             if(deck)
             {
-                navigate(`/deck/${deck.id}/new/card`);
+                navigate(`/`);
             }
             
         } else{

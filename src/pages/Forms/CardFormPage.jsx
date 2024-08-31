@@ -30,7 +30,6 @@ function CardFormPage() {
         <Card className="card-style">
             <form className="size-form-card-2" onSubmit={onSubmit}>
                 <Label htmlFor="front">Front</Label>
-                <button>hola</button>
                 <TextArea 
                     {...register("front",{
                         required: true,

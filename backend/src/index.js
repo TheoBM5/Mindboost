@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+
+console.log("DB_HOST:", process.env.DB_HOST);
 import app from './app.js';
 
 

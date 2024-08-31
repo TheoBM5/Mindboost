@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express'
 import morgan from 'morgan'
 import taskRoutes from './routes/tasks.routes.js';

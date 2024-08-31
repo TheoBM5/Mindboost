@@ -73,3 +73,23 @@
 .button-yellow:hover{
     border: 3px solid rgb(229, 255, 0);
 }
+
+
+.buttons-oficial-cont{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    width: 100%;
+}
+
+.buttons-oficial{
+    width: 5%;
+    height: 30%;
+    border-radius: 12px;
+}
+
+.img-botones{
+    width: 100%;
+    height: 30%;
+    
+}
