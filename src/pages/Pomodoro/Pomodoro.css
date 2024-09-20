@@ -1,10 +1,12 @@
 .pomodoro-container{
     display: flex;
+    flex-direction: column;
     position: absolute;
     width: 100%;
     height: 100%;
     align-items: center;
     justify-content: center;
+    background-color: rgb(0, 55, 55);
     
 }
 
@@ -14,8 +16,95 @@
     border-radius: 100%;
     width: 600px;
     height: 600px;
-    background-color: rgb(220, 220, 220);
-    filter: blur(75px);
 
+ 
     z-index: 1;
 }
+
+.pomodoro-buttons{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 5rem;
+    gap: 3rem;
+    padding-bottom: 3rem;
+}
+
+.button-pomodoro{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+}
+
+.sub-cont-button-grid
+{
+    display: grid;
+    width: 25%;
+    grid-template-areas: "title input acept cancel"
+                         "title buttons acept cancel";
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    padding-bottom: 3rem;
+    gap: 1rem;
+}
+
+.sub-cont-button-grid label{
+    grid-area: title;
+    justify-self: center;
+    align-self: center;
+}
+
+.input-pomodoro{
+    grid-area: input;
+    justify-self: center;
+    align-self: center;
+    border-radius: 12px;
+    background-color:rgb(17, 17, 17);
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+.pomodoro-acept{
+    grid-area: acept;
+    justify-self: center;
+    align-self: center;
+}
+
+.pomodoro-cancel{
+    grid-area: cancel;
+    align-self: center;
+    justify-self: center;
+}
+
+.input-buttons-minutes
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-minutes-pre{
+    display: flex;
+    grid-area: buttons;
+    height: 90%;
+    flex-direction: row;
+    align-self: center;
+    justify-self: center;
+    gap: 1rem;
+}
+
+.buttons-minutes-pre button{
+    background-color: rgb(20, 20, 20);
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+}
+
+.buttons-minutes-pre button:hover{
+    background-color: rgb(34, 34, 34);
+
+}
+

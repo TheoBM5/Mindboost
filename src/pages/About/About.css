@@ -1,4 +1,11 @@
 
+@keyframes cloud {
+    0%{background-position: 0 0;}
+	100%{background-position: 100vw 0;}
+}
+
+
+
 .back-card{
     width: 50vw;
     height: 50vh;
@@ -9,10 +16,12 @@
     justify-content: center;
 }
 
-.container-page{
-    background-image: linear-gradient(#1258b8,#003761, #091225, #461E64 , #000, #000);
-    scrollbar-color: black rgb(220, 135, 135) ;
-
+.title-section-about{
+    font-weight: bold;
+    background: linear-gradient(87deg, rgba(91,255,245,1) 0%, rgba(0,163,255,1) 100%); 
+    background-clip: text;
+    -webkit-background-clip: text; /* Para Chrome, Safari, Opera */
+    color: transparent; /* Funciona en Firefox y otros navegadores */
 }
 
 .container-main-landing{
@@ -20,17 +29,19 @@
     flex-direction: column;
     width: 100%;
     height: 100vh;
+    padding-bottom: 15rem;
 }
 
 .slides
 {
-    width: 100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     background-color: #000a1a;
     align-items: center;
     justify-content: center;
-    gap: 50px;
+
+    scroll-snap-align: start;
     color: #fff;
 }
 
@@ -39,11 +50,15 @@
 }
 
 .slides2{
-    background-color: linear-gradient(454deg, #40806d, #53f9ff);
+    /* background-color: linear-gradient(454deg, #00123a, #000000); */
+
+    background: linear-gradient(0deg, rgba(0,0,0,1) 40%, rgba(0, 10, 26,1) 100%);
+
 }
 
 .slides3{
-    background-color: linear-gradient(454deg, #806240, #ff5353);
+    background-color:#000812;
+    position: relative;
 }
 
 .slides4{
@@ -51,7 +66,34 @@
 }
 
 .slides5{
-    background-color: linear-gradient(454deg, #408046, #25ff3b);
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+}
+
+.slides6{
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+}
+
+.slides7{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    background-image:url("/img/background3.png");
+    overflow: hidden;
+    gap: 10%;
+}
+
+.prueba-color{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    background: rgb(0,8,17);
+    background: linear-gradient(0deg, rgb(0, 9, 37) 0%, rgb(0, 10, 67) 15%, rgb(0, 0, 0) 100%); 
+    z-index: 0;
 }
 
 .main-grid{
@@ -95,9 +137,37 @@
 
 .img-landing{
     grid-area: img;
-    width: 60%;
+    position: absolute;
+    width: 30%;
     justify-self: center;
+    top: 25%;
+    left: 10%;
+    z-index: 1;
     /* animation: float 3s ease-in-out infinite;  */
+}
+
+.cont-world{
+    display: inline-block;
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    z-index: 0;
+    margin: auto;
+}
+
+.colors-infogrid{
+    width: 70%;
+    position: absolute;
+    filter: hue-rotate(320deg);
+    inset: 0;
+    margin: auto;
+}
+
+.cont-world img {
+    width: 100%; /* Ajusta el tamaño según sea necesario */
+    border-radius: 50%; /* Para que la imagen tenga forma circular */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6), 0 0 40px rgba(0, 255, 255, 0.4); /* Sombra brillante */
+    filter: drop-shadow(0 0 10px cyan); /* Sombra adicional */
 }
 
 .start-landing{
@@ -109,19 +179,18 @@
 }
 
 .panel-content{
+    width: 80%;
+    height: 80%; /* Ocupar toda la altura del contenedor */
     display: grid;
-    grid-template-areas: "content1 main-content main-content content2"
-    "content3 main-content main-content content4"
-    "foot foot foot foot";
-
-
-    margin: auto;
-    grid-template-columns: [col-start] 22.5rem [mid-start] 22.5rem [mid] 22.5rem [mid-end] 22.5rem [col-end];
-    grid-template-rows: [row-start] 12.5rem [row-mid-start] 12.5rem [row-mid-end] 12.5rem [row-end];
+    grid-template-areas: 
+        "content1 main-content main-content content2"
+        "content3 main-content main-content content4"
+        "foot foot foot foot";
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    
 }
 
 .cont-1{
@@ -166,7 +235,7 @@
 .container-tile{
     width: 100%;
     height: 100%;
-    background-color: #5252522e;
+    background-color: #000f2546;
     border-radius: 10px;
     position: relative;
     overflow: hidden;
@@ -182,7 +251,7 @@
 
     width: 100%;
     height:100%;
-    background-color: #5e8fff;
+    background-color: #000f34;
     
     color: #fff;
     text-align: center;
@@ -198,38 +267,11 @@
     visibility: visible;
     opacity: 1;
     transform: translateY(0);
-    filter: blur(4px);
+    /* filter: blur(4px); */
 }
 
-.panel-information1{
-    display: grid;
-    grid-template-areas: "content1 content2 content3"
-                         "info info info";
-    grid-template-columns: [col-start] 22.5rem [mid-start] 22.5rem [mid] 22.5rem [col-end];
-    grid-template-rows: [row-start] 12.5rem [row-mid] 12.5rem [row-end];
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.info-1{
-    grid-area: content1;
-    text-align: center;
-}
-
-.info-2{
-    grid-area: content2;
-    text-align: center;
-}
-
-.info-3{
-    grid-area: content3;
-    text-align: center;
-}
-
-.info-g{
-    grid-area: info;
-    text-align: center;
+.text-tooltip-description{
+    padding: 2rem;
 }
 
 .panel-detail-information{
@@ -284,4 +326,159 @@
     width: 80%;
     height: 75%;
     margin: auto;
+}
+
+.image-container {
+    width: 100%; /* Ajusta según el tamaño deseado */
+    overflow: hidden; /* Oculta las partes que se desbordan fuera del contenedor */
+    position: relative;
+  }
+  
+  .image-slide {
+    display: flex;
+    width: 200%; /* Dos imágenes de ancho total */
+    animation: continuous-slide 10s linear infinite; /* Ajusta la duración según sea necesario */
+  }
+  
+
+.fog-back{
+    animation: cloud 55s linear infinite;
+    display: flex;
+
+    position: absolute;
+    width: 200%;
+    height: 33%;
+    background-image: url("/img/fog.webp");
+    left: 0;
+    bottom: 0;
+    filter: hue-rotate(20deg);
+}
+
+
+
+/* Tercer slide */
+.panel-information1{
+    position: relative;
+    display: grid;
+    grid-template-areas: "title title title"
+                         "content1 content2 content3";
+                         /* "info info info"; */
+    grid-template-columns: [col-start] 22.5rem [mid-start] 22.5rem [mid] 22.5rem [col-end];
+    grid-template-rows: [row-start] 12.5rem [row-mid-start] 12.5rem [row-mid-end];
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    
+}
+
+.info-stlye h3{
+    
+    background: linear-gradient(87deg, rgba(91,255,245,1) 0%, rgba(0,163,255,1) 100%); 
+    background-clip: text;
+    -webkit-background-clip: text; /* Para Chrome, Safari, Opera */
+    color: transparent; /* Funciona en Firefox y otros navegadores */
+}
+
+.sub-mainfo{
+    color: #bcbcbc;
+}
+
+.sub-mainfo:hover{
+    color: white;
+    font-weight: bolder;
+}
+
+.icon-panel-information{
+    width: 25%;
+    height: 25%;
+}
+
+.info-title{
+    grid-area: title;
+    text-align: center;
+    justify-content: center;
+    font-size: xx-large;
+}
+
+.info-1{
+    grid-area: content1;
+}
+
+.info-2{
+    grid-area: content2;
+}
+
+.info-3{
+    grid-area: content3;
+}
+
+.info-stlye{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #001648;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
+.info-stlye:hover{
+    background-color: #022a88;
+    border: 5px solid rgb(7, 135, 255);
+}
+
+.info-stlye-active{
+    /* background-color: #022a88; */
+    border: 5px solid rgb(7, 135, 255);
+}
+
+.info-g{
+    grid-area: info;
+    text-align: center;
+    justify-self: center;
+}
+.card-extra-info{
+    width: 30%;
+    height: 100%;
+    border-radius: 12px;
+    background-color: #00142b;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    padding: 1rem;
+}
+
+.progress-card{
+    display: flex;
+    width: 20%;
+    height: 25%;
+    background-color: #002c3c80;
+    border-radius: 12px;
+    filter:brightness(5px);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.progress-card img{
+    width: 25%;
+    height: 40%;
+}
+
+.progress-card div{
+    text-align: center;
+}
+
+.progres-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: large;
+    width: 25%;
+}
+
+.progres-text h2{
+    font-size: xx-large ;
+}
+.text-description-content{
+    text-align: center;
 }

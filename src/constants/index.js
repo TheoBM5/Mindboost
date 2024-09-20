@@ -26,4 +26,9 @@ export const navigation = [
         route: "/pomodoro",
         label: "Pomodoro",
     },
+    {
+        imgURL: "src/assets/icons/alarm.svg",
+        route: "/prueba",
+        label: "Prueba",
+    },
 ];

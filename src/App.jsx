@@ -25,6 +25,7 @@ import Logro from './pages/Logro/Logro';
 import Pomodoro from './pages/Pomodoro/Pomodoro';
 import RubberDuck from './pages/RubberDuck/RubberDuck';
 import Productivity from './pages/Productivity/Productivity';
+import Progreso from './pages/Progreso/Progreso';
 function App() {
   const {isAuth, loading} = useAuth();
 
@@ -57,6 +58,7 @@ function App() {
                 <Route path="/deck/new/modes" element={<CardMode/>}/>
                 <Route path="/deck/:id/:deckid/new/card" element={<CardProvider><CardFormPage/></CardProvider>} />
                 <Route path="/test" element={<CardProvider><Productivity/></CardProvider>} />
+                <Route path="/prueba" element={<CardProvider><Progreso/></CardProvider>} />
 
                 <Route path="/decks/:id/edit" element={<DeckFormPage/>}/>
                 <Route path='/decks/:deckid/card/:idcard/edit' element={<CardFormPage/>} />

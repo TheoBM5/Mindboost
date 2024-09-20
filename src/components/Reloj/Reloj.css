@@ -80,10 +80,7 @@
 	from { 	transform: rotate(-90deg) translateX(160px); }
 	to   {  transform: rotate(270deg) translateX(160px); }
 }
-@keyframes rotacion2 {
-	from { 	transform: rotate(-90deg) translateX(325px); }
-	to   {  transform: rotate(270deg) translateX(325px); }
-}
+
 
 .buttons {
     margin-top: 10px;
@@ -146,4 +143,66 @@
     display: inline-flex;
     gap: 40px;
     z-index: 5;
+}
+
+/* clock2 */
+
+@keyframes rotacion2 {
+    from { 
+        transform: rotate(-90deg) translateX(305px); /* Comienza en el borde superior del círculo */
+    }
+    to { 
+        transform: rotate(270deg) translateX(305px); /* Termina con una rotación completa */
+    }
+}
+
+.circle-2{
+    border-radius: 50%;
+    width: var(--size);
+    height: var(--size);
+    border: 5px solid #ffffff;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    font-size: 80px;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%); /* Centro el elemento */
+}
+
+.circle-2::after{
+    content: "";
+    border-radius: 50%;
+    width: 85%; 
+    height: 85%; 
+    border: 5px solid #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centro el círculo interior */
+}
+
+.buttons-2{
+    margin-top: 10px;
+    display: inline-flex;
+    z-index: 5;
+}
+
+.seconds-sphere-2{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* top: calc(50% - 305px); */
+    /* transform-origin: center 125px; */
+    animation: rotacion2 60s linear infinite;
+    animation-play-state: paused;
+    z-index: 3;
 }

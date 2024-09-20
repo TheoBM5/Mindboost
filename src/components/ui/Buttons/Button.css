@@ -93,3 +93,14 @@
     height: 30%;
     
 }
+
+.button-tool{
+    border-radius: 5px;
+    width: 5.5%;
+    cursor: pointer;
+}
+
+.button-image {
+    width: 24px;
+    height: 24px;
+  }
