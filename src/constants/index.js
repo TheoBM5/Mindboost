@@ -1,21 +1,10 @@
 export const navigation = [
     {
         imgURL:"src/assets/icons/home.svg",
-        route:"/survey",
+        route:"/",
         label:"Home",
     },
 
-    {
-        imgURL:"src/assets/icons/play-card.svg",
-        route:"/study",
-        label:"Tarjetas",
-    },
-
-    {
-        imgURL:"src/assets/icons/settings.svg",
-        route:"/profile",
-        label:"Configuracion",
-    },
     {
         imgURL:"src/assets/icons/search.svg",
         route: "/test",
@@ -27,8 +16,13 @@ export const navigation = [
         label: "Pomodoro",
     },
     {
-        imgURL: "src/assets/icons/alarm.svg",
-        route: "/prueba",
-        label: "Prueba",
+        imgURL: "src/assets/icons/progress.svg",
+        route: "/Progreso",
+        label: "Progreso",
+    },
+    {
+        imgURL:"src/assets/icons/settings.svg",
+        route:"/profile",
+        label:"Configuracion",
     },
 ];

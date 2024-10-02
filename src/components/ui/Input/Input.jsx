@@ -2,13 +2,13 @@ import React, {forwardRef} from "react";
 import './Input.css'
 
 export const Input = forwardRef ((props, ref) => {
-  const { className, ...rest } = props;
+  const { className = '', ...rest } = props;
   return (
     <input 
       type="text" 
-      className={`fieldInput ${className || ''}`} 
+      className={`fieldInput ${className}`} 
       ref={ref} 
-      {...props}
+      {...rest}
     />
   );
 });

@@ -1,0 +1,234 @@
+.cont-duck2{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(31, 31, 31);
+    background-image: url(/img/background3.png);
+    margin:auto;
+}
+
+.card-question-duck{
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    background-color: rgb(0, 30, 64);
+    filter: blur();
+    display: grid;
+    grid-template-areas: 
+    "title title "
+    "main img"
+    "buttons buttonsnext";
+grid-template-columns: 1fr 12rem;
+grid-template-rows: 8rem auto 3rem;
+}
+
+.section-title{
+    display: flex;
+    flex-direction: column;
+    grid-area: title;
+}
+
+.title-duck2
+{
+    display: flex;
+    flex-direction: row;
+    
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+}
+
+.title-duck2 label{
+    margin-bottom: 0;
+    padding-top: 0px;
+}
+
+.card-question-duck img{
+    grid-area: img;
+    justify-self: center;
+    align-self: center;
+    width: 75%;
+}
+
+
+.close-questions-card{
+    grid-area: close;
+    width: 25%;
+    justify-self: end;
+}
+
+
+.buttons-duck2{
+    grid-area: buttons;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+}
+.input-duck-question{
+    align-self: flex-start;
+  background-color: #ffffff;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 15px 15px 15px 0;
+  max-width: 80%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+}
+
+.input-duck-question::before{
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 10px solid #ffffff;
+    border-bottom: 10px solid transparent;
+}
+
+.buttons-duck2 button{
+    width: 4rem;
+    height: 3rem;
+    background-color: rgb(15, 15, 15);
+    color: white;
+    border: none;
+    font-weight: bolder;
+    border-radius: 12px;
+}
+
+.question-input-box{
+    width: 100%;
+    height: 80%;
+    overflow-y: scroll;
+    grid-area: main;
+}
+
+.next-button-duck
+{
+    grid-area: buttonsnext;
+    width: 50%;
+    justify-self: center;
+    background-color: rgb(14, 14, 14);
+    color: white;
+    border: none;
+    border-radius: 12px;
+}
+
+.answer-card-duck{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    
+}
+
+.question-bubble {
+    align-self: flex-start;
+    background-color: #ffffff;
+    color: #333;
+    width: 65%;
+    padding: 10px 15px;
+    border-radius: 15px 15px 15px 0;
+    max-width: 80%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .question-bubble::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 10px solid #ffffff;
+    border-bottom: 10px solid transparent;
+  }
+.cont-answer-chat{
+    width: 90%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    padding-right: 80px;
+}
+.input-duck-answer{
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 15px 15px 0 15px;
+    max-width: 50%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.input-duck-answer::before{
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-left: 10px solid #007bff;
+    border-bottom: 10px solid transparent;
+}
+
+.card-chat-duck{
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.chat-icon-duck
+{
+    border-radius: 50%;
+    width: 20%;
+    background-color: #007bff;
+    background-image: url("./img/icon/duckchat.webp");
+    background-size: cover;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat; 
+  transform: scaleX(-1)
+}
+
+.chat-icon-duck-2{
+    border-radius: 50%;
+    width: 20%;
+    background-color: #007bff;
+    background-image: url("./img/icon/duckchat.webp");
+    background-size: cover;
+    background-position: 10px 10px; 
+    background-repeat: no-repeat; 
+    
+}
+
+.card-chat-duck-2{
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    gap: 20px;
+    align-self: flex-end;
+  text-align: right;
+}
+
+.save-button-duck
+{
+    width: 50%;
+    height: 30px;
+    background-color: #1d1d1d;
+    border: none;
+    border-radius: 12px;
+    color: white;
+}

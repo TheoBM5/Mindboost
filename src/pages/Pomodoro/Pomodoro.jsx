@@ -8,17 +8,38 @@ function Pomodoro() {
   const [timeClock, setTimeClock] = useState(1500000);
   const [selectButton, setSelectButton] = useState(0);
   const [timeSelect, setTimeSelect] = useState(25);
-  const [restSelect, setRestSelect] = useState(5);
-  const [isResting, setIsResting] = useState(false);
-  const [restCount, setRestCount] = useState(0); 
+  const [restSelect, setRestSelect] = useState(5); 
+  const [isResting, setIsResting] = useState(false); 
+  const [cycleCount, setCycleCount] = useState(0); 
+  const [isRunning, setIsRunning] = useState(false);
+  const [isLongRest, setIsLongRest] = useState(false); 
+  const [errorMessage, setErrorMessage] = useState('');
+  const alarmAudio = useRef(new Audio('/sounds/sound1.mp3'));
+  const playAlarm = () => {
+    alarmAudio.current.play();
+  };
+
 
   const handleTimeSelection = (time) => {
+    if (time === restSelect) {
+      setErrorMessage('El tiempo de descanso y trabajo no pueden ser iguales.');
+    } else {
     setTimeClock(time * 60 * 1000);
     setTimeSelect(time); 
+    setSelectButton(0);
+    setErrorMessage('');
+  }
 }
 
 const handleRestSelection = (time) => {
+  if (time === timeSelect) {
+    setErrorMessage('El tiempo de descanso y trabajo no pueden ser iguales.');
+  } else {
   setRestSelect(time);
+  setSelectButton(0);
+
+  setErrorMessage(''); 
+}
 };
 
   const handleButtonSelect = (button) =>{
@@ -33,30 +54,28 @@ const handleRestSelection = (time) => {
     }
   };
 
-  const alarmAudio = useRef(new Audio('/sounds/sound1.mp3')); // Ruta relativa desde public
-
-  // Función que reproduce el sonido
-  const playAlarm = () => {
-    alarmAudio.current.play();
-  };
 
   const handleTimeEnd = () => {
     playAlarm();
+    
     if (isResting) {
-        setTimeClock(timeSelect * 60 * 1000);
-        setIsResting(false); 
+      
+      setTimeClock(timeSelect * 60 * 1000);  
+      setIsResting(false);                    
+      setCycleCount(prev => prev + 1);        
+      setIsLongRest(false);                   
     } else {
-        if (restCount === 2) {
-            setTimeClock(restSelect * 2 * 60 * 1000); 
-            setRestCount(0);
-        } else {
-            const restTimeMs = restSelect * 60 * 1000;
-            setTimeClock(restTimeMs > 0 ? restTimeMs : 10000); 
-            setIsResting(true);
-            setRestCount((prevCount) => prevCount + 1);
-        }
+      
+      if (cycleCount >= 3) {                  
+        setTimeClock(restSelect * 2 * 60 * 1000);  
+        setCycleCount(0);                      
+        setIsLongRest(true);                   
+      } else {
+        setTimeClock(restSelect * 60 * 1000);  
+      }
+      setIsResting(true);                      
     }
-};
+  };
 
 const handleInputChange = (e) => {
   const newTime = parseInt(e.target.value, 10);
@@ -71,13 +90,6 @@ const handleInputChange = (e) => {
   }
 };
 
-  useEffect(() => {
-    if (isResting) {
-        setTimeClock(restSelect * 60 * 1000);
-    } else {
-        setTimeClock(timeSelect * 60 * 1000);
-    }
-}, [timeSelect, restSelect, isResting]);
 
 useEffect(() => {
   try {
@@ -99,43 +111,61 @@ useEffect(() => {
   }
 }, [timeSelect, restSelect]);
 
+const startTimer = (play) => {
+  if(play){
+    setIsRunning(true); 
+
+  }else
+  {
+    setIsRunning(false); 
+
+  }
+};
+
   return (
   
     <div className="pomodoro-container">
-      <Reloj2 initialTime={timeClock} onTimeEnd={handleTimeEnd} key={timeClock} size="650px"/>
-      {selectButton === 1 ? (
-        <div className="sub-cont-button-grid">
-          <Label>Tiempo</Label>
-            <Input className="input-pomodoro" value={timeSelect} onChange={handleInputChange}  />
+      <Reloj2 initialTime={timeClock} initialRestTime={restSelect} isRunningHandle={startTimer} onTimeEnd={handleTimeEnd} key={timeClock} size="650px"/>
+      {}
+      
+      {!isRunning && (  
+      <>
+         {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {selectButton === 1 ? (
+          <div className="sub-cont-button-grid">
+            <Label>Tiempo</Label>
+            <Input className="input-pomodoro" value={timeSelect} onChange={handleInputChange} />
             <div className="buttons-minutes-pre">
               <button onClick={() => handleButtonTime(15)}>15</button>
               <button onClick={() => handleButtonTime(20)}>20</button>
               <button onClick={() => handleButtonTime(25)}>25</button>
             </div>
-          <button className="button-pomodoro pomodoro-acept" type="submit" onClick={() => handleTimeSelection(timeSelect)}>✔</button>
-          <button className="button-pomodoro pomodoro-cancel" onClick={() => handleButtonSelect(0)}>x</button>
-        </div>
-      ) : selectButton === 2 ? (
-        <div className="sub-cont-button-grid">
-          <Label>Descanso</Label>
-          <Input className="input-pomodoro" value={restSelect} onChange={handleInputChange}  />
-          <div className="buttons-minutes-pre">
+            <button className="button-pomodoro pomodoro-acept" type="submit" onClick={() => handleTimeSelection(timeSelect)}>✔</button>
+            <button className="button-pomodoro pomodoro-cancel" onClick={() => handleButtonSelect(0)}>x</button>
+          </div>
+        ) : selectButton === 2 ? (
+          <div className="sub-cont-button-grid">
+            <Label>Tiempo de descanso: {restSelect}</Label>
+            <Input className="input-pomodoro" value={restSelect} onChange={handleInputChange} />
+            <div className="buttons-minutes-pre">
               <button onClick={() => handleButtonTime(15)}>15</button>
               <button onClick={() => handleButtonTime(20)}>20</button>
               <button onClick={() => handleButtonTime(25)}>25</button>
             </div>
-          <button className="button-pomodoro pomodoro-acept" type="submit" onClick={() => handleRestSelection(restSelect)}>✔</button>
-          <button className="button-pomodoro pomodoro-cancel" onClick={() => handleButtonSelect(0)}>x</button>
-        </div>
-      ) : selectButton === 3 ? (
-        <button className="button-pomodoro" onClick={() => handleButtonSelect(0)}>60</button>
-      ):(
-        <footer className="pomodoro-buttons">
-          <button className="button-pomodoro" onClick={() => handleButtonSelect(1)}><CiAlarmOn /></button>
-          <button className="button-pomodoro" onClick={() => handleButtonSelect(2)}><CiDark /></button>
-          <button className="button-pomodoro" onClick={() => handleButtonSelect(3)}><CiViewTable/></button>
-        </footer>
-      )}
+            <button className="button-pomodoro pomodoro-acept" type="submit" onClick={() => handleRestSelection(restSelect)}>✔</button>
+            <button className="button-pomodoro pomodoro-cancel" onClick={() => handleButtonSelect(0)}>x</button>
+          </div>
+        ) : selectButton === 3 ? (
+          <button className="button-pomodoro" onClick={() => handleButtonSelect(0)}>60</button>
+        ) : (
+          <footer className="pomodoro-buttons">
+            <button className="button-pomodoro-main" onClick={() => handleButtonSelect(1)}><CiAlarmOn className="img-button-pomodoro"/></button>
+            <button className="button-pomodoro-main" onClick={() => handleButtonSelect(2)}><CiDark className="img-button-pomodoro"/></button>
+            {/* <button className="button-pomodoro-main" onClick={() => handleButtonSelect(3)}><CiViewTable className="img-button-pomodoro"/></button> */}
+          </footer>
+        )}
+      </>
+    )}
       
     <div className="effect-background-clock">
     </div>

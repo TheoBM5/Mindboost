@@ -8,7 +8,7 @@
     padding: 1rem;
     height: 200px;
     width: 350px;
-
+    overflow: visible;
     text-decoration: none;
     color: #ffffff; /* Color del texto */
     background-color: #141414; 
@@ -151,3 +151,20 @@
   .menu-item:hover {
     background: #202020;
   }
+
+  .highlight{
+    color: #00e1ff;
+  }
+
+.progress-bar-container {
+    width: 100%;
+    background-color: #e5e7eb; /* Equivalente a bg-gray-200 */
+    border-radius: 9999px; /* Equivalente a rounded-full */
+    height: 10px; /* Equivalente a h-2.5 (2.5 * 4px = 10px) */
+}
+
+.progress-bar {
+    background-color: #2563eb; /* Equivalente a bg-blue-600 */
+    height: 10px; /* Equivalente a h-2.5 */
+    border-radius: 9999px; /* Equivalente a rounded-full */
+}

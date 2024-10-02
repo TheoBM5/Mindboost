@@ -26,6 +26,8 @@ import Pomodoro from './pages/Pomodoro/Pomodoro';
 import RubberDuck from './pages/RubberDuck/RubberDuck';
 import Productivity from './pages/Productivity/Productivity';
 import Progreso from './pages/Progreso/Progreso';
+import RubberDuckChat from './pages/RubberDuck2/RubberDuckChat';
+import DuckOption from './components/Duck/duckoption';
 function App() {
   const {isAuth, loading} = useAuth();
 
@@ -34,6 +36,7 @@ function App() {
   </h1>
   return (
     <>
+    
           <Routes>
             <Route element={<ProtectedRoute isAllowed={!isAuth} redirectTo="/" />}>
               <Route path="/sign-up" element={<><Stars><NavBar/><SignupForm/></Stars></>} />
@@ -52,13 +55,15 @@ function App() {
                 <Route path="/deck/:id/:deckid/clock" element={<CardProvider><Contrarreloj/></CardProvider>}/>
                 <Route path="/deck/:id/:deckid/achievement" element={<CardProvider><Logro/></CardProvider>}/>
                 <Route path="/pomodoro" element={<CardProvider><Pomodoro/></CardProvider>}/>
-                <Route path="/deck/:id/:deckid/duck" element={<CardProvider><RubberDuck/></CardProvider>}/>
+                <Route path="/deck/:id/:deckid/duck" element={<CardProvider><DuckOption/></CardProvider>}/>
+                <Route path="/deck/:id/:deckid/duckchat" element={<CardProvider><RubberDuckChat/></CardProvider>} />
+                <Route path="/deck/:id/:deckid/duck1" element={<CardProvider><RubberDuck/></CardProvider>} />
                 <Route path="/survey/:opc" element={<Survey/>}/>
                 <Route path="/deck/:id/:deckid/new/modes" element={<CardMode/>}/>
                 <Route path="/deck/new/modes" element={<CardMode/>}/>
                 <Route path="/deck/:id/:deckid/new/card" element={<CardProvider><CardFormPage/></CardProvider>} />
                 <Route path="/test" element={<CardProvider><Productivity/></CardProvider>} />
-                <Route path="/prueba" element={<CardProvider><Progreso/></CardProvider>} />
+                <Route path="/progreso" element={<CardProvider><Progreso/></CardProvider>} />
 
                 <Route path="/decks/:id/edit" element={<DeckFormPage/>}/>
                 <Route path='/decks/:deckid/card/:idcard/edit' element={<CardFormPage/>} />

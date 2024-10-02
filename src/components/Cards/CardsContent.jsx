@@ -103,15 +103,15 @@ function CardsContent({deck, className}) {
            {isOpen2 &&(
             <button
               className='menu'
-              style={{left: "6rem"}}
+              style={{left: "7rem"}}
               ref={menuMode}
             >
               <div className='menu-item' onClick={handleNewCard}>Tarjeta Clasica</div>
               <div className='menu-item' onClick={handleNewClock}>Cronometro</div>
               <div className='menu-item' onClick={handleNewAchievement}>Logro</div>
-              <div className='menu-item' onClick={handleNewRubberduck}>Rubeer Duck</div>
-              <div className='menu-item' onClick={handleAddClick}>Canva</div>
-              <div className='menu-item' onClick={handleMoreDetails}>Detalles</div>
+              {/* <div className='menu-item' onClick={handleNewRubberduck}>Rubeer Duck</div>
+              <div className='menu-item' onClick={handleAddClick}>Canva</div> */}
+              <div className='menu-item highlight' onClick={handleMoreDetails}>Mas Modos</div>
             </button>
           )}
 

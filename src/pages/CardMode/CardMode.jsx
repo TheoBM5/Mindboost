@@ -17,16 +17,16 @@ function CardMode() {
   
   const navigate = useNavigate();
   const modes = [
-    { id: "0", label: "Normal", img: `/img/flashw.webp`},
+    { id: "0", label: "Normal", img: `/img/icon/cardsmodes.webp`},
     { id: "1", label: "Logro/Trofeo", img: `/img/trofeo.webp` },
     { id: "2", label: "Cronometro", img: `/img/cronometro.webp` },
-    { id: "3", label: "Rubber Duck" },
-    { id: "4", label: "Canva" },
-    { id: "5", label: "Analogia" },
+    { id: "3", label: "Rubber Duck", img: `/img/icon/duckchat.webp` },
+    { id: "4", label: "Canva",  img: `/img/canva.webp`},
+    { id: "5", label: "Analogia",  img: `/img/comic.webp` },
   ];
 
   const information_modes = [
-    { id: '0', label: 'Normal', subtitle: ['Identificar los conceptos clave','Escribir la pregunta o término', 'Escribir la respuesta o definición'], 
+    { id: '0', label: 'Normal', gif:'/gif/flashcard.gif', subtitle: ['Identificar los conceptos clave','Escribir la pregunta o término', 'Escribir la respuesta o definición'], 
       pages: ['Revisa tus apuntes, libros de texto o cualquier otro material de estudio para identificar los conceptos, términos, fechas, fórmulas o cualquier otra información que necesites memorizar.', 
         'En el lado delantero de la tarjeta, escribe una pregunta, término o concepto. Asegúrate de que sea claro y específico.', 
         'En el lado trasero de la tarjeta, escribe la respuesta, definición o explicación del término. Procura ser conciso pero completo. ']},
@@ -34,11 +34,11 @@ function CardMode() {
       pages: ['Piensa en un proceso que puede ser descrito paso por paso', 
         'Describe el proceso paso por paso',
         'Añade un titulo y una imagen que describa este proceso'] },
-    { id: '2', label: 'Cronometro', subtitle: ['Preparate','Pregunta o concepto','Antes de que se acabe el tiempo'], 
+    { id: '2', label: 'Cronometro', gif:'/gif/flashcard.gif', subtitle: ['Preparate','Pregunta o concepto','Antes de que se acabe el tiempo'], 
       pages: [' Revisa, estudia y analiza tus apuntes, libros de texto o cualquier otro material de estudio para identificar los conceptos, términos, fechas, fórmulas etc', 
         'Explica los conceptos que se te ocurran despues de haber analizado los materiales de estudio', 
         'Escribe todos las tarjetas que puedas antes de que se acabe el tiempo'] },
-    { id: '3', label: 'Rubber Duck', subtitle: ['Habla con el patito','Paso a paso','Encuentra el error'], 
+    { id: '3', label: 'Rubber Duck', gif:'/gif/animacionduck.gif', subtitle: ['Habla con el patito','Paso a paso','Encuentra el error'], 
       pages: ['Cuando te encuentres con un problema explica al patito, qué es lo que tu debería hacer y cómo esperas que funcione.', 
         'Describe cada paso de tu problema y lo que se supone que hace cada paso, como si estuvieras enseñando al patito. ', 
         'al explicar el problema en términos simples, puedes identificar lo que está mal o pensar en una solución que no habías considerado antes.'] },
@@ -80,7 +80,7 @@ function CardMode() {
         navigate(`/deck/${params.id}/${params.deckid}/clock`);
       }
       if(selectedCard == 3){
-        navigate(`/deck/${deck.user_id}/${deck.id}/duck`);
+        navigate(`/deck/${params.id}/${params.deckid}/duck`);
       }
       if(selectedCard == 4){
 
@@ -128,7 +128,7 @@ function CardMode() {
       <Modal>
         <div className='modal-content-help'>
               <h1 className='title-help-modal'>{information_modes[modalHelpId].label}</h1>
-              <img className='img-modal-help'/>
+              <img src={information_modes[modalHelpId].gif} className='img-modal-help'/>
               <h4 className='subtitle-help-mode'>{information_modes[modalHelpId].subtitle[modalCarouselIndex]}</h4>
               <p className='text-modal-help' dangerouslySetInnerHTML={{ __html: information_modes[modalHelpId].pages[modalCarouselIndex] }} />
             <button className="prev-button-help" onClick={handleModalPrevPage} disabled={modalCarouselIndex === 0}>

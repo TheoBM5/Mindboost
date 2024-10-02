@@ -47,7 +47,7 @@ function NavbarLeft() {
                   alt="New"
                   className={"group-img"}
                 />
-                New
+                Nuevo
               </button>
               
               <footer className="cont-out">

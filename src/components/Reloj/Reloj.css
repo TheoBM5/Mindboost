@@ -70,15 +70,15 @@
     background-color: #fff;
     position: absolute;
     left: calc(50% - 10px);
-    top: calc(50% - 10px);
+    top: 44%;
     animation: rotacion2 60s linear infinite;
     animation-play-state: paused;
     z-index: 3;
 }
 
 @keyframes rotacion {
-	from { 	transform: rotate(-90deg) translateX(160px); }
-	to   {  transform: rotate(270deg) translateX(160px); }
+	from { 	transform: rotate(-90deg) translateX(100px); }
+	to   {  transform: rotate(270deg) translateX(100px); }
 }
 
 
@@ -106,7 +106,7 @@
     cursor: pointer;
     box-sizing: border-box;
     margin-left: 15px;
-    border-color: transparent transparent transparent #ff2626;
+    border-color: transparent transparent transparent #ffffff;
     transition: 100ms all ease;
     will-change: border-width;
     border-style: solid;
@@ -115,6 +115,13 @@
 .running {
     border-style: double;
     border-width: 0 0 0 10px;
+
+}
+.running2 {
+    border-style: double;
+    border-width: 0 0 0 20px;
+    width: 10px;
+    height: 20px;
 
 }
 
@@ -127,7 +134,7 @@
 }
 
 .stop2{
-    background-color: #ff0000;
+    background-color: #ffffff;
     height: 20px;
     width: 20px;
     cursor: pointer;
@@ -149,10 +156,10 @@
 
 @keyframes rotacion2 {
     from { 
-        transform: rotate(-90deg) translateX(305px); /* Comienza en el borde superior del círculo */
+        transform: rotate(-90deg) translateX(303px); /* Comienza en el borde superior del círculo */
     }
     to { 
-        transform: rotate(270deg) translateX(305px); /* Termina con una rotación completa */
+        transform: rotate(270deg) translateX(303px); /* Termina con una rotación completa */
     }
 }
 
@@ -188,20 +195,23 @@
 
 .buttons-2{
     margin-top: 10px;
+    margin-left: 10px;
     display: inline-flex;
     z-index: 5;
+    align-items: center;
+    gap: 20px;
 }
 
 .seconds-sphere-2{
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background-color: #fff;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    /* top: calc(50% - 305px); */
-    /* transform-origin: center 125px; */
+    left: 48.75%;
+    top: 50%; /* Ajusta según el tamaño de tu círculo */
+    transform-origin: center 0%; 
+    /* transform-origin: center 0px; */
     animation: rotacion2 60s linear infinite;
     animation-play-state: paused;
     z-index: 3;
