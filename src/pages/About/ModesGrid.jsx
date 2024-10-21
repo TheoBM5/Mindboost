@@ -32,7 +32,7 @@ function ModesGrid() {
               </div>
             </section>
           <section className='cont-main container-tile'> Repetición Espaciada 
-              <img src="img/repeticion.webp" alt='astronauta mapa mental' className='img-tile-grid-main' />
+              <img src="img/tiempo.webp" alt='astronauta mapa mental' className='img-tile-grid-main' />
               <div className="tooltip">
                 <div className='text-tooltip-description'>Refuerza tu memoria a largo plazo repasando contenido en intervalos estratégicos.</div>
                 <div className='sub-mainfo'>Para saber más</div>

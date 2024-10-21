@@ -21,6 +21,7 @@ function CardFormPage() {
             if(deck)
             {
                 navigate(`/`);
+
             }
             
         } else{

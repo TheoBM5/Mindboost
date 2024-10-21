@@ -5,6 +5,7 @@ import Logo from "../ui/Logo/Logo"
 import { useNavigate } from 'react-router-dom';
 const NavBar2 = ({ logoSrc, logoAlt, buttons, className}) => {
   const navigate = useNavigate();
+  
   const handleHome = () => {
     navigate(`/`)
   }

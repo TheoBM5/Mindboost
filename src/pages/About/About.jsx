@@ -7,13 +7,13 @@ import ModesGrid from './ModesGrid';
 import MainCover from './MainCover';
 import InfoGrid from './InfoGrid';
 import GeneralInfo from './GeneralInfo'
-const buttons = [
-  { label: 'Sign in', onClick: () => alert('Home clicked!') },
-  { label: 'Sign up', onClick: () => alert('Home clicked!') },
-];
 
 function About() {
   const navigate = useNavigate();
+  const buttons = [
+    { label: 'Sign in', onClick: () => navigate(`/sign-in`) },
+    { label: 'Sign up', onClick: () => navigate(`/sign-up`) },
+  ];
   const handle_start = () =>{
     navigate(`/sign-in`);
     // navigate("/sign-in");
@@ -46,7 +46,7 @@ function About() {
             <h2 className='title-section-about'>Intelegencia artificial</h2>
             <p className='text-description-content'>Nuestra inteligencia artificial utiliza un árbol de decisiones para adaptar el contenido a tus necesidades. Personaliza tu estudio según tus respuestas y mejora tu rendimiento de manera eficiente.</p>
           </div>
-          <img src="/img/icon/arbol.webp" alt='arbol de desiciones'/>
+          <img src="/gif/treefinal1.gif" alt='arbol de desiciones'/>
         </div>
         <div className='slides slides6'>
             <img src="/img/icon/olvido.webp" alt='IA'/>

@@ -36,10 +36,10 @@ function SigninForm() {
                 </p>
               ))
           }
-          <h3 className="title-style">Sign-In</h3>
+          <h3 className="title-style">Iniciar Sesion</h3>
             <form onSubmit={onSubmit} className="form-sign">
             <Label htmlFor="name">Email</Label>
-            <Input type="email" placeholder = "Enter your email" required
+            <Input type="email" placeholder = "Ingresa tu email" required
             title="Por favor introduzca una direccion de email valida"
                 {...register('email',{
                   required: true,
@@ -47,8 +47,8 @@ function SigninForm() {
                 
               />
               {errors.email && <p className="error-message">Email is Required</p>}
-              <Label htmlFor="name">Password</Label>
-              <Input type="password" placeholder = "Enter your password" 
+              <Label htmlFor="name">Contraseña</Label>
+              <Input type="password" placeholder = "Ingresa tu contraseña" 
                 {...register('password',{
                   required: true,
                 })}
@@ -57,12 +57,12 @@ function SigninForm() {
               {/* <ButtonSign/> */}
               {errors.password && (<p className="error-message"> Password is Required</p>)}
               <Button type="submit">
-                Sign-in
+                Iniciar Sesion
               </Button>
               <div className="sub-form">
-                <p className="sub-text">Dont't have an account?</p>
+                <p className="sub-text">¿No tienes una cuenta?</p>
                 <Link className="link-to" to="/sign-up">
-                  Register
+                  Registrate
                 </Link>
               </div>
             </form>

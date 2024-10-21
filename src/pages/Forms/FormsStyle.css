@@ -114,7 +114,7 @@
 .close-button-style{
     height: 2rem;
     width: 2rem;
-    color: white;
+    color: rgb(175, 175, 175);
     background-color: transparent;
     border: none;
     font-weight: bold;

@@ -3,14 +3,11 @@ import {useAuth} from './context/AuthContext';
 import { DeckProvider } from './context/DeckContext';
 import { CardProvider } from './context/CardContext';
 import NavBar from './components/NavBar/NavBar';
-import {Container} from './components/ui/index';
 import { ProtectedRoute } from './components/ProtectedRoute';
-
 import Home from './pages/HomeCard/Home';
 import About from './pages/About/About';
 import SigninForm from './pages/Forms/SigninForm';
 import SignupForm from './pages/Forms/SignupForm';
-import Navbarleft from './components/Navbarleft/NavbarLeft';
 import NotFound from './pages/NotFound/NotFound';
 import DeckFormPage from './pages/Forms/DeckFormPage';
 import Profile from './pages/Profile/Profile';

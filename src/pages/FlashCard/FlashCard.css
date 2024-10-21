@@ -1,5 +1,6 @@
 .card-size{
-    height: calc(100vh - 64px); 
+    width: 100vw;
+    height: 100vh; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,4 +40,47 @@
 
 .continue-style{
     width: 50rem;
+}
+
+
+.content-2{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.estilo-Card-2{
+    width: 15%;
+}
+
+.title-logro-repaso{
+    text-align: center;
+}
+
+.orden-list-logro
+{
+    white-space: pre-wrap;
+}
+
+
+.estilo-Card-5
+{
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-review-duck{
+    width: 50%;
+}
+
+.chat-cont-review{
+    width: 70%;
+    height: 60%;
+    overflow-y: scroll;
 }

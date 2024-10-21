@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCards } from "../../context/CardContext"
 import './FormsStyle.css'
+import MarkdownEdit from "../../components/Markdown-edit/MarkdownEdit";
 
 function CardFormPage() {
     const {register, handleSubmit, formState: {errors}, setValue} = useForm ();
@@ -30,6 +31,7 @@ function CardFormPage() {
         <Card className="card-style">
             <form className="size-form-card-2" onSubmit={onSubmit}>
                 <Label htmlFor="front">Front</Label>
+  
                 <TextArea 
                     {...register("front",{
                         required: true,

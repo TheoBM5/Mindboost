@@ -17,12 +17,12 @@ function CardMode() {
   
   const navigate = useNavigate();
   const modes = [
-    { id: "0", label: "Normal", img: `/img/icon/cardsmodes.webp`},
-    { id: "1", label: "Logro/Trofeo", img: `/img/trofeo.webp` },
-    { id: "2", label: "Cronometro", img: `/img/cronometro.webp` },
-    { id: "3", label: "Rubber Duck", img: `/img/icon/duckchat.webp` },
-    { id: "4", label: "Canva",  img: `/img/canva.webp`},
-    { id: "5", label: "Analogia",  img: `/img/comic.webp` },
+    { id: "0", label: "Normal", img: `/img/modes/Flashcard1.webp`},
+    { id: "1", label: "Logro/Trofeo", img: `/img/modes/trofeo1.webp` },
+    { id: "2", label: "Cronometro", img: `/img/modes/flashreloj.webp` },
+    { id: "3", label: "Rubber Duck", img: `/img/modes/duck1.webp` },
+    { id: "4", label: "Canva",  img: `/img/modes/canva1.webp`},
+    { id: "5", label: "Analogia",  img: `/img/modes/comic1.webp` },
   ];
 
   const information_modes = [

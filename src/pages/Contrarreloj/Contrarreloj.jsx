@@ -116,20 +116,20 @@ function Contrarreloj() {
 
   return (
     <div className="menu-time">
-            {!timeSelected ? (
-                <div className="time-selection">
-                    <Card className="card-time">
-                        <div className="order-card-time">
-                            <h2>Select Time</h2>
-                            <div className="button-minutes">
-                                <Button className="buttons-time" onClick={() => handleTimeSelection(1)}>1 Min</Button>
-                                <Button className="buttons-time" onClick={() => handleTimeSelection(15)}>15 Min</Button>
-                                <Button className="buttons-time" onClick={() => handleTimeSelection(20)}>20 Min</Button>
-                            </div>
-                            <Button onClick={handleTimeSelectionScreen}>Start</Button>
+        {!timeSelected ? (
+            <div className="time-selection">
+                <Card className="card-time">
+                    <div className="order-card-time">
+                        <h2>Selecciona el tiempo</h2>
+                        <div className="button-minutes">
+                            <Button className="buttons-time" onClick={() => handleTimeSelection(1)}>1 Min</Button>
+                            <Button className="buttons-time" onClick={() => handleTimeSelection(15)}>15 Min</Button>
+                            <Button className="buttons-time" onClick={() => handleTimeSelection(20)}>20 Min</Button>
                         </div>
-                    </Card>
-                </div>
+                        <Button onClick={handleTimeSelectionScreen}>Inicio</Button>
+                    </div>
+                </Card>
+            </div>
 
     ) : (
                 

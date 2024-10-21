@@ -23,6 +23,6 @@ export const navigation = [
     {
         imgURL:"src/assets/icons/settings.svg",
         route:"/profile",
-        label:"Configuracion",
+        label:"Perfil",
     },
 ];

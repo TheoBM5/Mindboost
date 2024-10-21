@@ -4,7 +4,7 @@
     border-radius: 10px;
     background-color: rgb(31, 31, 31);
     border: none;
-    color: white;
+    color: rgb(175, 175, 175);
     padding: 8px 15px;
     font-size: 16px;
     resize: none;
@@ -61,8 +61,8 @@
 
 .card-time{
     display: flex;
-    width: 50%;
-    height: 75%;
+    width: 40%;
+    height: 45%;
 }
 
 .time-selection{
@@ -92,11 +92,12 @@
 }
 
 .buttons-time{
-    width: 100px;
+    width: 200px;
+    font-size: 1rem;
 }
 
 .buttons-time:focus{
-    border: 1px solid white;
+    border: 3px solid white;
 }
 
 .menu-time{

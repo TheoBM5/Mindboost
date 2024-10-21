@@ -69,7 +69,7 @@ grid-template-rows: 8rem auto 3rem;
 }
 .input-duck-question{
     align-self: flex-start;
-  background-color: #ffffff;
+  background-color: rgb(175, 175, 175);;
   color: #333;
   padding: 10px 15px;
   border-radius: 15px 15px 15px 0;
@@ -95,7 +95,7 @@ grid-template-rows: 8rem auto 3rem;
     width: 4rem;
     height: 3rem;
     background-color: rgb(15, 15, 15);
-    color: white;
+    color: rgb(175, 175, 175);
     border: none;
     font-weight: bolder;
     border-radius: 12px;
@@ -114,7 +114,7 @@ grid-template-rows: 8rem auto 3rem;
     width: 50%;
     justify-self: center;
     background-color: rgb(14, 14, 14);
-    color: white;
+    color: rgb(175, 175, 175);
     border: none;
     border-radius: 12px;
 }
@@ -131,29 +131,7 @@ grid-template-rows: 8rem auto 3rem;
     
 }
 
-.question-bubble {
-    align-self: flex-start;
-    background-color: #ffffff;
-    color: #333;
-    width: 65%;
-    padding: 10px 15px;
-    border-radius: 15px 15px 15px 0;
-    max-width: 80%;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
 
-  .question-bubble::before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 10px;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-right: 10px solid #ffffff;
-    border-bottom: 10px solid transparent;
-  }
 .cont-answer-chat{
     width: 90%;
     overflow-y: scroll;
@@ -164,7 +142,7 @@ grid-template-rows: 8rem auto 3rem;
 .input-duck-answer{
     align-self: flex-end;
     background-color: #007bff;
-    color: white;
+    color: rgb(175, 175, 175);
     padding: 10px 15px;
     border-radius: 15px 15px 0 15px;
     max-width: 50%;
@@ -184,24 +162,9 @@ grid-template-rows: 8rem auto 3rem;
     border-bottom: 10px solid transparent;
 }
 
-.card-chat-duck{
-    display: flex;
-    width: 50%;
-    flex-direction: row;
-    gap: 20px;
-}
 
-.chat-icon-duck
-{
-    border-radius: 50%;
-    width: 20%;
-    background-color: #007bff;
-    background-image: url("./img/icon/duckchat.webp");
-    background-size: cover;
-  background-position: 10px 10px; 
-  background-repeat: no-repeat; 
-  transform: scaleX(-1)
-}
+
+
 
 .chat-icon-duck-2{
     border-radius: 50%;
@@ -230,5 +193,5 @@ grid-template-rows: 8rem auto 3rem;
     background-color: #1d1d1d;
     border: none;
     border-radius: 12px;
-    color: white;
+    color: rgb(175, 175, 175);
 }

@@ -78,7 +78,7 @@
     align-self: center;
     border-radius: 12px;
     background-color:rgb(17, 17, 17);
-    color: white;
+    color: rgb(175, 175, 175);
     border: none;
     padding: 10px;
 }
@@ -115,7 +115,7 @@
 
 .buttons-minutes-pre button{
     background-color: rgb(20, 20, 20);
-    color: white;
+    color: rgb(175, 175, 175);
     padding: 12px;
     border: none;
     border-radius: 10px;

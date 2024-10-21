@@ -24,7 +24,7 @@
     .toggle-circle {
         width: 16px;            /* Ancho del círculo (1rem) */
         height: 16px;           /* Alto del círculo (1rem) */
-        background-color: white; /* Color de fondo blanco */
+        background-color: rgb(175, 175, 175); /* Color de fondo blanco */
         border-radius: 9999px;   /* Borde redondeado completo */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
         transition: transform 300ms ease-in-out;  /* Transición suave para el movimiento */

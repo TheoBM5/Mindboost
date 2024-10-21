@@ -10,7 +10,7 @@
     width: 350px;
     overflow: visible;
     text-decoration: none;
-    color: #ffffff; /* Color del texto */
+    color: rgb(175, 175, 175);; /* Color del texto */
     background-color: #141414; 
     border: 1px solid #161616; /* Borde del botón */
     border-radius: 1rem;
@@ -97,7 +97,7 @@
   }
 
 .options{
-    color: white;
+    color: rgb(222, 222, 222);
     background-color: #14141400;
     border: 0px;
 
@@ -111,7 +111,7 @@
     border-radius: 50rem;
     width: 2rem;
     height: 2rem;
-    color: white;
+    color: rgb(175, 175, 175);
     background-color: #141414;
     font-weight: bolder;
   }
@@ -145,7 +145,7 @@
   .menu-item {
     padding: 8px 16px;
     cursor: pointer;
-    color: white;
+    color: rgb(175, 175, 175);
   }
   
   .menu-item:hover {

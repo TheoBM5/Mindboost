@@ -17,6 +17,7 @@ function RubberDuck() {
   const {register, handleSubmit, formState: {errors}, setValue, reset, clearErrors, getValues } = useForm ();
   const {createCard, updateCard, loadCard, errors: CardErrors} = useCards();
   const menuColorRef = useRef(null);
+  const navigate = useNavigate();
   const params = useParams();
   let typingTimeout = null;
 
@@ -57,7 +58,7 @@ useEffect(() => {
     try {
       const deck = await createCard(params.deckid, data, params.id, 4);
       if (deck) {
-        // navigate("/");
+        navigate("/");
         console.log(deck);
       }
 

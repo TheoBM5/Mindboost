@@ -20,7 +20,7 @@
 .button-red, .button-green,
 .button-orange, .button-yellow{
     padding: 1rem 0rem;
-    color: white;
+    color: rgb(175, 175, 175);
     content: '';
 }
 

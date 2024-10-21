@@ -32,8 +32,12 @@
 .button-option-survey{
   width: 100%;
   height: 250px;
+  background-color: #004da4;
+  border: none;
   margin: 5px; /* Añade un margen pequeño para el espaciado */
   border-radius: 1rem;
+  font-size: 8rem ;
+  color: #cfcfcf;
 }
 
 .buttons-survey{
@@ -70,7 +74,7 @@
   border-radius: 10px;
   border:none;
   background-color: rgb(0, 46, 138);
-  color: white;
+  color: rgb(175, 175, 175);
 }
 
 .buttons-prev-next:hover{

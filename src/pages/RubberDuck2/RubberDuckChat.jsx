@@ -1,14 +1,20 @@
 import './RubberDuckChat.css'
 import React, { useState } from 'react';
-import {Card, Input, Label} from '../../components/ui/index'
-import Buton from '../../components/ui/Boton/Buton'
+import {Card, Input, Label} from '../../components/ui/index';
+import Buton from '../../components/ui/Boton/Buton';
+import { useNavigate, useParams } from "react-router-dom";
+import { useCards } from "../../context/CardContext";
+import ChatDuck from '../../components/ChatDuckCard/ChatDuck';
 function RubberDuckChat() {
   const [questions, setQuestions] = useState([{ id: 1, text: '', answer: ''}]);
   const [makeQuestions, setMakeQuestions] = useState(true);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false); 
   const [titleChat, setTitleChat] = useState("");
-
+  const {createCard, updateCard, loadCard, errors: CardErrors} = useCards();
+  const params = useParams();
+  const navigate = useNavigate();
+  
   const handleAddQuestion = () => {
     if (questions[questions.length - 1].text.trim() === '') {
       alert("No puedes agregar una nueva pregunta si la anterior está vacía.");
@@ -63,21 +69,29 @@ function RubberDuckChat() {
   };
 
 
-  const handleSaveData = () => {
+  const handleSaveData = async () => {
     const finalData = {
       title: titleChat,
       questions: questions.map((q) => ({
         id: q.id,
-        
         text: q.text,
         answer: q.answer,
       })),
     };
-    console.log("Datos guardados:", JSON.stringify(finalData));
-    console.log("Datos guardados:", finalData);
-    // Aquí se puede hacer la llamada para guardar en la BD (ejemplo: con Axios o fetch)
+  
+    try {
+      const deck = await createCard(params.deckid, finalData, params.id, 5);
+      if (deck) {
+        navigate("/");
+        console.log("Deck creado:", deck);
+      }
+    } catch (error) {
+      console.error("Error al guardar los datos:", error);
+    }
+  
+    console.log("Datos guardados (JSON):", JSON.stringify(finalData));
+    console.log("Datos guardados (Objeto):", finalData);
   };
-
   return (
     <div>
     {makeQuestions ? (
@@ -121,10 +135,7 @@ function RubberDuckChat() {
         <div className='cont-answer-chat'>
         {questions.slice(0, currentQuestionIndex + 1).map((question) => (
             <React.Fragment key={question.id}>
-            <div className='card-chat-duck'>
-              <div className='chat-icon-duck'></div>
-              <Input className="question-bubble" value={question.text} disabled />
-            </div>
+              <ChatDuck text={question.text} />
             <div className='card-chat-duck-2'>
               <Input
                 value={question.answer}

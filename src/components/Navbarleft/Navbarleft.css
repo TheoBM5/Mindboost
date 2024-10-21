@@ -44,7 +44,7 @@
   border-radius: 0.375rem; /* Esto establece la propiedad 'border-radius' con el valor correspondiente a 'rounded-lg' en Tailwind */
   font-size: 1rem; /* Esto establece el tamaño de fuente correspondiente a 'base-medium' en Tailwind */
   transition: all 0.3s ease; /* Esto establece una transición suave para todos los cambios de propiedad con una duración de 0.3 segundos */
-  color: white;
+  color: rgb(175, 175, 175);
 }
 
 .group-img

@@ -33,10 +33,10 @@ function SignupForm() {
                   </p>
                 )))
             }
-          <h3 className="title-style">Register</h3>
+          <h3 className="title-style">Registro</h3>
             <form onSubmit={onSubmit}>
-                <Label htmlFor="name">Name</Label>
-                <Input placeholder = "Enter your fullname" 
+                <Label htmlFor="name">Nombre</Label>
+                <Input placeholder = "Ingresa tu nombre completo" 
                   {...register('name',{
                     required: true,
                   })}  
@@ -45,8 +45,8 @@ function SignupForm() {
                   errors.name && <p className="error-message">name is required</p>
                 }
 
-                <Label htmlFor="username">User</Label>
-                <Input placeholder = "Enter your username" 
+                <Label htmlFor="username">Usuario</Label>
+                <Input placeholder = "Ingresa un usuario" 
                   {...register('username',{
                     required: true,
                   })}  
@@ -55,8 +55,8 @@ function SignupForm() {
                   errors.username && <p className="error-message">user is required</p>
                 }
 
-                <Label htmlFor="email">Email</Label>
-                <Input type="email" placeholder = "Enter your email" 
+                <Label htmlFor="email">Correo Electronico</Label>
+                <Input type="email" placeholder = "Ingresa un correo electronico" 
                   {...register('email',{
                     required: true,
                   })}
@@ -64,8 +64,8 @@ function SignupForm() {
                 {
                   errors.email && <p className="error-message">email is required</p>
                 }
-                <Label htmlFor="password">Password</Label>
-                <Input type="password" placeholder = "Enter your password" 
+                <Label htmlFor="password">Contraseña</Label>
+                <Input type="password" placeholder = "Ingresa una contraseña" 
                   {...register('password',{
                     required: true,
                   })}
@@ -75,12 +75,12 @@ function SignupForm() {
             )}
 
               <Button type="submit">
-                Register
+                Registrarse
               </Button>
               <div className="sub-form">
-                <p className="sub-text">Already have an account?</p>
+                <p className="sub-text">¿Ya tienes una cuenta?</p>
                 <Link className="link-to" to="/sign-in">
-                  Login
+                  Iniciar sesion
                 </Link>
               </div>
             </form>

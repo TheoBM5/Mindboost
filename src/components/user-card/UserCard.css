@@ -1,7 +1,7 @@
 .user-Card {
     display: flex;
     align-items: center;
-    color: #ffffff;
+    color: rgb(175, 175, 175);;
     font-size: .8rem;
     justify-content: center;
     font-family:"Roboto";

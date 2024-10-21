@@ -69,14 +69,14 @@ export const deleteCard = async (req, res) => {
 export const getAllReviewCards = async (req, res, next) => {
     const { id, deckId } = req.params;
     const result = await pool.query(
-        `SELECT ucp.*, c.content
+        `SELECT ucp.*, c.content, c.typecard
         FROM user_card_parameters ucp
-        JOIN deck d ON ucp.user_id = d.user_id
         JOIN card c ON ucp.card_id = c.id
-        WHERE ucp.user_id = $1 
-            AND ucp.review_date <= CURRENT_DATE 
-            AND d.user_id = $1 
-            AND d.id = $2`,[
+        JOIN deck d ON c.deck_id = d.id 
+        WHERE ucp.user_id = $1
+          AND ucp.review_date <= CURRENT_DATE
+          AND d.user_id = $1 
+          AND d.id = $2`, [
         id, deckId
     ]);
     return res.json(result.rows);

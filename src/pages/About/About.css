@@ -173,7 +173,7 @@
 .start-landing{
     grid-area: start;
     align-self: start;
-    color: white;
+    color: rgb(175, 175, 175);
     width: 70%;
     justify-self: center
 }
@@ -384,7 +384,7 @@
 }
 
 .sub-mainfo:hover{
-    color: white;
+    color: rgb(175, 175, 175);
     font-weight: bolder;
 }
 

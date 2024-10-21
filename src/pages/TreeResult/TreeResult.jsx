@@ -6,7 +6,7 @@ import CardR from "../../components/CardResult/CardR";
 import {answersTree} from "../../constants/treeAns.js";
 import { useNavigate } from 'react-router-dom';
 const buttons = [
-  { label: 'Home', onClick: () => alert('Home clicked!') },
+  // { label: 'Home', onClick: () => alert('Home clicked!') },
 ];
 function TreeResult({type1, type2, type3, type4}) {
   const navigate = useNavigate();
@@ -41,6 +41,15 @@ function TreeResult({type1, type2, type3, type4}) {
       return prevIndexAdjusted;
     });
   };
+
+
+  const handleRestart = () => {
+    navigate("/test");
+  }
+
+  const handleHome = () => {
+    navigate("/");
+  }
 
   return (
     <>
@@ -93,12 +102,12 @@ function TreeResult({type1, type2, type3, type4}) {
         // key={index}
         label={"Reintentar"}
         className={"button-tree-respond"}
-        // onClick={""}
+        onClick={handleRestart}
         />
         <Buton
         // key={index}
         label={"Inicio"}
-        // onClick={""}
+        onClick={handleHome}
         className={"button-tree-respond"}/>
       </footer>
     </>
