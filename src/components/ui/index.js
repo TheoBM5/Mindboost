@@ -4,3 +4,4 @@ export {Input} from "./Input/Input";
 export {Container} from "./Container/Container"
 export {TextArea} from "../TextArea/TextArea"
 export {Label} from "../ui/Label/Label"
+export {Buton} from "../ui/Boton/Buton"

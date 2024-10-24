@@ -1,5 +1,5 @@
 import React from 'react';
-const Buton= ({ label, onClick, className }) => {
+export function Buton ({ label, onClick, className }) {
     return (
       <button onClick={onClick} className={className}>
         {label}
