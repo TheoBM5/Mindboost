@@ -27,7 +27,7 @@ function SigninForm() {
   
   return (
       <div className="size-form">
-          <Card>
+          <Card className={"card-form-sign"}>
           {
             loginErrors &&
               loginErrors.map((err) => (

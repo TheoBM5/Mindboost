@@ -1,10 +1,9 @@
 .background-nav{
     background-color: rgba(10, 10, 10, 0.899);
-    padding: 1px;
-}
-
-.title-bar{
-    padding-left: 3rem;
+    padding-left: 5rem;
+    display: flex;
+    align-items: center;
+    box-sizing: content-box;
 }
 
 .link-container{
@@ -16,15 +15,18 @@
     text-decoration: none;
 }
 
-.cont{
-    display: flex;
-    align-items: center;
-}
+@media (min-width: 360px) and (max-width: 991px) {
+    .background-nav{
+        padding-left: 1rem;
+    }
+    .link-container{
+        width: 6rem;
+    }
+  }
 
 .text-link{
     text-decoration: none;
-    padding: 8px;
-    
+    padding: 8px;   
 }
 
 .text-link:hover{

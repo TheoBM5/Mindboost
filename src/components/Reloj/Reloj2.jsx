@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Reloj.css';
-function Reloj2({initialTime, initialRestTime, isRunningHandle, onTimeEnd, size}) {
+function Reloj2({initialTime, initialRestTime, isRunningHandle, onTimeEnd, size, className}) {
     const [remainingTime, setRemainingTime] = useState(initialTime || 0); 
     const [isRunning, setIsRunning] = useState(false);
     const [isWorking, setIsWorking] = useState(true);
@@ -87,16 +87,17 @@ function Reloj2({initialTime, initialRestTime, isRunningHandle, onTimeEnd, size}
 
 
   return (
-    <main className='position-clock'  style={{ '--size': size }} >
+    <main className={`position-clock-2 ${className}`}   style={{ '--size': size }} >
     <div className="circle-2">
         <div id="stopwatch" className="stopwatch"  ref={stopwatchRef}>00:00</div>
         <div className="buttons-2">
             <div className="stop2" onClick={stop}></div>
             <div id="play-pause2" className={isRunning ? 'running2' : 'paused2'} onClick={playPause}></div>
         </div>
+        <div id="seconds-sphere" className="seconds-sphere-b" ref={secondsSphereRef}></div>
     </div>
-    <div id="seconds-sphere" className="seconds-sphere-2" ref={secondsSphereRef}></div>
-</main>
+    </main>
+
   )
 }
 export default Reloj2

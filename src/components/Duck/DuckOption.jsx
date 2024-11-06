@@ -25,12 +25,13 @@ function DuckOption() {
 
   return (
     <main className="main-grid-option-duck">
+      <h3 className='select-title-duck'>Selecciona un Modo:</h3>
          <section 
         className={`card-duck-opt ${selectedOption === 'rubberDuck' ? 'selected' : ''}`}
         onClick={() => handleOptionSelect('rubberDuck')}
       >
         <img className="img-duck-option" src="/img/icon/duckchat.webp" alt="Pato de Goma" />    
-        <h3>Pato de Goma</h3>
+        <h3 className='title-pato-opt'>Pato de Goma</h3>
       </section>
 
       <section 
@@ -38,7 +39,7 @@ function DuckOption() {
         onClick={() => handleOptionSelect('chatDuck')}
       >
         <img className="img-duck-option"  src="/img/duck.webp" alt="Chat con Pato de Goma" />    
-        <h3>Chat con Pato de Goma</h3>
+        <h3 className='title-pato-opt'>Chat con Pato de Goma</h3>
       </section>
 
         <footer className='button-duck-option'>

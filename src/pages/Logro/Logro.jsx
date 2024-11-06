@@ -9,7 +9,7 @@ import { useCards } from "../../context/CardContext";
 import { CiImageOn, CiUser, CiCircleList  } from "react-icons/ci";
 import './Logro.css';
 function Logro() {
-  const {register, handleSubmit, reset, formState: {errors}, setValue} = useForm ();
+  const {register, handleSubmit, reset, formState: {errors}, setValue, clearErrors} = useForm ();
   const [selectedIcon, setSelectedIcon] = useState('')
   const [isOpen, setIsOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -24,7 +24,8 @@ function Logro() {
   const {createCard, updateCard, loadCard, errors: CardErrors} = useCards();
   const hasIdCard = params.hasOwnProperty('idcard');
   const ImageLogro = useRef("");
-
+  const navigate = useNavigate();
+  const modalRef = useRef(null);
   const ImagelogroUpdate = (imgSrc) => {
     ImageLogro.current = imgSrc;
     setValue('icon', imgSrc);
@@ -44,6 +45,7 @@ function Logro() {
       {
         setImgLogro(ICON_NAMES[selectedIcon])
         console.log("ren",imgLogro)
+        setIsOpen(false);
       }
     setImgLogro(name);
   };
@@ -133,7 +135,44 @@ function Logro() {
       handlePrevAchClose()
   };
 
-  
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Verifica si se ha hecho clic fuera del formulario y oculta los errores
+      if (!event.target.closest(".logro-content")) {
+        clearErrors(); // Limpia todos los errores al hacer clic fuera
+      }
+    };
+
+    // Agregar el event listener
+    document.addEventListener("click", handleClickOutside);
+
+    // Limpiar el event listener al desmontar
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [clearErrors]);
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        console.log("Click afuera, cerrando modal"); // Verificación en consola
+        setIsOpen(false);
+        
+      } else {
+        console.log("Click dentro del modal");
+      }
+    };
+
+    document.addEventListener("mouseup", handleClickOutside); // Cambiamos a "mouseup"
+    return () => {
+      document.removeEventListener("mouseup", handleClickOutside);
+    };
+  }, []);
+
+  const handleback = () =>{
+    navigate("/");
+}
+
 
   return (
     <div className="page-logro-container">
@@ -141,9 +180,11 @@ function Logro() {
         <Card className={"logro-style-card"}>
                 <form className="logro-content" onSubmit={onSubmit} autoComplete="off">
                 <div className="text-area-logro-cont">
-                  <Label>Descripcion</Label>
-                  <div className="buttons">
-                    <button onClick={handleNumberLines}><CiCircleList /></button>
+                  <div className="title-button">
+                    <Label>Descripcion</Label>
+                    <div className="list-button-logro">
+                      <button onClick={handleNumberLines}><CiCircleList /></button>
+                    </div>
                   </div>
                   <TextArea 
                   {...register("reverse",{
@@ -155,10 +196,10 @@ function Logro() {
                   onChange={(e) => setText(e.target.value)}
                   />
                   {errors.reverse && (
-                        <p className="error-message">Description text is required</p>
+                        <p className="error-message-logro">Descripcion es requerida</p>
                     )}
                 </div>
-                <div className="label-container-logro">
+                <div className="first-container-logro">
                     <div className="cont-image-logro">
                       <div className="preview-image-logro" >
                       {imageUploaded && (
@@ -181,7 +222,7 @@ function Logro() {
                   value={selectedIcon || ImageLogro.current}
                 />
                 {errors.icon && (
-                  <p className="error-message">Hace falta la imagen o icono. Estado del icono: {ImageLogro.current || 'No seleccionado'}</p>
+                  <p className="error-message-logro">Hace falta la imagen o icono. Estado del icono: {ImageLogro.current || 'No seleccionado'}</p>
                 )}
                       </div>
                       <button type="button" className="icon-logro-up" onClick={handleButtonClick}><CiUser className="icon-buttom-logro"/></button>
@@ -189,7 +230,7 @@ function Logro() {
                     </div>
 
                     {isOpen &&(
-                      <div className="image-box-modal">
+                      <div className="image-box-modal"  ref={modalRef}>
                         {Object.entries(ICON_NAMES).map(([name, Icon]) => (
                         <Icon
                         key={name}
@@ -199,19 +240,22 @@ function Logro() {
                             ))}
                       </div>
                     )}
+                  <div className="title-input-cont">
                   <Label>Titulo</Label>
                   
                   <Input className="input-logro"
                   {...register("front",{
                     required: true,
-                })}
-                />
+                  })}
+                  />
+                  </div>
                 {errors.front && (
-                        <p className="error-message">title text is required</p>
+                        <p className="error-message-logro">El titulo es requerido</p>
                 )}
                 </div>
                 <footer className="button-aplicar-contenedor">
-                  <button type="submit" className="button-logro">Aplicar</button>
+                  <Button type="button" onClick={handleback}>Regresar</Button>
+                  <Button type="submit">Aplicar</Button>
                   {previewAch && (
                     <div className="prev-ach-cont">
                       <div className="prev-ach">
@@ -245,8 +289,8 @@ function Logro() {
                         <div className="text-ach">{title}</div>
                         <button type="button">V</button>
                         <div className="text-description-ach">{description}
-                          <button type="button" className="button-new-logro" onClick={handleNewLogro}>Nueva</button>
-                          <button className="button-terminar-logro" onClick={handleFinalSubmit}>Terminar</button>
+                          <Button type="button" className="button-new-logro" onClick={handleNewLogro}>Nueva</Button>
+                          <Button className="button-terminar-logro" onClick={handleFinalSubmit}>Terminar</Button>
                         </div>
                       </div>
                     </div>

@@ -1,0 +1,130 @@
+.card-style-deck{
+    position: relative;
+    display: flex;
+    /* text-align: center; */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 50%;
+    min-width: 22rem;
+    padding: 20px;
+    max-height: 80%;
+    height: 80%;
+    box-sizing: border-box;
+    border-radius: 12px;
+  }
+  .size-form-deck{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 80%;
+    box-sizing: border-box;
+}
+
+
+.icon-box{
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(60px, 1fr));	
+    gap: 8px; 
+    justify-items: center; 
+    height: 5rem;
+    background: rgb(31, 31, 31);
+    padding: 0.7rem 0.75rem;
+    margin: 0.8rem auto;
+    border-radius: 15px;
+    max-height: 200px; 
+    overflow-y: auto;
+}
+
+.preview-icon{
+    width: 3rem;
+    height: 3rem;
+    background: rgb(31, 31, 31);
+    padding: 0.7rem 0.75rem;
+    margin: 0.8rem auto;
+    border-radius: 15px;
+}
+
+.title-style-deck{
+    margin:0.5rem auto;
+    padding: 1rem 3rem;
+    font-size: 1.75rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.buton-cont-deck{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 40px;
+}
+
+.menu-iconos{
+    font-Size: 38px;
+    transition: transform 0.3s ease;
+    padding: 1rem;
+}
+
+  
+.menu-iconos:hover{
+    transform: scale(1.2); 
+}
+
+
+
+.menu-iconos.active {
+    border: 1px solid white; 
+    border-radius: 10px;
+  }
+
+  .error-message-deck{
+        color: rgb(252, 64, 64);
+  }
+
+
+@media (max-width: 450px) {
+    .title-style-deck
+    {
+        padding: 0.1rem 3rem;
+        font-size: 1.35rem;
+        margin-bottom:0.1rem ;
+        padding-bottom: 0;
+    }
+
+    .label-style-deck{
+        padding-top: 0.5rem;
+    }
+
+    .input-form-deck{
+        margin: 0.8rem auto;
+    }
+    .card-style-deck{
+        max-height: 90%;
+        height: 90%;
+    }
+
+    .icon-box{
+        height: 3rem;
+    }
+
+    .menu-iconos{
+        padding: 0.5rem 1rem;
+    }
+
+    .buton-cont-deck{
+        margin-top: 0.2rem;
+    }
+
+    .error-message-deck{
+        margin: 0.1rem;
+        font-size: 12px;
+    }
+  }

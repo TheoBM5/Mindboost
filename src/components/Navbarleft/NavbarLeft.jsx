@@ -10,32 +10,43 @@ import "./Navbarleft.css"
 function NavbarLeft() {
   const {signout} = useAuth();
   const [modalOpen, setModalOpen] = useState(false);
+  const [openBar, setOpenBar] = useState(true);
+  const [buttonSide, setButtonSide] = useState(false);
+
+  // const handleNavBar = () =>{
+  //   setOpenBar = 
+  // }
+
     return (
       <>
-        <nav className="leftsidebar">
-          <div className='side'>
-            <span className='header-tittle'><img className="logo-left" src="/img/logo2.webp" alt="Mindboost"/></span>
-            <UserCard/>
+          <Button className="menu-button-side" onClick={() => setButtonSide(!buttonSide)}>O</Button>
+          <nav className={`${openBar ? "side" : "side-mini"} ${buttonSide ? "max-side" : ""}`} onClick={() => setOpenBar(!openBar)}>
+            <div className="start-side">
+              <span className='header-tittle'><img className="logo-left" src="/img/logo2.webp" alt="Mindboost"/></span>
+              <UserCard/>
+            </div>
             <ul className="list-Unorded">
                 {navigation.map((link) => {    
                 return (
                     <li
                         key={link.label}
-                        className={`leftsidebar-link`}>
+                        className="list-link">
                         <NavLink
                           to={link.route}
-                          className="nav-container">
+                          className="nav-anchor">
                           <img
                               src={link.imgURL}
                               alt={link.label}
                               className={"group-img"}
                           />
-                          {link.label}
+                          <span>{link.label}</span>
                         </NavLink>
                     </li>
                 );
               })}
 
+            </ul>
+            <footer className="cont-out">
 
               <button className="leftsidebar-link nav-container button-new"
                 onClick={() => {
@@ -47,10 +58,9 @@ function NavbarLeft() {
                   alt="New"
                   className={"group-img"}
                 />
-                Nuevo
+                <span>Nuevo</span>
               </button>
               
-              <footer className="cont-out">
                   <a className="link-out"
                       onClick={()=>{
                         signout()
@@ -63,10 +73,9 @@ function NavbarLeft() {
                   </a>
 
               </footer>
-            </ul>
             
-          </div>
-        </nav>
+          </nav>
+
         {modalOpen && <ModalCard setModalOpen={setModalOpen}/>}
         </>
       )

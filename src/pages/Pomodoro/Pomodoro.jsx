@@ -125,7 +125,7 @@ const startTimer = (play) => {
   return (
   
     <div className="pomodoro-container">
-      <Reloj2 initialTime={timeClock} initialRestTime={restSelect} isRunningHandle={startTimer} onTimeEnd={handleTimeEnd} key={timeClock} size="650px"/>
+      <Reloj2 initialTime={timeClock} initialRestTime={restSelect} isRunningHandle={startTimer} onTimeEnd={handleTimeEnd} key={timeClock} size="650px" className="reloj-style"/>
       {}
       
       {!isRunning && (  
@@ -167,8 +167,6 @@ const startTimer = (play) => {
       </>
     )}
       
-    <div className="effect-background-clock">
-    </div>
 
     </div>
   )

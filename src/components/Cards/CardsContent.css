@@ -6,18 +6,22 @@
 
 
     padding: 1rem;
-    height: 200px;
-    width: 350px;
+    max-height: 50%;
+    min-width: 22%;
+    height: 22%;
+    max-width: 70%;
+    min-width: 20%;
+    width: 70%;
     overflow: visible;
     text-decoration: none;
-    color: rgb(175, 175, 175);; /* Color del texto */
+    color: rgb(175, 175, 175); 
     background-color: #141414; 
-    border: 1px solid #161616; /* Borde del botón */
+    border: 1px solid #161616;
     border-radius: 1rem;
     transition: background-color 0.3s ease;
-    margin: auto;
-    grid-template-columns: [col-start] 7.5rem [mid-start] 7.5rem [mid-end] 7.5rem [col-end];
-    grid-template-rows: [row-start] 4.5rem [row-mid-start] 4.5rem [row-mid-end] 4.5rem [row-end];
+    /* margin: auto; */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     align-items: center;
     justify-content: center;
     position: relative;
@@ -30,34 +34,18 @@
 
 .item-1 { 
   grid-area: title;
-  grid-column-start: mid-start;
-  grid-column-end: col-end;
-  grid-row-start: row-start;
-  grid-row-end: row-mid-start;
   text-align: center;
 }
 .item-2 { 
   grid-area: description;
-  grid-column-start: mid-start;
-  grid-column-end: col-end;
-  grid-row-start: row-mid-start;
-  grid-row-end: row-mid-end;
   text-align: center;
 }
 .item-3 { 
   grid-area: img;
-  grid-column-start: col-start;
-  grid-column-end: mid-start;
-  grid-row-start: row-start;
-  grid-row-end: row-mid-end;
 
 }
 .item-4 { 
   grid-area: foot;
-  grid-column-start: col-start;
-  grid-column-end: col-end;
-  grid-row-start: row-mid-end;
-  grid-row-end: row-end;
   z-index: 2;
 }
 
@@ -67,12 +55,6 @@
     border-style: solid;
     /*border-image: linear-gradient(to right, rgb(4, 0, 135), rgb(11, 202, 255)) 1;*/
     border-color: #f2f8ff;
-
-    /* border:4px solid #0000;
-    border-radius:20px;
-    background:
-    linear-gradient(rgb(14, 14, 14),rgb(14, 14, 14)) padding-box,
-    linear-gradient(rgb(11, 202, 255),rgb(4, 0, 135)) border-box; */
   }
 
 
@@ -83,16 +65,21 @@
   }
 
 .card-image{
+    max-width: 100%;
+    min-width: 70%;
     width: 100%;
     height: 4.5rem;
-    border-radius: 1000px;
+    
+  }
+
+  .card-image-img{
+    object-fit: cover;
   }
 
 
 .deck-buttons{
     display: flex;
     justify-content: space-around;
-    padding: 4rem 0px;
     position: inherit;
   }
 
@@ -104,7 +91,7 @@
   }
 
 .title-card{
-    font-size: 1.5rem;
+  font-size: clamp(0.8rem, 2vw, 1.5rem);
   }
 
 .add-card-button{
@@ -115,10 +102,6 @@
     background-color: #141414;
     font-weight: bolder;
   }
-
-
-
-
 
 
   
@@ -158,13 +141,13 @@
 
 .progress-bar-container {
     width: 100%;
-    background-color: #e5e7eb; /* Equivalente a bg-gray-200 */
-    border-radius: 9999px; /* Equivalente a rounded-full */
-    height: 10px; /* Equivalente a h-2.5 (2.5 * 4px = 10px) */
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+    height: 10px;
 }
 
 .progress-bar {
-    background-color: #2563eb; /* Equivalente a bg-blue-600 */
-    height: 10px; /* Equivalente a h-2.5 */
-    border-radius: 9999px; /* Equivalente a rounded-full */
+    background-color: #2563eb;
+    height: 10px;
+    border-radius: 9999px;
 }

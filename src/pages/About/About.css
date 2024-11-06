@@ -40,7 +40,7 @@
     background-color: #000a1a;
     align-items: center;
     justify-content: center;
-
+    border: 1px solid red;
     scroll-snap-align: start;
     color: #fff;
 }

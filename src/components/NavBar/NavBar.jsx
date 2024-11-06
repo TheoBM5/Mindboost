@@ -5,25 +5,21 @@ function NavBar() {
   const location = useLocation();
   return (
     <nav className="background-nav">
-        <div className="cont">
-  
-            <h1 className="title-bar">Mindboost</h1>
-            <div className="link-container">
-              <NavLink className="text-link" to="/about">
-                About
-              </NavLink>
-              {location.pathname === '/sign-in' ? (
-                <NavLink className="text-link" to="/sign-up">
-                  Sign-up
-                </NavLink>
-              ) : (
-                <NavLink className="text-link" to="/sign-in">
-                  Sign-in
-                </NavLink>
-              )}
-            </div>
-        </div>
-
+      <h1 className="title-bar">Mindboost</h1>
+      <div className="link-container">
+        <NavLink className="text-link" to="/about">
+          About
+        </NavLink>
+        {location.pathname === '/sign-in' ? (
+          <NavLink className="text-link" to="/sign-up">
+            Sign-up
+          </NavLink>
+        ) : (
+          <NavLink className="text-link" to="/sign-in">
+            Sign-in
+          </NavLink>
+        )}
+      </div>
     </nav>
   )
 }

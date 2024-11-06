@@ -6,6 +6,7 @@ import {useEffect} from 'react'
 import { ICON_NAMES } from "../../constants/icon"; 
 import React, { useState } from 'react';
 import './FormsStyle.css'
+import './FormStyleDeck.css'
 
 function CardFormPage() {
     const {register, handleSubmit, formState: {errors}, setValue} = useForm ();
@@ -47,21 +48,24 @@ function CardFormPage() {
       setValue('icon', name);
     };
 
+    const handleback = () =>{
+        navigate("/");
+    }
 
   return (
-    <div className="size-form">
-        <Card>
+    <div className="size-form-card">
+        <Card className="card-style-deck">
             {
                 deckErrors.map((error, i)=> (
                     <p key={i}>{error}</p>
                 ))
             }
-            <h2 className="title-style">
-                {params.id ? "Edit Deck" : "Create Deck"}
+            <h2 className="title-style-deck">
+                {params.id ? "Editar Deck" : "Crear Deck"}
             </h2>
-            <form onSubmit={onSubmit}>
-                <Label htmlFor="title">Title</Label>
-                <Input type="text" placeholder="Title"
+            <form className="size-form-deck" onSubmit={onSubmit}>
+                <Label className="label-style-deck" htmlFor="title">Title</Label>
+                <Input className="input-form-deck" type="text" placeholder="Title"
                     {
                         ...register('title',{
                             required:true, 
@@ -69,12 +73,12 @@ function CardFormPage() {
                 />
                 {
                     errors.title && (
-                        <p className="error-message">title is required</p>
+                        <p className="error-message-deck">title is required</p>
                     )
                     
                 }
-                <Label htmlFor="description">Description</Label>
-                <TextArea 
+                <Label className="label-style-deck" htmlFor="description">Descripcion</Label>
+                <TextArea className="text-area-deck-form"
                     placeholder="Description"
                     rows={3}
                     {...register("description",{
@@ -83,16 +87,16 @@ function CardFormPage() {
                 />
                 {
                     errors.description && (
-                        <p className="error-message">description text is required</p>
+                        <p className="error-message-deck">description text is required</p>
                     )
                 }
-                <Label htmlFor="icon">Icono</Label>
+                <Label className="label-style-deck" htmlFor="icon">Icono</Label>
                 <div className="preview-icon" >
                     {selectedIcon && React.createElement(ICON_NAMES[selectedIcon], {className: "selected-icon"})}
                     <input type="hidden" {...register('img')} value={selectedIcon || ''} />
                     
                 </div>
-                    <Label htmlFor="icon">Select:</Label>
+                    <Label className="label-style-deck" htmlFor="icon">Seleccionar:</Label>
                 <div className="icon-box">
                     {Object.entries(ICON_NAMES).map(([name, Icon]) => (
                     <Icon
@@ -104,10 +108,14 @@ function CardFormPage() {
                     ))}
                 </div>
                 
-                <div className="buton-button">
-                    <Button>
-                        {params.id ? "Edit Deck" : "Create Deck"}
+                <div className="buton-cont-deck">
+                    <Button type="button" onClick={handleback}>
+                        Cancelar
                     </Button>
+                    <Button>
+                        {params.id ? "Editar" : "Crear"}
+                    </Button>
+                    
                 </div>
             </form>
         </Card>

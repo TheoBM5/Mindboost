@@ -85,7 +85,7 @@ function ExcalidrawComp() {
     {modal && (
         <div className="modal_canva_cont">
           <div className="modal-canva">
-            <Label>Titulo</Label>
+            <Label className="label-export-canva">Titulo</Label>
             <form className="header-modal-canva" onSubmit={onSubmit}>
               <Input 
                 className="input-canva-export"

@@ -4,12 +4,14 @@ import Subtitle from "../ui/Title/Subtitle";
 import Image from "../ui/Image/Image";
 import './CardR.css';
 
-const CardR = ({ imageSrc, imageAlt, title, className, classNameSub, subtitle ,onClick}) => {
+const CardR = ({ imageSrc, imageAlt, title, className,classTitle, classNameSub, subtitle ,onClick}) => {
     return (
       <div className={`cardr ${className}`} onClick={onClick}>
-            <Image src={imageSrc} alt={imageAlt} className="cardr-image" />
-        <Title text={title} className="cardr-title"/>
-        <Subtitle text={subtitle} className={classNameSub}/>
+        <Image src={imageSrc} alt={imageAlt} className="cardr-image" />
+        <div className="titile-sub-card">
+          <Title text={title} className={`cardr-title ${classTitle}`}/>
+          <Subtitle text={subtitle} className={`sub-title-card ${classNameSub}`}/>
+        </div>
       </div>
     );
   };

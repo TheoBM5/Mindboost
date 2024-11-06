@@ -94,7 +94,7 @@ function CardsContent({deck, className}) {
   return (
     <div className={`Tarjeta ${className}`} key={deck.id} onClick={handleClickCard}>
         <div className="card-image item-3" >
-          {selectedIcon && React.createElement(ICON_NAMES[selectedIcon], {className: "card-image"})}
+          {selectedIcon && React.createElement(ICON_NAMES[selectedIcon], {className: "card-image-img"})}
         </div>
         <h1 className="title-card item-1">{deck.title}</h1>
         <p className='item-2'>{deck.description}</p>

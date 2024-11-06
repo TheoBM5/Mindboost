@@ -28,7 +28,7 @@ function Home() {
   
   return (
     <div className="box">
-      <NavbarLeft/>
+      <NavbarLeft className="nav-bar-left"/>
       <div className="deck-space">
         {decks.map((deck) => (
           <CardsContent key={deck.id} deck={deck} 

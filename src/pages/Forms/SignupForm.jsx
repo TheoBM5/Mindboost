@@ -24,7 +24,7 @@ function SignupForm() {
 
   return (
       <div className="size-form">
-          <Card>
+          <Card className={"card-form-sign-up"}>
           {
               signupErrors &&(
                 signupErrors.map((err) => (
@@ -34,9 +34,9 @@ function SignupForm() {
                 )))
             }
           <h3 className="title-style">Registro</h3>
-            <form onSubmit={onSubmit}>
-                <Label htmlFor="name">Nombre</Label>
-                <Input placeholder = "Ingresa tu nombre completo" 
+            <form className="form-register" onSubmit={onSubmit}>
+                <Label className="label-register" htmlFor="name">Nombre</Label>
+                <Input className="input-register" placeholder = "Ingresa tu nombre completo" 
                   {...register('name',{
                     required: true,
                   })}  
@@ -45,8 +45,8 @@ function SignupForm() {
                   errors.name && <p className="error-message">name is required</p>
                 }
 
-                <Label htmlFor="username">Usuario</Label>
-                <Input placeholder = "Ingresa un usuario" 
+                <Label className="label-register" htmlFor="username">Usuario</Label>
+                <Input className="input-register" placeholder = "Ingresa un usuario" 
                   {...register('username',{
                     required: true,
                   })}  
@@ -55,8 +55,8 @@ function SignupForm() {
                   errors.username && <p className="error-message">user is required</p>
                 }
 
-                <Label htmlFor="email">Correo Electronico</Label>
-                <Input type="email" placeholder = "Ingresa un correo electronico" 
+                <Label className="label-register" htmlFor="email">Correo Electronico</Label>
+                <Input className="input-register" type="email" placeholder = "Ingresa un correo electronico" 
                   {...register('email',{
                     required: true,
                   })}
@@ -64,8 +64,8 @@ function SignupForm() {
                 {
                   errors.email && <p className="error-message">email is required</p>
                 }
-                <Label htmlFor="password">Contraseña</Label>
-                <Input type="password" placeholder = "Ingresa una contraseña" 
+                <Label className="label-register" htmlFor="password">Contraseña</Label>
+                <Input className="input-register" type="password" placeholder = "Ingresa una contraseña" 
                   {...register('password',{
                     required: true,
                   })}

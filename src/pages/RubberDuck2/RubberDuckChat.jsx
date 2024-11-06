@@ -98,17 +98,14 @@ function RubberDuckChat() {
       <div className='cont-duck2'>
       <Card className={"card-question-duck"}>
         {/* <Buton className="close-questions-card" label="X"/> */}
-        <section className='section-title'>
-          
-        <div className='title-duck2'>
-          <Label>Tema: </Label>
-          <Input 
-            placeholder="Titulo"
-            onChange={(e) => handleInputTitle(e)}
-            />
-        </div>
-        <Label>Ingresa las preguntas</Label>
-            </section>
+            <div className='title-duck2'>
+              <Label>Tema: </Label>
+              <Input className="input-title-chat"
+                placeholder="Titulo"
+                onChange={(e) => handleInputTitle(e)}
+                />
+            </div>
+            <Label className="label-style-comp-chat">Ingresa las preguntas</Label>
           <div className='question-input-box'>
         {questions.map((question) => (
             <Input
@@ -122,10 +119,12 @@ function RubberDuckChat() {
           </div>
           <img src='/img/icon/duckchat.webp'/>
         <div className='buttons-duck2'>
-          <Buton label="-" onClick={handleRemoveQuestion}/>
-          <Buton label="+"  onClick={handleAddQuestion}/>
+          <div className='buttons-agregar-chat'>
+            <Buton label="-" onClick={handleRemoveQuestion}/>
+            <Buton label="+"  onClick={handleAddQuestion}/>
+          </div>
+          <Buton label="Responder" onClick={handleNextSetQuestions} className={"next-button-duck"}></Buton>
         </div>
-        <Buton label="Responder" onClick={handleNextSetQuestions} className={"next-button-duck"}></Buton>
       </Card>
     </div>
     ):(

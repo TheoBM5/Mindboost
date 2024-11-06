@@ -1,15 +1,15 @@
-import React,{forwardRef} from "react";
-import './TextArea.css'
+import React, { forwardRef } from "react";
+import './TextArea.css';
 
-export const TextArea = forwardRef ((props, ref) => {
-  const { className, ...rest } = props;
+export const TextArea = forwardRef((props, ref) => {
+  const { className = "", children, ...rest } = props;
   return (
-    <textarea 
+    <textarea
       className={`text-area-comp ${className}`} 
       ref={ref} 
-      {...props}
+      {...rest} 
     >
-        {props.childrem}
+      {children}
     </textarea>
   );
 });

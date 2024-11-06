@@ -7,9 +7,16 @@
     background: linear-gradient(180deg, rgb(18, 184, 62) 0%, rgba(0,0,0,1) 100%);
 }
 .logro-style-card{
-    width: 70%;
+    max-width: 70%;
+    min-width: 60%;
+    max-height: 90%;
+    min-height: 60%;
+    width: 60%;
     height: 60%;
 }
+
+
+
 
 .logro-content{
     display: grid;
@@ -23,7 +30,7 @@
     
 }
 
-.logro-content::after {
+/* .logro-content::after {
     content: "";
     position: absolute;
     top: 0;
@@ -32,7 +39,7 @@
     height: 100%;
     background-color: rgb(28, 28, 28);
     z-index: 1; 
-  }
+  } */
 
   .image-logro{
     height: 100%;
@@ -44,16 +51,24 @@
 
   .cont-image-logro{
     display: grid;
-    width: 100%;
-    height: 300px;
+    max-width: 100%;
+    min-width: 80%;
+    max-height: 300px;
+    min-height: 150px;
+    height:250px ;
+    width: 250px;
     grid-template-columns: 1fr 50px;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   }
 
   .text-area-logro{
     
-    width: 98%;
+    max-width: 98%;
+    max-height: 90%;
+    min-width: 85%;
+    min-height: 55%;
     height: 90%;
+    width: 95%;
     border-radius: 10px;
     background-color: rgb(31, 31, 31);
     border: none;
@@ -65,6 +80,7 @@
   }
 
   .input-logro{
+    max-width: 95%;
     width: 90%;
     background-color: rgb(36, 36, 36);
     border-radius: 10px;
@@ -80,7 +96,7 @@
     width: 5rem;
   }
 
-  .label-container-logro{
+  .first-container-logro{
     width: 90%;
     height: 100%;
     display: flex;
@@ -92,21 +108,29 @@
     gap: 10px;
   }
 
-  .preview-image-logro{
-    width: 250px;
-    height: 250px;
-    background-color: rgb(41, 41, 41);
-    border-radius: 10px;
-    padding: 0.7rem 0.75rem;
-    margin: 0.8rem auto;
-    grid-row: 1/6;
+  .text-area-logro-cont{
+    width: 100%;
+    height: 90%;
+    grid-row: 1/4;
+    grid-column: 2/3;
+  }
+
+  
+  .button-aplicar-contenedor{
+    width: 95%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
     grid-column: 1/2;
+    grid-row: 4/5;
+    gap: 2rem;
   }
 
   .image-box-modal{
-    width: 23rem;
+    max-width: 24rem;
+    max-height: 5rem;
+    width: 24rem;
     height: 5rem;
-
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Tres columnas con igual anchura */
     gap: 8px; /* Espacio entre los iconos */
@@ -116,6 +140,105 @@
     border-radius: 15px;
     overflow-y: auto;
   }
+
+  .title-input-cont{
+    width: 80%;
+  }
+
+  .error-message-logro{
+    color: rgb(255, 124, 124);
+  }
+
+
+  @media (max-width: 450px) {
+    .logro-style-card{
+      height: 80%;
+      padding: 2.5rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .logro-content{
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 50px;
+    }
+
+    .first-container-logro{
+      grid-row: 1/2;
+      grid-column: 1/2;
+      justify-self: center;
+
+    }
+
+    .cont-image-logro{
+      height: 150px;
+    }
+
+
+    .input-logro{
+      margin: 0.5rem auto;
+    }
+
+    .title-input-cont{
+      width: 100%;
+    }
+
+    .text-area-logro-cont {
+      width: 100%;
+      height: 90%;
+      grid-row: 2/3;
+      grid-column: 1/2;
+    }
+
+    .text-area-logro{
+      height: 55%;
+      width: 85%;
+    }
+
+    .button-aplicar-contenedor{
+      grid-row: 3/4;
+      gap: 15px;
+    }
+    .image-box-modal
+    {
+      width: 13rem;
+      height: 4rem;
+      padding: 0.4rem 0.75rem;
+    }
+
+    .menu-iconos{
+      padding: 0.5rem 0.8rem;
+    }
+
+    .title-button{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .error-message-logro{
+      color: rgb(255, 110, 110);
+      margin: 0 auto;
+    }
+  }
+
+
+
+
+
+
+  .preview-image-logro{
+    max-width: 80%;
+    max-height: 80%;
+    width: 80%;
+    height: 80%;
+    background-color: rgb(41, 41, 41);
+    border-radius: 10px;
+    padding: 0.7rem 0.75rem;
+    /* margin: 0.8rem auto; */
+    grid-row: 1/6;
+    grid-column: 1/2;
+  }
+
 
   .button-terminar-logro
   {
@@ -133,20 +256,7 @@
     width: 80px;
   }
 
-  .button-aplicar-contenedor{
-    width: 95%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    grid-column: 1/2;
-    grid-row: 4/5;
-  }
-
-  .text-area-logro-cont{
-    width: 100%;
-    height: 90%;
-    grid-row: 1/4;
-  }
+ 
 
   .finish-button-content{
     grid-column: 2/3;
@@ -221,6 +331,8 @@
 
   .prev-ach{
     position: fixed;
+    max-width:90%;
+    max-height: 80%;
     width:35%;
     height: 70%;
     margin: auto;
@@ -230,6 +342,14 @@
     background-color: rgb(33, 33, 33);
   }
   
+
+  @media (max-width: 450px) {
+    .prev-ach{
+      width: 90%;
+      height: 80%;
+    }
+  }
+
   .cover-ach
 {
   position: relative;

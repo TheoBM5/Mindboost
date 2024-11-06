@@ -17,7 +17,7 @@ function TreeResult({type1, type2, type3, type4}) {
 
   const handleSelect = (index) => {
     setSelectedIndex(index);
-    setCurrentCardIndex(index); // Update the extra card to match the selected card
+    setCurrentCardIndex(index); 
     if(currentCardActive!=null){
       setCurrentCardActive(null);
     }
@@ -29,7 +29,7 @@ function TreeResult({type1, type2, type3, type4}) {
   const handleNext = () => {
     setCurrentCardIndex((prevIndex) => {
       const nextIndex = (prevIndex + 1) % cards.length;
-      setSelectedIndex(nextIndex); // Update the selected card border
+      setSelectedIndex(nextIndex); 
       return nextIndex;
     });
   };
@@ -37,7 +37,7 @@ function TreeResult({type1, type2, type3, type4}) {
   const handlePrevious = () => {
     setCurrentCardIndex((prevIndex) => {
       const prevIndexAdjusted = (prevIndex - 1 + cards.length) % cards.length;
-      setSelectedIndex(prevIndexAdjusted); // Update the selected card border
+      setSelectedIndex(prevIndexAdjusted); 
       return prevIndexAdjusted;
     });
   };
@@ -52,7 +52,7 @@ function TreeResult({type1, type2, type3, type4}) {
   }
 
   return (
-    <>
+    <div className="container-main-result">
       <header>
         <NavBar2 logoSrc="/img/logo2.webp"
         logoAlt="My Logo"
@@ -72,6 +72,7 @@ function TreeResult({type1, type2, type3, type4}) {
                 imageAlt={`Image of ${answer.name}`}
                 title={answer.name}
                 subtitle={answer.type}
+                classTitle="titulo-card-result"
                 classNameSub = {"subtitle-result"}
                 className={`card-style-select-tree ${selectedIndex === answer.id ? 'selected' : ''}`}
               />
@@ -110,7 +111,7 @@ function TreeResult({type1, type2, type3, type4}) {
         onClick={handleHome}
         className={"button-tree-respond"}/>
       </footer>
-    </>
+      </div>
   )
 }
 export default TreeResult

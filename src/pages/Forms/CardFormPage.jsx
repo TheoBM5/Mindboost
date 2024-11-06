@@ -26,13 +26,17 @@ function CardFormPage() {
 
     });
 
+    const handleback = () =>{
+        navigate("/");
+    }
+
   return (
     <div className="size-form-card">
         <Card className="card-style">
             <form className="size-form-card-2" onSubmit={onSubmit}>
                 <Label htmlFor="front">Front</Label>
   
-                <TextArea 
+                <TextArea className="text-area-card-form"
                     {...register("front",{
                         required: true,
                     })}
@@ -46,7 +50,7 @@ function CardFormPage() {
                     
                 }
                 <Label htmlFor="reverse">Reverse</Label>
-                <TextArea 
+                <TextArea className="text-area-card-form"
                     {...register("reverse",{
                         required: true,
                     })}
@@ -60,6 +64,9 @@ function CardFormPage() {
                     
                 }
                 <footer className="buttons-card-new">
+                    <Button type="button" className="add-button" onClick={handleback}>
+                        Regresar
+                    </Button>
                     <Button type="submit" className="add-button">
                         +
                     </Button>

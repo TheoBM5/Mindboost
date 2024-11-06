@@ -75,7 +75,6 @@ useEffect(() => {
 
   return (
     <main className="rubber-duck-cont">
-      <div className="cont-card-duck">
         <Card className={"card-duck-text"}>
           <form className="duck-form" onSubmit={onSubmit}>
           <Label>Titulo</Label>
@@ -94,10 +93,10 @@ useEffect(() => {
           <TextArea 
           {...register("reverse",{
             required: true,
-        })}
-        placeholder="Descripcion"
-          className="text-description-duck" onChange={handleInputChange}
-          />
+          })}
+          placeholder="Descripcion"
+            className="text-description-duck" onChange={handleInputChange}
+            />
           {
             errors.reverse && (
                 <p className="error-message">Description text is required</p>
@@ -113,26 +112,25 @@ useEffect(() => {
               <BlockPicker color={selectedColor} onChange={handleColorChange}  />
             </div>
             )}
-            {/* <button>Frase</button> */}
           </div>
           </form>
         </Card>
-      </div>
       <div className="cont-duck">
         <div className="duck-window" style={{backgroundColor: selectedColor}}>
-          <Duck top="0" left="0" bottom="0" right="0" isTyping={isTyping}/>
-            {isTyping && (
-                  <Onda/>
-                )}
-              
-                {!isTyping && (
-                  <>
-                <Wave/>
-              {/* <Lines top="650px" left="300px"/>
-              <Lines top="650px" left="100px"/>
-              <Lines top="750px" left="200px"/> */}
-                  </>
-                )}
+          {/* <Duck top="0" left="0" bottom="0" right="0" isTyping={isTyping}/> */}
+          <div className="cont-image-duck-wave">
+            <img className="duck-img" src="/img/modes/duck1.webp"/>
+              {isTyping && (
+                    <Onda/>
+                  )}
+                
+                  {!isTyping && (
+                    <>
+                    <Onda/>
+                  {/* <Wave/> */}
+                    </>
+                  )}
+          </div>
         </div>
       </div>
     </main>

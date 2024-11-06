@@ -152,13 +152,18 @@ border-radius: 50%;
   display: grid;
   height: 100vh;
 
-  grid-template-areas: "opc1 opc2"
+  grid-template-areas:  "title title"
+  "opc opc"
   "button button";
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows:  1fr 10rem ;
+  grid-template-rows: 10rem 1fr 10rem ;
   gap: 1rem;
   align-items: center;
   justify-items: center;
+}
+
+.select-title-duck{
+  grid-area: title;
 }
 
 .card-duck-opt{
@@ -166,6 +171,10 @@ border-radius: 50%;
   background-color: rgb(20, 20, 20);
   border-radius: 12px;
   flex-direction: column;
+  max-width: 90%;
+  min-width: 40%;
+  min-height: 40%;
+  max-height: 90%;
   width: 60%;
   height: 70%;
   justify-content: center;
@@ -177,6 +186,8 @@ border-radius: 50%;
   flex-direction: row;
   gap: 12px;
   grid-area: button;
+  width: 100%;
+  justify-content: space-around;
 }
 
 .button-duck-option button{
@@ -191,4 +202,22 @@ border-radius: 50%;
 .img-duck-option{
   width: 20%;
   height: 20%;
+}
+
+.title-pato-opt{
+  text-align: center;
+  font-size: clamp(0.8rem, 2vw, 1.5rem);
+}
+
+@media (max-width: 450px) {
+  .main-grid-option-duck{
+    gap:0.5rem
+  }
+  .card-duck-opt{
+
+    width: 85%;
+    height: 30%;
+    justify-content: center;
+    align-items: center;
+  }
 }

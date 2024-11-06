@@ -8,11 +8,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    position: absolute; /* Cambiado a absolute */
+    position: absolute;
     top: 50%;
     left: 50%;
     z-index: 2;
-    transform: translate(-50%, -50%); /* Centro el elemento */
+    transform: translate(-50%, -50%);
 }
 .circle::before{
     content: '';
@@ -37,17 +37,18 @@
     font-size: 80px;
     align-items: center;
     flex-direction: column;
-    position: absolute; /* Cambiado a absolute */
+    position: absolute;
     top: 50%;
     left: 50%;
     z-index: 2;
-    transform: translate(-50%, -50%); /* Centro el elemento */
+    transform: translate(-50%, -50%);
 }
 
 .position-clock{
-    position: relative; /* Cambiado a relative */
-    width: 100%; /* Ajusta según tus necesidades */
-    height: 100%; /* Ajusta según tus necesidades */
+    position: relative; 
+    width: 45%; 
+    height: 90%; 
+    margin: 0 auto;
 }
 
 .seconds-sphere {
@@ -155,30 +156,48 @@
 /* clock2 */
 
 @keyframes rotacion2 {
-    from { 
-        transform: rotate(-90deg) translateX(303px); /* Comienza en el borde superior del círculo */
-    }
-    to { 
-        transform: rotate(270deg) translateX(303px); /* Termina con una rotación completa */
-    }
+    from {
+        transform: rotate(0deg);
+      }
+    
+      to {
+        transform: rotate(360deg);
+      }
+}
+
+.cont-clock-general{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.position-clock-2{
+    max-width: 50%;
+    width: 40%; 
+    aspect-ratio: 1 / 1; 
+    position: relative;
+    margin: 0 auto;
 }
 
 .circle-2{
     border-radius: 50%;
-    width: var(--size);
-    height: var(--size);
+    width: 100%;
+    height: 100%;
     border: 5px solid #ffffff;
     color: rgb(175, 175, 175);;
     display: flex;
     justify-content: center;
-    font-size: 80px;
+    font-size: 4vw;;
     align-items: center;
     flex-direction: column;
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 2;
-    transform: translate(-50%, -50%); /* Centro el elemento */
+    transform: translate(-50%, -50%); 
 }
 
 .circle-2::after{
@@ -190,7 +209,18 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centro el círculo interior */
+    transform: translate(-50%, -50%); 
+}
+
+
+
+.img-clock{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("/img/clock.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .buttons-2{
@@ -202,17 +232,15 @@
     gap: 20px;
 }
 
-.seconds-sphere-2{
+.seconds-sphere-b{
     width: 40px;
     height: 40px;
     border-radius: 50%;
     background-color: #fff;
     position: absolute;
-    left: 48.75%;
-    top: 50%; /* Ajusta según el tamaño de tu círculo */
-    transform-origin: center 0%; 
-    /* transform-origin: center 0px; */
-    animation: rotacion2 60s linear infinite;
+    top: 50%; /* Posiciona en el centro verticalmente */
+    left: 50%; /* Posiciona en el centro horizontalmente */
+    transform-origin: left center;
     animation-play-state: paused;
     z-index: 3;
 }

@@ -1,13 +1,116 @@
-.size-form{
+.size-form {
     height: calc(100vh - 70px); 
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing:border-box;
+    overflow: hidden;
+  }
+  
+
+  .card-form-sign {
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+    max-width: 500px;
+    width: 90%; 
+    height: auto; 
+    box-sizing: border-box;
+    max-height: 90vh; 
+    overflow-y: auto; 
+  }
+
+.title-style{
+    margin:0.5rem auto;
+    padding: 1rem 3rem;
+    font-size: 1.75rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    text-align: center;
 }
 
+@media (min-width: 1600px) {
+    .card-form-sign {
+      max-width: 500px; 
+    }
+  }
+  
+  @media (max-width: 375px) {
+    .card-form-sign {
+      width: 90%; 
+      min-width: 100px; 
+      min-height: 550px;
+    }
+    .title-style{
+        margin:0.5rem auto;
+        padding: 0;
+    }
+  }
+
+
+
+  .card-form-sign-up{
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+    max-width: 500px;
+    width: 90%; 
+    height: auto; 
+    box-sizing: border-box;
+    max-height: 90vh; 
+    justify-content: center;
+    /* align-items: center; */
+    overflow-y: auto; 
+  }
+
+  .form-register{
+    display: flex;
+    flex-direction: column;
+
+  }
+
+.input-register{
+    padding: 0.5rem 0.75rem;
+    margin: 1rem auto;
+    box-sizing: content-box;
+}
+
+  @media (min-width: 1600px) {
+    .card-form-sign {
+      max-width: 500px; /* Aumenta el tamaño máximo en pantallas grandes */
+    }
+    
+  }
+  
+  @media (max-width: 375px) {
+    .card-form-sign-up {
+      width: 90%; 
+      min-width: 100px; 
+      min-height: 550px;
+      padding: 1rem;
+    }
+    .title-style{
+        margin:0.3.5rem auto;
+        padding: 0;
+        font-size: 1.4rem;
+    }
+
+    .label-register{
+        padding-top: 0.3rem;
+    }
+
+    .input-register{
+        width: 90%;
+        padding: 0.45rem 0.75rem;
+        margin: 0.5rem auto;
+    }
+
+  }
+
+
 .size-form-card{
-    height: calc(100vh - 70px); 
-    width: 90vw;
+    height: 100vh; 
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,10 +121,8 @@
     flex-direction: column;
     flex-grow: 1;
     width: 100%;
-    
-    /* margin-top: 5rem; */
-}
 
+}
 
 .size-form-card-edit{
     height: 70vh;
@@ -29,20 +130,34 @@
 
 .card-style{
     position: relative;
+    display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
-    display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 50rem;
+    max-width: 50%;
+    min-width: 22rem;
     padding: 20px;
     height: 60%;
     box-sizing: border-box;
-    border-radius: 8px;
-
-    
+    border-radius: 12px;
 }
+
+@media (max-width: 375px) {
+    .card-style{
+        height: 80%;
+    }
+
+    .text-area-card-form{
+        width: 80%;
+        
+    }
+  }
+
+  .text-area-deck-form{
+    height: auto;
+  }
 
 .add-button{
     border-radius: 90rem;
@@ -56,6 +171,8 @@
     font-weight: 700;
 }
 
+
+
 .error-message{
     color: rgb(252, 64, 64);
 }
@@ -64,14 +181,7 @@
     opacity: 0.5;
 }
 
-.title-style{
-    margin:0.5rem auto;
-    padding: 1rem 3rem;
-    font-size: 1.75rem;
-    line-height: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-}
+
 
 .sub-text{
     text-align: center;
@@ -97,6 +207,10 @@
     padding: 1.5rem;
     position: inherit;
 }
+
+
+
+
 
 .size-form-edit{
     display: block;
@@ -130,40 +244,7 @@
 }
 
 
-.icon-box{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Tres columnas con igual anchura */
-    gap: 8px; /* Espacio entre los iconos */
-    justify-items: center; 
-    height: 5rem;
-    background: rgb(31, 31, 31);
-    padding: 0.7rem 0.75rem;
-    margin: 0.8rem auto;
-    border-radius: 15px;
-    max-height: 200px; 
-    overflow-y: auto;
-}
 
-.preview-icon{
-    width: 3rem;
-    height: 3rem;
-    background: rgb(31, 31, 31);
-    padding: 0.7rem 0.75rem;
-    margin: 0.8rem auto;
-    border-radius: 15px;
-}
-
-.menu-iconos{
-    font-Size: 38px;
-    transition: transform 0.3s ease;
-    padding: 1rem;
-}
-
-  
-.menu-iconos:hover{
-    transform: scale(1.2); /* Aumenta el tamaño del ícono al 120% */
-}
 
 .selected-icon{
     width: 100%;
@@ -175,18 +256,7 @@
     flex-direction: column;
 }
 
-.menu-iconos.active {
-    border: 1px solid white; /* Resalta el borde cuando el ícono está activo */
-    border-radius: 10px;
-  }
 
-.buton-button{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
-}
 
 .img-edit-logro{
     width: 100px;
