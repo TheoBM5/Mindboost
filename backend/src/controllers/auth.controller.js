@@ -24,6 +24,17 @@ export const signin = async (req, res) => {
         message: "La contraseña es incorrecta",
       });
     }
+
+    const userId = result.rows[0].id;
+
+    const preferenceResult = await pool.query("SELECT * FROM preference WHERE user_id = $1", [userId]);
+  
+    if (preferenceResult.rowCount === 0) {
+      await pool.query(
+        "INSERT INTO preference (user_id, img_duck, color_duck, mode_color) VALUES ($1, $2, $3, $4)",
+        [userId, '1', 'blue', 'dark']
+      );
+    }
   
     const token = await createAccessToken({ id: result.rows[0].id });
 
@@ -46,6 +57,18 @@ export const signup = async (req, res, next) => {
         "INSERT INTO users(name, username, email, password, gravatar) VALUES($1, $2, $3, $4, $5) Returning *",
         [name, username, email, hashedPassword, gravatar]
       );
+
+
+      const userId = result.rows[0].id;
+
+    const preferenceResult = await pool.query("SELECT * FROM preference WHERE user_id = $1", [userId]);
+  
+    if (preferenceResult.rowCount === 0) {
+      await pool.query(
+        "INSERT INTO preference (user_id, img_duck, color_duck, mode_color) VALUES ($1, $2, $3, $4)",
+        [userId, '1', 'blue', 'dark']
+      );
+    }
 
         const token = await createAccessToken({id: result.rows[0].id});
         

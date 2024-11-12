@@ -20,13 +20,34 @@ export const getCard = async (req, res) => {
     return res.json(result.rows[0]);
 };
 
+export const getAllCardsAndDate = async (req, res, next) => {
+    
+    const { deckid } = req.params;
+  try {
+    const result = await pool.query(
+      `SELECT card.*, 
+              user_card_parameters.racha, 
+              user_card_parameters.date_creation, 
+              user_card_parameters.review_date
+       FROM card
+       JOIN user_card_parameters 
+       ON card.id = user_card_parameters.card_id
+       WHERE card.deck_id = $1`,
+      [deckid]
+    );
+    res.json(result.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error al obtener las tarjetas y fechas" });
+  }
+};
+
+
 export const createCard = async (req, res, next) => {
-    console.log(req.body);
     const { card } = req.body; 
     const { deckId } = req.body;
     const {userId} = req.body;
     const {typeCard} = req.body;
-    console.log("tipo", typeCard)
     try{
         const result = await pool.query(
         "INSERT INTO card (content, deck_id, typeCard, user_id) VALUES ($1, $2, $3, $4) RETURNING *",  
@@ -84,7 +105,6 @@ export const getAllReviewCards = async (req, res, next) => {
 
 export const updateReviewCard = async (req, res, next) => {
     const { racha, ef, interval_repeat, review_date } = req.body;
-    console.log("nuevo",racha, ef, interval_repeat, review_date)
     const result = await pool.query(
         `UPDATE user_card_parameters 
          SET racha = $1, ef = $2, interval_repeat = $3, review_date = $4 

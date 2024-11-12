@@ -7,6 +7,7 @@ import {
   deleteCardRequest,
   getAllReviewCardsRequest,
   updateReviewCardRequest,
+  getAllCardsAndDateRequest,
 } from "../api/card.api";
 
 const CardContext = createContext();
@@ -31,6 +32,11 @@ export const CardProvider = ({ children }) => {
   const loadCard = async (deckId, id) => {
     const res = await getCardRequest(deckId, id);
     return res.data;
+  };
+
+  const loadCardsAndDate = async (deckId) => {
+    const res = await getAllCardsAndDateRequest(deckId);
+    setCards(res.data);
   };
 
   const createCard = async (deckId, card, user_id, typeCard) => { 
@@ -101,7 +107,8 @@ export const CardProvider = ({ children }) => {
         errors,
         updateCard,
         loadReviewCards,
-        updateReviewCards
+        updateReviewCards,
+        loadCardsAndDate,
       }}
     >
       {children}

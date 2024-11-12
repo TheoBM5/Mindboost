@@ -27,27 +27,33 @@ function InfoGrid() {
         
         <p className='info-title'>Elementos Clave para <span className='title-section-about'>Estudiar</span></p>
         <div className={`info-1 info-stlye ${activeTitle === 0 ? "info-stlye-active" : ""}`} onClick={() => handleSelectInfo(0)}>
-            <h3>Apuntes</h3>
-            <CiPen className='icon-panel-information'/>
-            <p>Organiza la información clave para un repaso rápido y eficaz</p>
+            <h3 className="title-infogrid">Apuntes</h3>
+            <div className='cont-img-infogrid'>
+                <CiPen className='icon-panel-information'/>
+            </div>
+            <p className="description-infogrid">Organiza la información clave para un repaso rápido y eficaz</p>
             {activeTitle === 0 ? (
                     <span className='sub-mainfo'>Mas informacion</span>
                 ) : null
             }
         </div>
         <div className={`info-2 info-stlye ${activeTitle === 1 ? "info-stlye-active" : ""}`} onClick={() => handleSelectInfo(1)}>
-            <h3>Tiempo</h3>
-            <CiClock2 className='icon-panel-information'/>
-            <p>Planifica tu tiempo para estudiar sin estrés ni distracciones</p>
+            <h3 className="title-infogrid">Tiempo</h3>
+            <div className='cont-img-infogrid'>
+                <CiClock2 className='icon-panel-information'/>
+            </div>
+            <p className="description-infogrid">Planifica tu tiempo para estudiar sin estrés ni distracciones</p>
             {activeTitle === 1 ? (
                     <span  className='sub-mainfo'>Mas informacion</span>
                 ) : null
             }
         </div>
         <div className={`info-3 info-stlye ${activeTitle === 2 ? "info-stlye-active" : ""}`} onClick={() => handleSelectInfo(2)}>
-            <h3>Metodo</h3>
-            <CiSettings className='icon-panel-information' />
-            <p>Usa técnicas personalizadas para aprender de forma más eficiente</p>
+            <h3 className="title-infogrid">Metodo</h3>
+            <div className='cont-img-infogrid'>
+                <CiSettings className='icon-panel-information' />
+            </div>
+            <p className="description-infogrid">Usa técnicas personalizadas para aprender de forma más eficiente</p>
             {activeTitle === 2 ? (
                     <span className='sub-mainfo'>Mas informacion</span>
                 ) : null

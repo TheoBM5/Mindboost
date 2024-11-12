@@ -9,7 +9,7 @@ function Home() {
   const {decks, loadDecks, getDeckReview} = useDecks();
   const [reviewDecks, setReviewDecks] = useState([]);
 
-  
+  console.log("reviewdecks",reviewDecks)
   useEffect(() => {
     loadDecks();
     getDeckReview().then((reviewDecksData) => {
@@ -19,10 +19,9 @@ function Home() {
   }, []);
 
   if (decks.length === 0) return (
-    <div className="flex justify-center items-center h-[calc(100vh-10rem)]">
-      <NavbarLeft/>
-      <h1 className="text-3xl font-bold">No decks found</h1>
-      <h2>hola</h2>
+    <div className="box">
+    <NavbarLeft className="nav-bar-left"/>
+    <h1 className="text-3xl font-bold">No decks found</h1>
     </div>
   )
   

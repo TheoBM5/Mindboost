@@ -117,12 +117,14 @@
 }
 
 .size-form-card-2{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2rem 1fr 2rem 1fr 5rem;
     flex-grow: 1;
     width: 100%;
 
 }
+
 
 .size-form-card-edit{
     height: 70vh;

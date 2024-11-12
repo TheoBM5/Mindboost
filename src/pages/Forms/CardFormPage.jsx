@@ -30,13 +30,15 @@ function CardFormPage() {
         navigate("/");
     }
 
+    const maxLengthCharacter=params.mode == 10 ? 140 : params.mode == 11 ? 160 : params.mode == 12 ? 40 : undefined
+    console.log("max",maxLengthCharacter)
   return (
     <div className="size-form-card">
         <Card className="card-style">
             <form className="size-form-card-2" onSubmit={onSubmit}>
-                <Label htmlFor="front">Front</Label>
+                <Label id="label-front-card" htmlFor="front">Front</Label>
   
-                <TextArea className="text-area-card-form"
+                <TextArea id="text-area-1-card" maxLength={maxLengthCharacter} className="text-area-card-form"
                     {...register("front",{
                         required: true,
                     })}
@@ -49,8 +51,8 @@ function CardFormPage() {
                 )
                     
                 }
-                <Label htmlFor="reverse">Reverse</Label>
-                <TextArea className="text-area-card-form"
+                <Label id="label-reverse-card" htmlFor="reverse">Reverse</Label>
+                <TextArea id="text-area-2-card" maxLength={maxLengthCharacter} className="text-area-card-form"
                     {...register("reverse",{
                         required: true,
                     })}

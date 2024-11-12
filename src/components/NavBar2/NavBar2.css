@@ -34,3 +34,14 @@
   .navbar-button:hover {
     background-color: #777;
   }
+
+  @media (max-width: 480px) {
+    .navbar{
+      padding:0.5rem 1rem;
+    }
+    .navbar-logo img {
+      height: 40px;
+      width: 100px;
+    }
+    
+  }

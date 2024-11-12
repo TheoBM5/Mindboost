@@ -40,7 +40,6 @@
     background-color: #000a1a;
     align-items: center;
     justify-content: center;
-    border: 1px solid red;
     scroll-snap-align: start;
     color: #fff;
 }
@@ -65,26 +64,9 @@
     background-color: linear-gradient(454deg, #5eacb4, #349292);
 }
 
-.slides5{
-    display: flex;
-    flex-direction: row;
-    gap: 10%;
-}
 
-.slides6{
-    display: flex;
-    flex-direction: row;
-    gap: 10%;
-}
 
-.slides7{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    background-image:url("/img/background3.png");
-    overflow: hidden;
-    gap: 10%;
-}
+
 
 .prueba-color{
     position: absolute;
@@ -126,13 +108,12 @@
     line-height: 1.5; 
     text-align: center; /* Centra el texto dentro de su área */
     align-self: start;
-
-    font-size: xx-large;
+    font-size: clamp(1.4rem, 2vw, 1.5rem);
 }
 
 .texto-desc-landing{
     padding: 1rem;
-    font-size: medium   ;
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
 }
 
 .img-landing{
@@ -230,6 +211,10 @@
     text-align: center;
     font-weight: bolder;
     padding-top: 16px;
+}
+
+.title-grid-modes{
+    font-size: clamp(0.5rem, 2vw, 1.2rem);
 }
 
 .container-tile{
@@ -359,16 +344,17 @@
 /* Tercer slide */
 .panel-information1{
     position: relative;
+    width: 100%;
+    height: 100%;
     display: grid;
     grid-template-areas: "title title title"
                          "content1 content2 content3";
-                         /* "info info info"; */
-    grid-template-columns: [col-start] 22.5rem [mid-start] 22.5rem [mid] 22.5rem [col-end];
-    grid-template-rows: [row-start] 12.5rem [row-mid-start] 12.5rem [row-mid-end];
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 25% 1fr;
     align-items: center;
-    justify-content: center;
+    justify-items: center;
     gap: 4rem;
-    
+    box-sizing: border-box;
 }
 
 .info-stlye h3{
@@ -388,16 +374,24 @@
     font-weight: bolder;
 }
 
+.cont-img-infogrid{
+    display: flex;
+    width: 100%;
+    height: 35%;
+    justify-content: center;
+    align-items: center;
+}
+
 .icon-panel-information{
     width: 25%;
-    height: 25%;
+    height: 100%;
 }
 
 .info-title{
     grid-area: title;
-    text-align: center;
+    text-align: end;
     justify-content: center;
-    font-size: xx-large;
+    font-size: clamp(1rem, 2vw, 2.5rem);
 }
 
 .info-1{
@@ -413,13 +407,18 @@
 }
 
 .info-stlye{
-    text-align: center;
+    max-width: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    text-align: center;
     background-color: #001648;
     border-radius: 12px;
     padding: 1rem;
+    align-self: start;
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-sizing: border-box;
 }
 
 .info-stlye:hover{
@@ -446,39 +445,81 @@
     padding: 1rem;
 }
 
-.progress-card{
-    display: flex;
-    width: 20%;
-    height: 25%;
-    background-color: #002c3c80;
-    border-radius: 12px;
-    filter:brightness(5px);
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    align-items: center;
-    justify-content: center;
-    gap: 4rem;
+
+
+.description-infogrid{
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
 }
 
-.progress-card img{
-    width: 25%;
-    height: 40%;
-}
 
-.progress-card div{
-    text-align: center;
-}
+@media (max-width: 768px) {
 
-.progres-text{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: large;
-    width: 25%;
-}
+  }
+  
+  /* Pantallas pequeñas (móviles) */
+  @media (max-width: 480px) {
 
-.progres-text h2{
-    font-size: xx-large ;
-}
-.text-description-content{
-    text-align: center;
-}
+    .main-grid{
+        display: grid;
+        grid-template-areas: "title"
+        "img"
+        "subtitle"
+        "start";
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+
+    }
+
+    .img-landing{
+        width: 34%;
+        top: 34%;
+        left: 38%;
+    }
+
+    .cont-world{
+        top: 32%;
+        left: 27%;
+    }
+    
+
+    .cont-world img {
+        width: 50% ;
+    }
+    .panel-content{
+        width: 90%;
+        height: 50%;
+    }
+
+    .panel-information1{
+        grid-template-areas: "title"
+                            "content1"
+                            "content2"
+                            "content3";
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        margin: 0;
+        gap: 10px
+    }
+    .info-1{
+        grid-area: content1;
+    }
+    .info-2{
+        grid-area: content2;
+    }
+    .info-3{
+        grid-area: content3;
+    }
+    .info-stlye{
+        width: 90%;
+        height: 80%;
+
+    }
+
+    .title-infogrid{
+        margin: 0;
+    }
+    .icon-panel-information{
+        height: 80%;
+    }
+
+  }

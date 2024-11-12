@@ -1,11 +1,20 @@
 import './ChatDuck.css';
 import {Card, Input, Label} from '../../components/ui/index';
-function ChatDuck({text}) {
+function ChatDuck({ text = '', isEditable = false, imageSrc = 'default-image-url.png', onTextChange, className, classNameBubble }) {
+
   return (
-    <div className='card-chat-duck'>
-        <div className='chat-icon-duck'></div>
-        <Input className="question-bubble" value={text} disabled />
+    <div className={`card-chat-duck ${className}`}>
+      <div 
+        className="chat-icon-duck" 
+        style={{ backgroundImage: `url(${imageSrc})` }}
+      ></div>
+      <textarea 
+        className={`question-bubble ${classNameBubble} `}
+        value={text} 
+        disabled={!isEditable} 
+        onChange={isEditable ? onTextChange : undefined}
+      />
     </div>
-  )
+  );
 }
 export default ChatDuck

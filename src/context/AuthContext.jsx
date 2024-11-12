@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
       const res = await axios.post("/signin", data);
       setUser(res.data);
       setIsAuth(true);
-
+      console.log("gve", res.data.id)
       return res.data;
     } catch (error) {
       if (Array.isArray(error.response.data)) {
@@ -37,6 +37,7 @@ export function AuthProvider({ children }) {
   const signup = async (data) => {
     try {
       const res = await axios.post("/signup", data);
+      console.log("gve", res)
       setUser(res.data);
       setIsAuth(true);
 

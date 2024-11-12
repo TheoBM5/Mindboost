@@ -5,13 +5,14 @@
     width: 100vw;
     height: 100vh;
     grid-template-columns: auto 1fr;
+    justify-content: center;
     /* grid-template-columns: minmax(80px, 350px) 1fr; */
 
 }
 
 .nav-bar-left{
     position: sticky;
-    top: 0; /* Hace que `.nav-bar-left` se mantenga fija en la parte superior */
+    top: 0; 
     height: 100vh;
 }
 
@@ -22,6 +23,26 @@
     grid-template-columns: repeat(
         auto-fill,
         minmax(380px, 1fr));	
+    grid-template-rows: repeat(
+            auto-fill,
+            minmax(180px, 1fr));	
     gap: 4rem;
     padding: 50px;
+    justify-items: center;
+    box-sizing: border-box;
 }
+
+@media (max-width: 768px) {
+
+  }
+  
+  /* Pantallas pequeñas (móviles) */
+  @media (max-width: 480px) {
+    .deck-space{
+        gap: 1rem;
+        padding: 10px;
+        margin-top: 65px;
+        grid-template-columns: repeat( auto-fill, minmax(280px, 1fr));
+        
+    }
+  }

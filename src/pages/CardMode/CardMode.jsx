@@ -17,7 +17,7 @@ function CardMode() {
   
   const navigate = useNavigate();
   const modes = [
-    { id: "0", label: "Normal", img: `/img/modes/Flashcard1.webp`},
+    { id: "0", label: "Flash Card", img: `/img/modes/Flashcard1.webp` },
     { id: "1", label: "Logro/Trofeo", img: `/img/modes/trofeo1.webp` },
     { id: "2", label: "Cronometro", img: `/img/modes/flashreloj.webp` },
     { id: "3", label: "Rubber Duck", img: `/img/modes/duck1.webp` },
@@ -61,6 +61,7 @@ function CardMode() {
  
   const handleContainerClick = (cardId) => {
     setSelectedCard(cardId);
+    console.log(selectedCard)
   };
 
   const handleCancelar = () =>{
@@ -69,8 +70,8 @@ function CardMode() {
 
   const handleConfirm = () =>{
       console.log("selected", selectedCard)
-      if(selectedCard == 0){
-        navigate(`/deck/${params.id}/${params.deckid}/new/card`);
+      if(selectedCard == 0 || selectedCard == 10 || selectedCard == 11 || selectedCard == 12 ){
+        navigate(`/deck/${params.id}/${params.deckid}/new/card/${selectedCard}`);
   
       }
       if(selectedCard == 1){
@@ -150,30 +151,67 @@ function CardMode() {
       </Modal>
     )}
       <article className="tile-content-mode">
+  {currentModes.map((mode, index) => (
+  mode.id === "0" ? (
+    // Estilos y contenido único para el primer elemento
+    <div
+      key={mode.id}
+      className={`tile-mode-grid ${selectedCard === mode.id ? 'selected' : ''}`}
+      onClick={() => handleContainerClick(mode.id)}
+    >
+      <div className='tile-buttons-cont'>
+        <div className={`tile-button-mode ${selectedCard === 10 ? 'selected' : ''}`} onClick={(e) => {
+          e.stopPropagation(); 
+          handleContainerClick(10);
+        }}><img className="img-button-modes" src='/img/modes/twitter.webp' alt='twitter logo'/></div>
+        <div className={`tile-button-mode ${selectedCard === 11 ? 'selected' : ''}`} onClick={(e) => {
+          e.stopPropagation(); 
+          handleContainerClick(11);
+        }}><img className="img-button-modes" src='/img/modes/mamut.webp' alt='twitter logo'/></div>
+        <div className={`tile-button-mode ${selectedCard === 12 ? 'selected' : ''}`} onClick={(e) => {
+          e.stopPropagation(); 
+          handleContainerClick(12);
+        }}><img className="img-button-modes" src='/img/modes/mensaje.webp' alt='twitter logo'/></div>
+      </div>
+      <button className='help-mode-button' onClick={(e) => handleHelpMode(e, startIndex + 1, mode.id)}>?</button>
+      
+      <div className='grid-cont-1'>
+        <div className="PruebaAnimation-grid">
+          <img className="imagen-tile-modes" src={mode.img} alt={`${mode.label} mode`} />
+        <label className='title-mode-grid' htmlFor={mode.id}>{mode.label}</label>
+        </div>
         
-        {currentModes.map((mode) => (
-          
-          <div htmlFor={mode.id}
-          key={mode.id}
-          className={`tile-mode ${selectedCard === mode.id ? 'selected' : ''}`}
-          onClick={() => handleContainerClick(mode.id)}>
-            <div>
-              <input
-                className='radio-mode'
-                type="radio"
-                name="card"
-                id={mode.id}
-                checked={selectedCard === mode.id}
-                onChange={() => {}}
-              />
-            </div>
-            <button className='help-mode-button' onClick={(e) => handleHelpMode(e, startIndex+1, mode.id)}>?</button>
-            <div className="PruebaAnimation"><img className="imagen-tile-modes" src={mode.img}/></div>
-            <label htmlFor={mode.id}>
-              {mode.label}
-            </label>
-          </div>
-        ))}
+        <label className='title-mode-grid' htmlFor={mode.id}>Sub Modos</label>
+      </div>
+    </div>
+  ) : (
+    // Estructura común para los demás elementos
+    <div
+      key={mode.id}
+      className={`tile-mode ${selectedCard === mode.id ? 'selected' : ''}`}
+      onClick={() => handleContainerClick(mode.id)}
+    >
+      <div>
+        <input
+          className='radio-mode'
+          type="radio"
+          name="card"
+          id={mode.id}
+          checked={selectedCard === mode.id}
+          onChange={() => {}}
+        />
+      </div>
+      
+      <button className='help-mode-button' onClick={(e) => handleHelpMode(e, startIndex + 1, mode.id)}>?</button>
+      
+      <div className="PruebaAnimation">
+        <img className="imagen-tile-modes" src={mode.img} alt={`${mode.label} mode`} />
+      </div>
+      
+      <label htmlFor={mode.id}>{mode.label}</label>
+    </div>
+  )
+))}
       </article>
       <footer className="buttons-confirm">
       {currentPage !== 0 &&(

@@ -160,6 +160,8 @@ grid-template-rows: 7rem 1rem auto 3rem;
     max-width: 50%;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
+    margin: auto;
+    margin-right: 0;
 }
 
 .input-duck-answer::before{
@@ -183,6 +185,7 @@ grid-template-rows: 7rem 1rem auto 3rem;
 .chat-icon-duck-2{
     border-radius: 50%;
     width: 20%;
+    aspect-ratio: 1;
     background-color: #007bff;
     background-image: url("./img/icon/duckchat.webp");
     background-size: cover;
@@ -223,9 +226,17 @@ grid-template-rows: 7rem 1rem auto 3rem;
 
 }
 
+.chat-card-2{
+    margin-left: auto;
+    transform: scaleX(-1);
+}
 
+.bubble-2{
+    transform: scaleX(-1);
+    border-radius: 15px 0 15px 15px;
+    }
 
-@media (max-width: 450px) {
+@media (max-width: 480px) {
     .card-question-duck{
         width: 60%;
         height: 80%;
@@ -270,14 +281,20 @@ grid-template-rows: 7rem 1rem auto 3rem;
 
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 480px) {
+    .cont-answer-chat{
+        gap: 30px;
+    }
     .answer-card-duck{
         width: 70%;
         height: 80%;
         padding: 2.5rem;
     }
-    .card-chat-duck-2 {
-        width: 75%;
-      }
 
   }
+
+
+  @media (max-width: 768px) {
+
+  }
+  

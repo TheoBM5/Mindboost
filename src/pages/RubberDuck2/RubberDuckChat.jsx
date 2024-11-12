@@ -1,5 +1,5 @@
 import './RubberDuckChat.css'
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 import {Card, Input, Label} from '../../components/ui/index';
 import Buton from '../../components/ui/Boton/Buton';
 import { useNavigate, useParams } from "react-router-dom";
@@ -11,6 +11,7 @@ function RubberDuckChat() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false); 
   const [titleChat, setTitleChat] = useState("");
+  const endOfContentRef = useRef(null);
   const {createCard, updateCard, loadCard, errors: CardErrors} = useCards();
   const params = useParams();
   const navigate = useNavigate();
@@ -68,6 +69,11 @@ function RubberDuckChat() {
     }
   };
 
+  useEffect(() => {
+    endOfContentRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [questions, currentQuestionIndex]);
+
+
 
   const handleSaveData = async () => {
     const finalData = {
@@ -92,6 +98,7 @@ function RubberDuckChat() {
     console.log("Datos guardados (JSON):", JSON.stringify(finalData));
     console.log("Datos guardados (Objeto):", finalData);
   };
+
   return (
     <div>
     {makeQuestions ? (
@@ -131,21 +138,21 @@ function RubberDuckChat() {
       <div>
         <Card className={"answer-card-duck"}>
         <Label>Responde las preguntas</Label>
-        <div className='cont-answer-chat'>
+        <div className='cont-answer-chat' >
         {questions.slice(0, currentQuestionIndex + 1).map((question) => (
             <React.Fragment key={question.id}>
-              <ChatDuck text={question.text} />
-            <div className='card-chat-duck-2'>
-              <Input
-                value={question.answer}
-                onChange={(e) => handleInputChange(question.id, e, true)}
-                placeholder={"Respuesta"}
-                className="input-duck-answer"
-              />
-              <div className='chat-icon-duck-2'></div>
-            </div>
+              <ChatDuck text={question.text} isEditable={false} imageSrc="/img/icon/duckchat.webp" />
+              <ChatDuck
+                    text={question.answer}
+                    isEditable={true}
+                    onTextChange={(e) => handleInputChange(question.id, e, true)}
+                    placeholder="Respuesta"
+                    className="chat-card-2"
+                    classNameBubble="bubble-2"
+                  />
           </React.Fragment>
           ))}
+          <div ref={endOfContentRef} />
           </div>
             {allQuestionsAnswered ? (
               <Buton label="Guardar" onClick={handleSaveData} className="save-button-duck" />

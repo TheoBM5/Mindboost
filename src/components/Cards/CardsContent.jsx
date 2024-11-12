@@ -20,7 +20,7 @@ function CardsContent({deck, className}) {
 
   const handleNewCard = (event) => {
     event.stopPropagation();
-    navigate(`/deck/${deck.user_id}/${deck.id}/new/card`);
+    navigate(`/deck/${deck.user_id}/${deck.id}/new/card/0`);
   }
   const handleNewClock = (event) => {
     event.stopPropagation();
@@ -92,6 +92,7 @@ function CardsContent({deck, className}) {
 }, [deck.icon_name]);
   
   return (
+    <Card className={"card-cont-home"}>
     <div className={`Tarjeta ${className}`} key={deck.id} onClick={handleClickCard}>
         <div className="card-image item-3" >
           {selectedIcon && React.createElement(ICON_NAMES[selectedIcon], {className: "card-image-img"})}
@@ -129,6 +130,7 @@ function CardsContent({deck, className}) {
                   )}
         </div>
     </div>
+    </Card>
   )
 }
 export default CardsContent

@@ -20,6 +20,11 @@ function FlashCard() {
   const [answeredQuestions, setAnsweredQuestions] = useState([]); // Lista de preguntas ya respondidas
   const [showAnswer, setShowAnswer] = useState(false); // Controla cuándo mostrar la respuesta
   const chatContainerRef = useRef(null);
+  const currentCard = cards[currentCardIndex]; 
+  let isLastQuestion = false;
+  let currentQuestion = 0;
+  console.log("hola", currentCard)
+  
 
   function addDaysToDate(fecha, days) {
     const date = new Date(fecha);
@@ -151,15 +156,12 @@ function FlashCard() {
       
     }
   };
+  
 
-
-  const currentCard = cards[currentCardIndex];
-  console.log("total",currentCard.content.questions.length)
-  const currentQuestion = currentCard.content.questions[currentQuestionIndex];
-  console.log("totalActual",currentQuestionIndex)
-  const isLastQuestion = currentQuestionIndex === currentCard.content.questions.length;
-  console.log("last", isLastQuestion)
-
+  if(currentCard.typecard == "5"){
+    currentQuestion = currentCard.content.questions[currentQuestionIndex];
+    isLastQuestion = currentQuestionIndex === currentCard.content.questions.length - 1;
+  }
 
   return (
     <div className='card-size'>

@@ -12,6 +12,16 @@ CREATE TABLE users (
     CONSTRAINT users_username_key UNIQUE (username)
 );
 
+CREATE TABLE preference (
+    id serial4 NOT NULL,
+    user_id int NOT NULL,
+    img_duck varchar(255) DEFAULT '1',
+    color_duck varchar(255) DEFAULT 'blue',
+    mode_color varchar(255) DEFAULT 'light',
+    CONSTRAINT preference_pkey PRIMARY KEY (id),
+    CONSTRAINT preference_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 CREATE TABLE deck (
     id serial4 NOT NULL,
     title varchar(255) NOT NULL,

@@ -1,49 +1,84 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Trash2 } from 'lucide-react';
 import Frame from './Frame';
+import "./Comic.css";
 
-const Sheet = ({ id, onRemove }) => {
-  const [frames, setFrames] = useState([]);
+const Sheet = ({ id, frames, onRemove, onUpdate, selectedTool }) => {
+  const [selectedFrameId, setSelectedFrameId] = useState(null);
+  const [containerBounds, setContainerBounds] = useState(new DOMRect(0, 0, 0, 0));
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const updateBounds = () => {
+      if (containerRef.current) {
+        setContainerBounds(containerRef.current.getBoundingClientRect());
+      }
+    };
+
+    updateBounds();
+    window.addEventListener('resize', updateBounds);
+    return () => window.removeEventListener('resize', updateBounds);
+  }, []);
 
   const addFrame = () => {
     const newFrame = {
       id: Date.now(),
-      x: 0,
-      y: 0,
+      x: 8,
+      y: 8,
       width: 200,
       height: 200,
     };
-    setFrames([...frames, newFrame]);
+    onUpdate([...frames, newFrame]);
+    setSelectedFrameId(newFrame.id);
   };
 
   const updateFrame = (frameId, updates) => {
-    setFrames(frames.map(frame => frame.id === frameId ? { ...frame, ...updates } : frame));
+    onUpdate(frames.map(frame => 
+      frame.id === frameId ? { ...frame, ...updates } : frame
+    ));
   };
 
   const removeFrame = (frameId) => {
-    setFrames(frames.filter(frame => frame.id !== frameId));
+    onUpdate(frames.filter(frame => frame.id !== frameId));
+    setSelectedFrameId(null);
+  };
+
+  const handleSheetClick = (e) => {
+    if (e.target === e.currentTarget) {
+      setSelectedFrameId(null);
+    }
   };
 
   return (
-    <div className="bg-white border border-gray-300 p-4 mb-4 relative">
-      <h2 className="text-xl font-bold mb-2">Sheet {id}</h2>
+    <div className="cont-sheet">
+      <h2 className="title-hoja">Hoja {id}</h2>
       <button
         onClick={onRemove}
-        className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+        className="button-remove-hoja"
       >
+        <Trash2 size={20} />
       </button>
-      <div className="min-h-[600px] relative border border-dashed border-gray-400 p-2">
+      <div 
+        ref={containerRef}
+        className="space-hoja"
+        onClick={handleSheetClick}
+      >
         {frames.map(frame => (
           <Frame
             key={frame.id}
             {...frame}
             onUpdate={(updates) => updateFrame(frame.id, updates)}
             onRemove={() => removeFrame(frame.id)}
+            isSelected={frame.id === selectedFrameId}
+            onSelect={() => setSelectedFrameId(frame.id)}
+            selectedTool={selectedTool}
+            containerBounds={containerBounds}
           />
         ))}
       </div>
       <button
         onClick={addFrame}
-        className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+        className="button-add-sheet"
       >
         Add Frame
       </button>

@@ -32,22 +32,24 @@ function CardsProgreso({deck, className}) {
     }, [deck.icon_name]);
 
   return (
-    <div className={`Tarjeta ${className}`} key={deck.id}>
-    <div className="card-image item-3" >
-      {selectedIcon && React.createElement(ICON_NAMES[selectedIcon], {className: "card-image"})}
-    </div>
-    <h1 className="title-card item-1">{deck.title}</h1>
-    
+    <Card className={"card-cont-home"}>
+      <div className={`Tarjeta ${className}`} key={deck.id}>
+      <div className="card-image item-3" >
+        {selectedIcon && React.createElement(ICON_NAMES[selectedIcon], {className: "card-image"})}
+      </div>
+      <h1 className="title-card item-1">{deck.title}</h1>
+      
 
-    <div className="progress-bar-container">
-    <div 
-                    className="progress-bar" 
-                    style={{ width: `${cardValue[deck.id] || 0}%` }}  // Asegura que cardValue tenga un valor
-                ></div>
-</div>
+      <div className="progress-bar-container">
+      <div 
+                      className="progress-bar" 
+                      style={{ width: `${cardValue[deck.id] || 0}%` }}  // Asegura que cardValue tenga un valor
+                  ></div>
+      </div>
 
 
-</div>
+      </div>
+    </Card>
   )
 }
 export default CardsProgreso

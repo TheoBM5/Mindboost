@@ -16,7 +16,7 @@ function SigninForm() {
   const navigate = useNavigate()
 
   const onSubmit = handleSubmit(async (data) => {
-    console.log("Hola: ")
+    console.log(data)
     const user = await signin(data);
 
     if(user){

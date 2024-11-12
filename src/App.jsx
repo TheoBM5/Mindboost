@@ -26,6 +26,7 @@ import Progreso from './pages/Progreso/Progreso';
 import RubberDuckChat from './pages/RubberDuck2/RubberDuckChat';
 import DuckOption from './components/Duck/duckoption';
 import ExcalidrawComp from "./pages/Excalidraw/Excalidraw";
+import Analogia from './pages/Analogia/Analogia';
 function App() {
   const {isAuth, loading} = useAuth();
 
@@ -59,10 +60,11 @@ function App() {
                 <Route path="/survey/:opc" element={<Survey/>}/>
                 <Route path="/deck/:id/:deckid/new/modes" element={<CardMode/>}/>
                 <Route path="/deck/new/modes" element={<CardMode/>}/>
-                <Route path="/deck/:id/:deckid/new/card" element={<CardProvider><CardFormPage/></CardProvider>} />
+                <Route path="/deck/:id/:deckid/new/card/:mode" element={<CardProvider><CardFormPage/></CardProvider>} />
                 <Route path="/test" element={<CardProvider><Productivity/></CardProvider>} />
                 <Route path="/progreso" element={<CardProvider><Progreso/></CardProvider>} />
-                <Route path="/prueba" element={<CardProvider><ExcalidrawComp/></CardProvider>} />
+                <Route path="/prueba" element={<CardProvider><Analogia/></CardProvider>} />
+                {/* <Route path="/prueba" element={<CardProvider><ExcalidrawComp/></CardProvider>} /> */}
 
                 <Route path="/decks/:id/edit" element={<DeckFormPage/>}/>
                 <Route path='/decks/:deckid/card/:idcard/edit' element={<CardFormPage/>} />

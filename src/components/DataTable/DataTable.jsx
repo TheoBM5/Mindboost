@@ -16,7 +16,7 @@ import "./DataTable.css"
 
 function DataTable() {
     const {register, handleSubmit, formState: {errors}, setValue} = useForm ();
-    const {cards, loadCards} = useCards();
+    const {cards, loadCards, loadCardsAndDate} = useCards();
     const params = useParams();
     const isParams = params.hasOwnProperty('deckid');
     const [selectedRowData, setSelectedRowData] = useState(null);
@@ -26,22 +26,25 @@ function DataTable() {
     const [rowSelection, setRowSelection] = useState("");
     const [showAdditionalComponent, setShowAdditionalComponent] = useState(false);
     
-    const memoizedLoadCards = useCallback(loadCards, []);
-
+    const memoizedLoadCards = useCallback(loadCardsAndDate, []);
     useEffect(() => {
         if (isParams) {
-            memoizedLoadCards(params.deckid).then((data) => setCards(data)); // Load cards on component mount
+            memoizedLoadCards(params.deckid).then((data) => setCards(data)); 
         }
     }, [isParams, params.deckid, memoizedLoadCards]);
 
     const data = useMemo(() => (
-        cards?.map(({ id, typecard, content: { front, reverse } }) => ({
+        cards?.map(({ id, typecard, content: { front, reverse }, racha, review_date }) => ({
             id,
             typecard,
             front,
             reverse,
+            racha,
+            review_date: new Date(review_date).toLocaleDateString(),
         })) ?? []
     ), [cards]);
+
+    console.log(cards)
 
     const handleRowClick  = (row) => {
       row.getToggleSelectedHandler();
@@ -67,6 +70,14 @@ function DataTable() {
             header: "Reverse",
             accessorKey: 'reverse'
         },
+        {
+          header: "Racha",
+          accessorKey: 'racha'
+      },
+      {
+        header: "Repaso",
+        accessorKey: 'review_date'
+    },
     ]
 
     const table = useReactTable({
@@ -89,7 +100,7 @@ function DataTable() {
     });
 
     const handleUpdateRow = () => {
-      loadCards(params.deckid).then((data) => setCards(data)); // Volver a cargar las tarjetas después de la actualización
+      loadCardsAndDate(params.deckid).then((data) => setCards(data)); // Volver a cargar las tarjetas después de la actualización
   };
 
     const handleCloseFormulario = () => {
