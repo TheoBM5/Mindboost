@@ -9,12 +9,12 @@
 }
 
 .card-notfound{
-    
+  position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30rem;
-    height: 15rem;
+    width: 35%;
+    height: 30%;
 
 }
 .svg-container {
@@ -22,7 +22,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 250px;
+    height: 25%;
     overflow: hidden;
   }
   
@@ -36,6 +36,25 @@
     fill: rgb(166, 166, 166)
   }
 
-  .style-error{
-    font-size: 55px;
+  .title-error-page{
+    font-size: clamp(1rem, 3vw, 2.5rem)
   }
+
+  .style-error{
+    font-size: clamp(2rem, 4vw, 4.5rem)
+
+  }
+
+  .card-notfound a{
+    font-size: clamp(0.4rem, 2vw, 1.2rem)
+  }
+
+
+
+  @media (max-width: 480px) {
+    .svg-container {
+      display: none;
+    }
+  }
+
+  

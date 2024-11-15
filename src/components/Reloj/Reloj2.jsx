@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Play, Pause, Square  } from 'lucide-react';
 import './Reloj.css';
 
 
-
-function Reloj2({initialTime, initialRestTime, isRunningHandle, onTimeEnd, size, className}) {
+function Reloj2({initialTime, onTimeEnd, size, className, onTimeStart, pauseBlock, classText, sizeCircle, restriction}) {
     const [time, setTime] = useState(initialTime);
     const [isRunning, setIsRunning] = useState(false);
     const intervalRef = useRef(null);
@@ -17,6 +17,9 @@ function Reloj2({initialTime, initialRestTime, isRunningHandle, onTimeEnd, size,
     };
   
     const playPause = () => {
+      if(restriction){
+        onTimeStart();
+      }
       if (isRunning) {
         clearInterval(intervalRef.current);
       } else {
@@ -56,19 +59,23 @@ function Reloj2({initialTime, initialRestTime, isRunningHandle, onTimeEnd, size,
 
   return (
     <main className={`${className}`}   style={{ '--size': size }} >
-    <div className="circle-3" style={{
+    <div className={`circle-3 ${sizeCircle}`} style={{
         '--size': size,
         background: `conic-gradient(rgb(119, 119, 255) ${percentage}deg, white 0deg)`,
       }}>
-        <div id="stopwatch" className="stopwatch-2"  ref={stopwatchRef}>00:00</div>
+        <div id="stopwatch" className={`stopwatch-2 ${classText}`}  ref={stopwatchRef}>00:00</div>
         <div className="buttons-3">
-            <div className="stop2" onClick={stop}></div>
-            <div id="play-pause2" className={isRunning ? 'running2' : 'paused2'} onClick={playPause}></div>
+        <Square className="stop2" onClick={stop}/>
+            {isRunning ? (
+        <Pause id="play-pause2" className="paused2" onClick={playPause} />
+      ) : (
+        <Play id="play-pause2" className="paused2" onClick={playPause} />
+      )}
         </div>
        
     </div>
     </main>
-
+  
   )
 }
 export default Reloj2

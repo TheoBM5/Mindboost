@@ -78,9 +78,9 @@ const Sheet = ({ id, frames, onRemove, onUpdate, selectedTool }) => {
       </div>
       <button
         onClick={addFrame}
-        className="button-add-sheet"
+        className="button-add-frame"
       >
-        Add Frame
+       Frame
       </button>
     </div>
   );

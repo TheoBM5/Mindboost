@@ -1,6 +1,8 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import Cookie from "js-cookie";
 import axios from "../api/axios";
+import usePreferencesStore from "../constants/preferencesZus"
+
 
 export const AuthContext = createContext();
 
@@ -21,23 +23,32 @@ export function AuthProvider({ children }) {
   const signin = async (data) => {
     try {
       const res = await axios.post("/signin", data);
-      setUser(res.data);
+      
+      // Configuramos el usuario y el estado de autenticación
+      setUser(res.data.user);
       setIsAuth(true);
-      console.log("gve", res.data.id)
-      return res.data;
-    } catch (error) {
-      if (Array.isArray(error.response.data)) {
-        return setErrors(error.response.data);
+
+      const { preferences } = res.data;
+      console.log("preferences",preferences)
+      if (preferences) {
+        // Cargamos las preferencias en el estado de preferencias
+        usePreferencesStore.getState().loadPreferences({
+          img_duck: preferences.img_duck,
+          color_duck: preferences.color_duck,
+          mode_color: preferences.mode_color,
+        });
       }
 
-      setErrors([error.response.data.message]);
+      return res.data;
+    } catch (error) {
+      const errorMessage = error.response?.data;
+      setErrors(Array.isArray(errorMessage) ? errorMessage : [error.message || "Unknown error occurred"]);
     }
   };
 
   const signup = async (data) => {
     try {
       const res = await axios.post("/signup", data);
-      console.log("gve", res)
       setUser(res.data);
       setIsAuth(true);
 
@@ -52,9 +63,25 @@ export function AuthProvider({ children }) {
   };
 
   const signout = async () => {
-    await axios.post("/signout");
-    setUser(null);
-    setIsAuth(false);
+    try {
+      
+      const { color_duck, img_duck, mode_color, resetPreferences } = usePreferencesStore.getState();
+      
+      await axios.post('/save-preferences', {
+        color_duck,
+        img_duck,
+        mode_color,
+      });
+      
+      resetPreferences();
+      await axios.post("/signout");
+      
+      setUser(null);
+      setIsAuth(false);
+  
+    } catch (error) {
+      console.error("Error al guardar las preferencias o cerrar sesión:", error);
+    }
   };
 
   useEffect(() => {

@@ -128,7 +128,7 @@ const startTimer = (play) => {
   
     <div className="pomodoro-container">
      <a className="regresa-pomodoro" onClick={() => navigate(`/`)}><ArrowLeft/></a>
-      <Reloj2 initialTime={timeClock} initialRestTime={restSelect} isRunningHandle={startTimer} onTimeEnd={handleTimeEnd} key={timeClock} size="650px" className="reloj-style"/>
+      <Reloj2 initialTime={timeClock} initialRestTime={restSelect} isRunningHandle={startTimer} onTimeEnd={handleTimeEnd} key={timeClock} size="650px" className="reloj-style" restriction={false}/>
 
       {!isRunning && (  
       <>

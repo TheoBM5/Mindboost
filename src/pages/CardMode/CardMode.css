@@ -68,6 +68,11 @@
   grid-column: 1/2;
 }
 
+.title-mode-grid-2{
+  grid-row: 1/2;
+  grid-column: 1/2;
+}
+
 .img-button-modes{
   width: 70%;
   height: 70%;
@@ -168,6 +173,7 @@
 
 .radio-mode{
   visibility: hidden;  
+  display: none;
 }
 
 
@@ -274,7 +280,9 @@
   grid-row: 1/2;
 }
 
-
+.label-title-modes{
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
 
 .img-modal-help
 {
@@ -307,4 +315,97 @@
 .imagen-tile-modes{
   width: 80%;
   margin: auto;
+}
+
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 480px) {
+
+  .tile-content-mode{
+    flex-direction: column;
+  }
+
+  .tile-mode-grid{
+    width: 80%;
+    height: 25%;
+    grid-template-columns: 30% 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .tile-mode{
+    width: 80%;
+    height: 25%;
+  }
+
+  .grid-cont-1{
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  .title-mode-grid-2{
+    display: none;
+  }
+
+  .tile-buttons-cont{
+    flex-direction: column;
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+
+
+  .imagen-tile-modes {
+    width: 20%;
+  }
+  .img-main-mode{
+    width: 40%;
+  }
+  .tile-button-mode {
+    width: 45%;
+    height: 30%;
+  }
+
+  .buttons-confirm{
+    display: flex;
+    justify-content: space-between;
+    width: 95vw;
+    margin: auto;
+  }
+  .buttons-confirm-mode{
+    grid-column: 1/2;
+    width: 100%;
+    gap: 0.4rem;
+    align-self: center;
+    align-items: center;
+  }
+
+  .buttons-aprove-modes{
+    width: 50%;
+    font-size: 0.7rem;
+    height: 70%;
+    padding: 0.2rem 0.75rem;
+  }
+
+  .next-mode{
+    grid-column: 2/3;
+    width: 40%;
+  }
+
+  .card-modal {
+
+    width: 90%;
+    height: 80%;
+  }
+
+  .title-help-modal{
+    font-size: clamp(1.4rem, 2vw, 1.5rem);
+  }
+  .subtitle-help-mode {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+  }
+  .text-modal-help {
+    font-size: clamp(0.9rem, 2vw, 1.5rem);
+  }
 }

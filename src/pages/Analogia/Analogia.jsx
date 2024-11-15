@@ -74,7 +74,7 @@ function Analogia() {
             ))}
             <button
               onClick={addSheet}
-              className="button-add-sheet"
+              className="button-add-sheet-analogia"
             >
               <Plus size={24} />
             </button>

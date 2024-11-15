@@ -37,7 +37,7 @@ function RubberDuckChat() {
 
   const handleRemoveQuestion = () => {
     if (questions.length > 1) {
-      const newQuestions = questions.slice(0, -1); // Removemos el último elemento
+      const newQuestions = questions.slice(0, -1); 
       setQuestions(newQuestions);
     }
   };

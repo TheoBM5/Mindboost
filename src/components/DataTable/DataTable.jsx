@@ -15,7 +15,7 @@ import{
 import "./DataTable.css"
 
 function DataTable() {
-    const {register, handleSubmit, formState: {errors}, setValue} = useForm ();
+  const {register, handleSubmit, formState: {errors}, setValue} = useForm ();
     const {cards, loadCards, loadCardsAndDate} = useCards();
     const params = useParams();
     const isParams = params.hasOwnProperty('deckid');
@@ -118,9 +118,11 @@ function DataTable() {
     } else {
       console.log("Row selection not enabled.");
     }
+
   return (
     
-    <div className="table-form">
+    // <div className="table-form">
+    <>
         <div className={`${showAdditionalComponent? 'table-space-left':'table-space'}`}>
           <input
               className="input-search"
@@ -129,58 +131,67 @@ function DataTable() {
               onChange={(e)=> setFiltering(e.target.value)}
               placeholder="Search"
           />
-          <table className="table-style">
-              <thead className="thead-style">
-                  {
-                      table.getHeaderGroups().map((headerGroup) => (
-                          <tr key={headerGroup.id}>
-                              {
-                                  headerGroup.headers.map((header) => (
-                                      <th key={header.id}
-                                          
-                                      >
-                                          {header.isPlaceholder ? null : (
-                                              <div
-                                                  onClick={header.column.getToggleSortingHandler()}
-                                                  title={
-                                                      header.column.getCanSort()
-                                                      ? header.column.getNextSortingOrder() === 'asc'
-                                                        ? 'sort ascending'
-                                                        : header.column.getNextSortingOrder() === 'desc'
-                                                        ? 'sort descending'
-                                                        : 'Clear sort'
-                                                      :undefined
-                                                  }   
-                                              >
-                                                {flexRender(
-                                                      header.column.columnDef.header, 
-                                                      header.getContext()
-                                                  )}
-
-                                                {
-                                                      {asc: "↓" , desc : "↑",
-                                                  }[header.column.getIsSorted()] ?? null}
-                                              </div>
-                                          )}
-                                      </th>
-                                  ))}
-                          </tr>
-                      ))}
-              </thead>
-              <tbody>
-                {table.getRowModel().rows.map((row)=> (
-                      <tr key={row.id}
-                      className={row.id % 2 === 0 ? "even-row" : "odd-row"}
-                      onClick={() => handleRowClick(row)}>
-                          {row.getVisibleCells().map((cell) => (
-                              <td key={cell.id}>
-                                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                              </td>
-                          ))}
-                      </tr>
-                  ))} 
-              </tbody>
-          </table>
+         <table className="table-style">
+            <thead className="thead-style">
+                {table.getHeaderGroups().map((headerGroup) => (
+                    <tr key={headerGroup.id}>
+                        {headerGroup.headers.map((header) => (
+                            <th
+                                key={header.id}
+                                className={
+                                    ["typecard", "racha"].includes(header.id)
+                                        ? "hide-on-small" // Oculta columnas específicas en pantallas pequeñas
+                                        : ""
+                                }
+                            >
+                                {header.isPlaceholder ? null : (
+                                    <div
+                                        onClick={header.column.getToggleSortingHandler()}
+                                        title={
+                                            header.column.getCanSort()
+                                                ? header.column.getNextSortingOrder() === "asc"
+                                                    ? "sort ascending"
+                                                    : header.column.getNextSortingOrder() === "desc"
+                                                    ? "sort descending"
+                                                    : "Clear sort"
+                                                : undefined
+                                        }
+                                    >
+                                        {flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext()
+                                        )}
+                                        {{ asc: "↓", desc: "↑" }[header.column.getIsSorted()] ?? null}
+                                    </div>
+                                )}
+                            </th>
+                        ))}
+                    </tr>
+                ))}
+            </thead>
+            <tbody>
+                {table.getRowModel().rows.map((row) => (
+                    <tr
+                        key={row.id}
+                        className={row.id % 2 === 0 ? "even-row" : "odd-row"}
+                        onClick={() => handleRowClick(row)}
+                    >
+                        {row.getVisibleCells().map((cell) => (
+                            <td
+                                key={cell.id}
+                                className={
+                                    ["typecard", "racha"].includes(cell.column.id)
+                                        ? "hide-on-small" // Oculta estas columnas en pantallas pequeñas
+                                        : ""
+                                }
+                            >
+                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                            </td>
+                        ))}
+                    </tr>
+                ))}
+            </tbody>
+        </table>
           <div className="footer-buttons">
             <button
               className="border rounded p-1"
@@ -210,15 +221,15 @@ function DataTable() {
             >
               {'>>'}
             </button>
-            <span className="flex items-center gap-1">
-              <div>Page</div>
+            <span className="textos-footer-table">
+              <div>Pag</div>
               <strong>
                 {table.getState().pagination.pageIndex + 1} of{' '}
                 {table.getPageCount().toLocaleString()}
               </strong>
             </span>
-            <span className="flex items-center gap-1">
-              | Go to page:
+            <span className="textos-footer-table">
+              | Pagina:
               <input
                 type="number"
                 defaultValue={table.getState().pagination.pageIndex + 1}
@@ -226,10 +237,10 @@ function DataTable() {
                   const page = e.target.value ? Number(e.target.value) - 1 : 0
                   table.setPageIndex(page)
                 }}
-                className="border p-1 rounded w-16"
+                className="input-page-table"
               />
             </span>
-          <select
+          <select className="select-min"
             value={table.getState().pagination.pageSize}
             onChange={e => {
               table.setPageSize(Number(e.target.value))
@@ -252,7 +263,8 @@ function DataTable() {
           <button>hl</button>
       )} */}
       </div>
-    </div>
+      </>
+    // </div>
   )
 }
 export default DataTable

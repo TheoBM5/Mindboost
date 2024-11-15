@@ -4,7 +4,7 @@ import './Modal.css';
 function Modal({children, className }) {
   return (
     <div className="fondo-modal">
-        <main className="card-modal">
+        <main className={`card-modal ${className}`}>
             {children}
         </main>
     </div>

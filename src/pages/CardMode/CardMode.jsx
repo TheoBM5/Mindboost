@@ -177,11 +177,11 @@ function CardMode() {
       
       <div className='grid-cont-1'>
         <div className="PruebaAnimation-grid">
-          <img className="imagen-tile-modes" src={mode.img} alt={`${mode.label} mode`} />
-        <label className='title-mode-grid' htmlFor={mode.id}>{mode.label}</label>
+          <img className="imagen-tile-modes img-main-mode" src={mode.img} alt={`${mode.label} mode`} />
+        <label className='label-title-modes title-mode-grid' htmlFor={mode.id}>{mode.label}</label>
         </div>
         
-        <label className='title-mode-grid' htmlFor={mode.id}>Sub Modos</label>
+        <label className='title-mode-grid-2' htmlFor={mode.id}>Sub Modos</label>
       </div>
     </div>
   ) : (
@@ -208,7 +208,7 @@ function CardMode() {
         <img className="imagen-tile-modes" src={mode.img} alt={`${mode.label} mode`} />
       </div>
       
-      <label htmlFor={mode.id}>{mode.label}</label>
+      <label className='label-title-modes' htmlFor={mode.id}>{mode.label}</label>
     </div>
   )
 ))}
@@ -221,8 +221,8 @@ function CardMode() {
         )
       }
       <div className='buttons-confirm-mode'>
-        <Button onClick={handleCancelar}>Cancelar</Button>
-        <Button onClick={handleConfirm}>Confirmar</Button>
+        <Button className={"buttons-aprove-modes"} onClick={handleCancelar}>Cancelar</Button>
+        <Button className={"buttons-aprove-modes"} onClick={handleConfirm}>Confirmar</Button>
       </div>
         {currentPage !== totalPages - 1 &&(
         <Button className="next-mode" onClick={handleNextPage}>

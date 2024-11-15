@@ -4,6 +4,7 @@ import Reloj from "../../components/Reloj/Reloj";
 import React, { useState, useEffect,useRef  } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { useCards } from "../../context/CardContext"
+import Reloj2 from "../../components/Reloj/Reloj2";
 import './Contrarreloj.css'
 
 function Contrarreloj() {
@@ -14,6 +15,7 @@ function Contrarreloj() {
     const [editedIndex, setEditedIndex] = useState(null);
     const [timeEnded, setTimeEnded] = useState(false);
     const [isBlocked, setIsBlocked] = useState(true);
+    const [buttonSide, setButtonSide] = useState(false);
     const {register, handleSubmit, formState: {errors}, setValue, reset, clearErrors, getValues } = useForm ();
     const navigate = useNavigate();
     const {createCard, updateCard, loadCard, errors: CardErrors} = useCards();
@@ -65,7 +67,9 @@ function Contrarreloj() {
     };
 
     const handleSelectQuestion = (index) => {
-        
+        if(buttonSide){
+            setButtonSide(false)
+        }
         setCurrentQuestionIndex(index);
         const indResponse = responses[index] 
         clearErrors(); // Limpiar errores antes de actualizar los campos
@@ -74,7 +78,7 @@ function Contrarreloj() {
     }
 
     const handleTimeSelection = (time) => {
-        setTimeClock(time * 60 * 1000);
+        setTimeClock(time * 60 * 1);
     }
 
     const handleTimeSelectionScreen = () => {
@@ -226,29 +230,28 @@ function Contrarreloj() {
         </form>
             </Card>
             </div>
-                
-                <div className="clock-cont">
-                    <Card className={"card-clock"}>
-                        <div className="card-cont-clock">
-                            <Reloj tipo={1} initialTime={timeClock} onTimeEnd={handleTimeEnd} onTimeStart={handleTimeStart} size="100px"/>
-                        </div>
-                        <div className="times-box">
-                        {responses.map((_, index) => (
-                                            <Button className={`button-cards-box ${currentQuestionIndex===index?'selected':''} ${editedIndex === index ? 'edited' : ''}`} 
-                                                key={index} 
-                                                onClick={() => handleSelectQuestion(index)}
-                                                >
-                                                {index + 1}
-                                            </Button>
-                                        ))}
-                        </div>
-                        <div className="edit-button">
-                            {timeEnded?(
-                                <Button onClick={() => setIsBlocked(false)}>Editar</Button>
-                            ):null}
-                        </div>
-                    </Card>
+                <button className="button-open-close-q" onClick={() => setButtonSide(!buttonSide)}>O</button>
+                <div className="card-cont-clock">
+                    <Reloj2 initialTime={timeClock} onTimeEnd={handleTimeEnd} className={"contrarreloj-style"} onTimeStart={handleTimeStart} pauseBlock={true} restriction={true} size="100px" classText="text-class-clock" sizeCircle="size-circle-3"/>
+                    {/* <Reloj tipo={1} initialTime={timeClock} onTimeEnd={handleTimeEnd} onTimeStart={handleTimeStart} size="100px"/> */}
                 </div>
+                <Card className={`card-clock ${buttonSide?"":"card-oculto"}`}>
+                    <div className="times-box">
+                    {responses.map((_, index) => (
+                            <Button className={`button-cards-box ${currentQuestionIndex===index?'selected':''} ${editedIndex === index ? 'edited' : ''}`} 
+                                key={index} 
+                                onClick={() => handleSelectQuestion(index)}
+                                >
+                                {index + 1}
+                            </Button>
+                        ))}
+                    </div>
+                    <div className="edit-button">
+                        {timeEnded?(
+                            <Button onClick={() => setIsBlocked(false)}>Editar</Button>
+                        ):null}
+                    </div>
+                </Card>
             </div>
        
         )} 

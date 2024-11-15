@@ -1,6 +1,6 @@
 .text-area-2{
     width: 100%;
-    height: 10rem;
+    height: 100%;
     border-radius: 10px;
     background-color: rgb(31, 31, 31);
     border: none;
@@ -9,7 +9,10 @@
     font-size: 16px;
     resize: none;
     margin: auto auto;
+    box-sizing: border-box;
 }
+
+
 
 .text-area-2:disabled {
     background-color: #171717; /* Color de fondo para cuando está deshabilitado */
@@ -21,31 +24,36 @@
 .form-clock{
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 1fr 10% 1fr 15%;
 }
+
 .clock-grid{
     display: grid;
     width: 100vw;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    grid-template-columns: 1fr 450px;
+    grid-template-columns: 1fr 30%;
+    grid-template-rows: 40% 1fr;
     background: linear-gradient(180deg, rgb(240, 159, 53) 0%, rgba(0,0,0,1) 100%);
 
 }
 
 .card-style-clock{
-    width: 60%;
-    height: 55%;
+    width: 90%;
+    height: 70%;
+    box-sizing: border-box;
 }
 
 .buttons-card-clock{
     width: 100%;
-    height: 5%;
+    height: 50%;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-areas: "back . . add-edit finish . . next";
+    align-self: center;
 }
 
 
@@ -56,6 +64,7 @@
     width: 100%;
     height: 100%;
     grid-column: 1/2;
+    grid-row: 1/3;
 
 }
 
@@ -106,6 +115,13 @@
     margin: auto;
 }
 
+.size-circle-3{
+    width: 50%;
+}
+
+
+
+
 .clock-cont 
 {
     display: flex;
@@ -118,29 +134,54 @@
 .card-clock
 {
     position: relative;
-    width: 50%;
-    height: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    height: 75%;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    justify-self: center;
+    align-self: start;
+    box-sizing: border-box;
+    gap: 10%;
+}
+
+.contrarreloj-style{
+    width: 100%;
+  position: relative;
+  display: flex;
 }
 
 .times-box{
     width: 100%;
-    height: 50%;
+    height: 80%;
     background-color: rgb(31, 31, 31);
     display: grid;
-    margin: 2rem 0;
+
     border-radius: 15px;
     padding: 10px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 40px;
     overflow-y: auto;
     gap: 10px;
+    box-sizing: border-box;
+}
+
+.size-circle-3 > div:nth-child(2) {
+    margin-top: 10%;
 }
 
 .card-cont-clock{
-    width: 100%;
-    height: 30%;
+    width: 70%;
+    height: 70%;
     display: flex;
-    
+    justify-self: center;
+    align-self: center;
+    background-color: rgb(19, 19, 19);
+    border-radius: 12px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+
 }
 
 .button-cards-box{
@@ -186,4 +227,105 @@
 .finish-button-clock{
     cursor: pointer;
     grid-area: finish;
+}
+
+.button-open-close-q{
+    display: none;
+}
+
+.text-class-clock{
+    font-size: clamp(1rem, 2vw, 1.8rem);
+}
+
+@media (max-width: 768px) {
+
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 480px) {
+    .clock-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 20% 1fr;
+        padding: 5px ;
+        box-sizing: border-box;
+    }
+
+    .card-style-clock{
+        height: 92%;
+        width: 85%;
+        padding: 20px;
+    }
+
+    .area-card-cont {
+        grid-column: 1/2;
+        grid-row: 2/3;
+        z-index: 1;
+    }
+
+    .card-clock{
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        z-index: 100;
+        width: 90%;
+        background-color: #0a0a0ae9;
+        padding: 2rem;
+        display: flex;
+        gap: 22px;
+    }
+
+    .times-box {
+
+    }
+
+    .form-clock {
+        display: grid;
+        grid-template-rows: 5% 1fr 5% 1fr 15%;
+        grid-template-columns: 1fr;
+    }
+
+    .card-oculto{
+        display: none;
+    }
+    
+    .button-open-close-q{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        text-align: center;
+        width: 10%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        top: 3%;
+        right: 3%;
+        grid-row: 1/2;
+        grid-column: 1/2;
+    }
+
+    .card-cont-clock {
+        width: 85%;
+        height: 100%;
+        grid-row: 1/2;
+        grid-column: 1/2;
+        
+    }
+    .buttons-card-clock{
+        grid-column: 1/2;
+        grid-row: 5/6;
+        align-self: center;
+        height: 60%;
+    }
+
+    .size-circle-3{
+        width: 35%;
+    }
+
+    .size-circle-3 > div:nth-child(2) {
+        
+        width: 15%;
+        gap: 1px;
+    }
 }

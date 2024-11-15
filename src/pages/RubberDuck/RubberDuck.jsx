@@ -1,7 +1,8 @@
 import Duck from "../../components/Duck/Duck"
 import React, { useState, useEffect, useRef } from 'react';
+import usePreferencesStore from '../../constants/preferencesZus';
 import {useForm} from "react-hook-form";
-import { BlockPicker } from 'react-color'
+import { BlockPicker } from 'react-color';
 import Lines from "./Lines";
 import Onda from "./Onda";
 import Wave from "./Wave";
@@ -13,13 +14,15 @@ import './RubberDuck.css'
 function RubberDuck() {
   const [isTyping, setIsTyping] = useState(false);
   const [colorWindow, setColorWindow] = useState(false);
-  const [selectedColor, setSelectedColor] = useState('#ffffff');
   const {register, handleSubmit, formState: {errors}, setValue, reset, clearErrors, getValues } = useForm ();
   const {createCard, updateCard, loadCard, errors: CardErrors} = useCards();
   const menuColorRef = useRef(null);
   const navigate = useNavigate();
   const params = useParams();
   let typingTimeout = null;
+  const { color_duck, setColorDuck } = usePreferencesStore();
+  const [selectedColor, setSelectedColor] = useState(color_duck);
+
 
   const handleInputChange = (event) => {
     clearTimeout(typingTimeout);
@@ -27,7 +30,7 @@ function RubberDuck() {
 
     typingTimeout = setTimeout(() => {
       setIsTyping(false);
-    }, 9000); // Cambia a falso después de 1 segundo de inactividad
+    }, 9000);
   };
 
  const handleColorWindow = (event) => {
@@ -37,6 +40,7 @@ function RubberDuck() {
 
 const handleColorChange = (color) => {
   setSelectedColor(color.hex);
+  setColorDuck(color.hex);
   console.log(selectedColor)
 };
 
@@ -45,6 +49,10 @@ const handleClickOutside = (event) => {
     setColorWindow(false);
   }
 };
+
+useEffect(() => {
+  setSelectedColor(color_duck); 
+}, [color_duck]);
 
 useEffect(() => {
   document.addEventListener('mousedown', handleClickOutside);
@@ -126,8 +134,8 @@ useEffect(() => {
                 
                   {!isTyping && (
                     <>
-                    <Onda/>
-                  {/* <Wave/> */}
+                    {/* <Onda/> */}
+                    <Wave/>
                     </>
                   )}
           </div>

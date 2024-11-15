@@ -21,6 +21,7 @@
     max-width: 80rem;
     margin-left: auto;
     margin-right: auto;
+    height: 100%;
 }
 
 .button-add-sheet{
@@ -28,9 +29,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    background-color: rgb(144, 255, 144);
+    width: 4%;
+    aspect-ratio: 1;
+    background-color: rgb(75, 136, 201);
+    color: white;
+    border-radius: 50%;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.button-add-sheet-analogia{
+    position: absolute;
+    left: 0.5%;
+    bottom: 5%;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3%;
+    aspect-ratio: 1;
+    border: none;
+    background-color: rgb(75, 136, 201);
     color: white;
     border-radius: 50%;
     transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
@@ -40,4 +60,14 @@
 .button-add-sheet:hover {
     background-color: #22c55e;
     transform: scale(1.1);
+}
+
+@media (max-width: 480px) {
+    .button-add-sheet-analogia{
+        border: none;
+        width: 10%;
+        bottom: 3%;
+        left: 3%;
+    }
+
 }

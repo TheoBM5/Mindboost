@@ -41,7 +41,7 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
   }
 
 .list-Unorded{
@@ -54,11 +54,11 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding:0;
-    border: 2px solid red;
+    /* border: 2px solid red; */
   }
 
   .list-link{
-    border: 2px solid red;
+    /* border: 2px solid red; */
     width: 100%;
     height: 45px;
     display: flex;
@@ -72,7 +72,7 @@
   
 
 .nav-anchor{
-  border: 2px solid green;
+  /* border: 2px solid green; */
   display: flex;  
   width: 100%;
   height: 45px;
@@ -80,11 +80,48 @@
   align-items: center;
   border-radius: 12px;
   text-decoration: none;
+  padding-left: 10px;
+}
+
+.nav-ancho-mini{
+  display: flex;  
+  width: 100%;
+  height: 45px;
+  gap: 1rem;
+  align-items: center;
+  border-radius: 12px;
+  text-decoration: none;
+  padding-left: 0;
+}
+
+.profile-img-bar div{
+  display: none;
+}
+
+.new-button-mini{
+  
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  padding: 0;
+  justify-self: center;
+}
+
+.new-button-mini img{
+  color: #0048b5;
+ 
+}
+
+.new-button-mini span{
+  display: none;
+}
+
+.text-mini{
+  display: none;
 }
 
 .group-img
 {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   min-width: 30px;
   font-size: 20px;
   filter: invert(100%);
@@ -102,23 +139,48 @@
   padding-right: 10px;
 }
 
+.logout-img:hover{
+  filter: invert(80%);
+}
+
 .cont-out{
-  border: 2px solid red;
+  height: 70%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 1fr);  
+  /* border: 2px solid red; */
 }
 .link-out{
   display: flex;
-  padding: 1rem;
+
+  justify-content:  start;
+  align-items: center;
+  cursor: pointer;
+}
+
+.link-out:hover{
+  color: rgb(182, 182, 182);
 }
 
 
-.cont-out :hover{
-  filter: invert(80%);
-  
-}
 
 .button-new{
-  background-color: #00000000;
+  display: flex;
+  width: 90%;
+  height: 40%;
+  align-items: center;
+  background-color: #1c65c0e5;
+  gap: 10px;
+  padding: 0.5rem;
+  border-radius: 12px;
   border:none;
+  cursor: pointer;
+  justify-self: center;
+}
+
+.button-new:hover{
+  background-color: #12608a;
+  
 }
 
 .logo-left{
@@ -141,6 +203,11 @@
   cursor: pointer;
   right: 15px;
   top: 15px;
+}
+
+.button-new span{
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  color: white;
 }
 
 

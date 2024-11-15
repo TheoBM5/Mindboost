@@ -23,7 +23,7 @@ function NavbarLeft() {
           <nav className={`${openBar ? "side" : "side-mini"} ${buttonSide ? "max-side" : ""}`} onClick={() => setOpenBar(!openBar)}>
             <div className="start-side">
               <span className='header-tittle'><img className="logo-left" src="/img/logo2.webp" alt="Mindboost"/></span>
-              <UserCard/>
+              <UserCard className={`${openBar ? "" : "profile-img-bar"}`}/>
             </div>
             <ul className="list-Unorded">
                 {navigation.map((link) => {    
@@ -33,7 +33,8 @@ function NavbarLeft() {
                         className="list-link">
                         <NavLink
                           to={link.route}
-                          className="nav-anchor">
+                          className={`${openBar ? "nav-anchor" : "nav-ancho-mini"}`}
+                          >
                           <img
                               src={link.imgURL}
                               alt={link.label}
@@ -47,10 +48,9 @@ function NavbarLeft() {
 
             </ul>
             <footer className="cont-out">
-
-              <button className="leftsidebar-link nav-container button-new"
+              <button className={`${openBar ? "button-new" : "new-button-mini"}`}
                 onClick={() => {
-                  setModalOpen(true); // Abre el modal al hacer clic en "New"
+                  setModalOpen(true); 
                 }}
               >
                 <img
@@ -58,19 +58,20 @@ function NavbarLeft() {
                   alt="New"
                   className={"group-img"}
                 />
-                <span>Nuevo</span>
+                <span >Nuevo</span>
+
               </button>
               
-                  <a className="link-out"
-                      onClick={()=>{
-                        signout()
-                      }}
-                      >
-                      <img  className="logout-img"
-                        src={"src/assets/icons/logout-2.svg"}
-                      />
-                      <p>Salir</p>
-                  </a>
+              <a className="link-out"
+                  onClick={()=>{
+                    signout()
+                  }}
+                  >
+                  <img  className="logout-img"
+                    src={"src/assets/icons/logout-2.svg"}
+                  />
+                  <p className={`${openBar ? "" : "text-mini"}`}>Salir</p>
+              </a>
 
               </footer>
             

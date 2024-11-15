@@ -1,7 +1,10 @@
-import React from 'react';
-import { Download, Upload, BookOpen } from 'lucide-react';
 
+import { Download, Upload, BookOpen } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 const Header = ({ onUpload, onDownload }) => {
+    const [barOpen, setBarOpen] = useState(false);
+
+
     const handleFileUpload = async (event) => {
         const file = event.target.files?.[0];
         if (!file) return;
@@ -26,27 +29,27 @@ const Header = ({ onUpload, onDownload }) => {
       return (
         <header className="cont-header-comic">
           <div className="header-comic">
-            <div className="logo-comic">
+            <div className="logo-comic" onClick={() => setBarOpen(!barOpen)}>
               <BookOpen size={32} />
               <h1 className="title-logo-comic">Mindboost</h1>
             </div>
             <div className="cont-button-comic">
-              <label className="label-button-comic">
+              <button className="button-upload-comic">
                 <Upload className="img-upload-comic" size={20} />
-                <span>Upload Project</span>
+                <span>Cargar</span>
                 <input
                   type="file"
                   accept=".json"
                   onChange={handleFileUpload}
                   className="input-header-comic"
                 />
-              </label>
+              </button>
               <button
                 onClick={onDownload}
                 className="button-download-comic"
               >
                 <Download className="img-upload-comic" size={20} />
-                <span>Download Project</span>
+                <span>Descargar</span>
               </button>
             </div>
           </div>

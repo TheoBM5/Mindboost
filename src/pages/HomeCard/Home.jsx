@@ -2,13 +2,15 @@ import { useEffect } from "react"
 import CardsContent from "../../components/Cards/CardsContent";
 import {useState} from 'react';
 import {useDecks} from '../../context/DeckContext';
+import { SquarePlus } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'
 import './Home.css';
 
 import NavbarLeft from "../../components/Navbarleft/NavbarLeft";
 function Home() {
   const {decks, loadDecks, getDeckReview} = useDecks();
   const [reviewDecks, setReviewDecks] = useState([]);
-
+  const navigate = useNavigate();
   console.log("reviewdecks",reviewDecks)
   useEffect(() => {
     loadDecks();
@@ -21,7 +23,14 @@ function Home() {
   if (decks.length === 0) return (
     <div className="box">
     <NavbarLeft className="nav-bar-left"/>
-    <h1 className="text-3xl font-bold">No decks found</h1>
+    <div className="cont-no-decks">
+      <h1 className="text-no-deck">No decks found</h1>
+      <div className="nuevo-deck-no" onClick={() => navigate("/deck/new")}>
+        <label>Nuevo Deck</label>
+        <SquarePlus />
+      </div>
+      <img className="img-no-deck" src="/img/planetass.webp"/>
+    </div>
     </div>
   )
   
