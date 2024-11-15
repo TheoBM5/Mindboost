@@ -1,5 +1,5 @@
 import Router from "express-promise-router";
-import { profile, signin, signout, signup } from "../controllers/auth.controller.js";
+import { profile, signin, signout, signup, preferences, savePreferences } from "../controllers/auth.controller.js";
 import { isAuth } from '../middlewares/auth.middleware.js';
 import {validateSchema} from '../middlewares/validate.middleware.js';
 import { signinSchema, signupSchema } from "../schemas/auth.schema.js";
@@ -9,5 +9,7 @@ router.post("/signin", validateSchema(signinSchema), signin);
 router.post("/signup", validateSchema(signupSchema), signup);
 router.post("/signout", signout);
 router.get("/profile", isAuth, profile);
+router.get("/preferences", isAuth, preferences);
+router.post("/save-preferences", isAuth, savePreferences);
 
 export default router;
