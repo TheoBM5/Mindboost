@@ -48,7 +48,7 @@
 }
 
 .continue-style{
-    width: 50rem;
+    width: 50%;
 }
 
 
@@ -154,6 +154,10 @@
         margin-top: 1rem;
     }
     .continue-button {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .estilo-Card-8 {
         width: 80%;
         margin: 0 auto;
     }

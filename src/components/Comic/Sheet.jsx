@@ -1,11 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Trash2 } from 'lucide-react';
 import Frame from './Frame';
+import {useForm} from "react-hook-form";
+import { useNavigate, useParams, useLocation  } from "react-router-dom";
+import { useCards } from "../../context/CardContext";
+import { Buton, Button, Input, Label } from "../../components/ui/index";
+import { uploadImage } from "../../utils/uploadImage"; 
+
 import "./Comic.css";
+import html2canvas from 'html2canvas'; // Importa html2canvas
 
 const Sheet = ({ id, frames, onRemove, onUpdate, selectedTool }) => {
   const [selectedFrameId, setSelectedFrameId] = useState(null);
+  const {register, handleSubmit, reset, formState: {errors}, setValue} = useForm ();
   const [containerBounds, setContainerBounds] = useState(new DOMRect(0, 0, 0, 0));
+  const {createCard, updateCard, loadCard, errors: CardErrors} = useCards();
+  const location = useLocation();
+  const params = useParams();
+  const navigate = useNavigate();
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -49,9 +61,74 @@ const Sheet = ({ id, frames, onRemove, onUpdate, selectedTool }) => {
     }
   };
 
+
+  const onExport = async (title) => {
+    let dataUrl;
+    let imageUrl = null; // Declara imageUrl al inicio
+  
+    if (containerRef.current) {
+      try {
+        const canvas = await html2canvas(containerRef.current, {
+          backgroundColor: null,
+        });
+        dataUrl = canvas.toDataURL('image/png'); // Asigna a dataUrl correctamente
+      } catch (error) {
+        console.error("Error generating canvas:", error);
+        return; // Termina la ejecución si hay un error al generar la imagen
+      }
+    }
+  
+    // Subir imagen
+    try {
+      if (dataUrl) {
+        imageUrl = await uploadImage(dataUrl);  
+        console.log("Image URL:", imageUrl);
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  
+    // Crear el objeto de datos para la tarjeta
+    const cardData = {
+      title: title,
+      imageUrl: imageUrl,
+    };
+  
+    // Crear la tarjeta
+    try {
+      console.log(params.deckid, cardData, params.id);
+      const deck = await createCard(params.deckid, cardData, params.id, 9); 
+      navigate("/"); // Navega a la página principal después de guardar
+    } catch (error) {
+      console.error("Error saving card:", error);
+    }
+  };
+
+  const onSubmit = (formData) => {
+    const { title } = formData;
+    console.log("Form data submitted", formData);
+    onExport(title); 
+  };
+
+
+
   return (
     <div className="cont-sheet">
-      <h2 className="title-hoja">Hoja {id}</h2>
+      <header className='header-analogy'>
+        <Label>Titulo</Label>
+        <form  onSubmit={onSubmit}>
+              <Input 
+                
+                {...register("title", {
+                  required: true,
+                })}
+              />
+              {errors.title && (
+                <p className="error-message">El título es obligatorio</p>
+              )}
+              
+            </form>
+      </header>
       <button
         onClick={onRemove}
         className="button-remove-hoja"
@@ -76,12 +153,21 @@ const Sheet = ({ id, frames, onRemove, onUpdate, selectedTool }) => {
           />
         ))}
       </div>
-      <button
-        onClick={addFrame}
-        className="button-add-frame"
-      >
-       Frame
-      </button>
+      <footer className='footer-analogy'>
+        <button
+          onClick={addFrame}
+          className="button-add-frame"
+        >
+        Frame
+        </button>
+        <button
+          onClick={handleSubmit(onSubmit)}
+          className="button-add-frame"
+        >
+        Terminar
+        </button>
+
+      </footer>
     </div>
   );
 };

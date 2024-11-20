@@ -93,24 +93,39 @@ function FlashCard() {
 
 
 
-  const handleButtonClick = (num) => {
+  const handleCardFlip = () => {
+    setShowBack(true);
+    setShowInput(true);
+  };
+  
+  const handleReviewComplete = (num) => {
+    if (currentCardIndex < cards.length) {
+      const { racha, ef, interval_repeat, fechanueva } = sm2(
+        num, 
+        currentCard.racha, 
+        currentCard.interval_repeat, 
+        currentCard.ef, 
+        currentCard.review_date
+      );
+      
 
-    if (showBack) {
-      if (currentCardIndex < cards.length) {
-        setCurrentCardIndex((prevIndex) => (prevIndex + 1) % cards.length);
-        const { racha, ef, interval_repeat, fechanueva } = sm2(num, currentCard.racha, currentCard.interval_repeat, currentCard.ef, currentCard.review_date)
-        console.log("despues sm2", racha, ef, interval_repeat, fechanueva);
-        updateReviewCards(racha, ef, interval_repeat, fechanueva, currentCard.idcard);
-        setKey(prevKey => prevKey + 1);
-        navigate('/');
-      }
-      else {
-        setKey(prevKey => prevKey + 1);
-        navigate('/');
-      }
+      updateReviewCards(racha, ef, interval_repeat, fechanueva, currentCard.idcard);
+
+      setKey(prevKey => prevKey + 1);
+      setCurrentCardIndex((prevIndex) => (prevIndex + 1) % cards.length); 
+  
+      navigate('/');
     } else {
-      setShowBack(true);
-      setShowInput(true);
+
+      navigate('/');
+    }
+  };
+
+  const handleButtonClick = (num) => {
+    if (showBack) {
+      handleReviewComplete(num);
+    } else {
+      handleCardFlip();
     }
   };
 
@@ -258,7 +273,7 @@ function FlashCard() {
             )}
           </Card>
         </div>
-      ) : currentCard.typecard === "8" ? (
+      ) : currentCard.typecard === "8" || currentCard.typecard === "9"? (
         <div className="content-8">
           <Card key={currentCard.idcard} className="estilo-Card-8">
             {showBack ? (

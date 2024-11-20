@@ -1,81 +1,89 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Play, Pause, Square  } from 'lucide-react';
+import { Play, Pause, Square } from 'lucide-react';
 import './Reloj.css';
 
 
-function Reloj2({initialTime, onTimeEnd, size, className, onTimeStart, pauseBlock, classText, sizeCircle, restriction}) {
-    const [time, setTime] = useState(initialTime);
-    const [isRunning, setIsRunning] = useState(false);
-    const intervalRef = useRef(null);
-    const stopwatchRef = useRef(null);
+function Reloj2({ initialTime, onTimeEnd, size, className, onTimeStart, pauseBlock, classText, sizeCircle, restriction }) {
+  const [time, setTime] = useState(initialTime);
+  const [isRunning, setIsRunning] = useState(false);
+  const [buttonsflex, setbuttonsflex] = useState(false);
+  const intervalRef = useRef(null);
+  const stopwatchRef = useRef(null);
 
-    const formatTime = (time) => {
-        const minutes = String(Math.floor(time / 60)).padStart(2, '0');
-        console.log(minutes)
-      const seconds = String(time % 60).padStart(2, '0');
-      return `${minutes}:${seconds}`;
-    };
-  
-    const playPause = () => {
-      if(restriction){
-        onTimeStart();
-      }
-      if (isRunning) {
-        clearInterval(intervalRef.current);
-      } else {
-        intervalRef.current = setInterval(() => {
-          setTime((prevTime) => {
-            if (prevTime > 0) {
-              return prevTime - 1;
-            } else {
-              clearInterval(intervalRef.current);
-              setIsRunning(false);
-              if (onTimeEnd) onTimeEnd(); 
-              return 0;
-            }
-          });
-        }, 1000);
-      }
-      setIsRunning(!isRunning);
-    };
-  
-    const stop = () => {
+  const formatTime = (time) => {
+    const minutes = String(Math.floor(time / 60)).padStart(2, '0');
+    console.log(minutes)
+    const seconds = String(time % 60).padStart(2, '0');
+    return `${minutes}:${seconds}`;
+  };
+
+  const playPause = () => {
+    if (restriction) {
+      onTimeStart();
+      setbuttonsflex(true);
+      console.log(buttonsflex)
+
+    }
+    if (isRunning) {
       clearInterval(intervalRef.current);
-      setIsRunning(false);
-      setTime(initialTime);
-    };
-  
-    useEffect(() => {
-      if (stopwatchRef.current) {
-        stopwatchRef.current.innerText = formatTime(time);
-      }
-    }, [time]);
-  
-    useEffect(() => {
-      return () => clearInterval(intervalRef.current);
-    }, []);
-  
-    const percentage = ((initialTime - time) / initialTime) * 360;
+    } else {
+      intervalRef.current = setInterval(() => {
+        setTime((prevTime) => {
+          if (prevTime > 0) {
+            return prevTime - 1;
+          } else {
+            clearInterval(intervalRef.current);
+            setIsRunning(false);
+            if (onTimeEnd) onTimeEnd();
+            return 0;
+          }
+        });
+      }, 1000);
+    }
+    setIsRunning(!isRunning);
+  };
+
+  const stop = () => {
+    clearInterval(intervalRef.current);
+    setIsRunning(false);
+    setTime(initialTime);
+  };
+
+  useEffect(() => {
+    if (stopwatchRef.current) {
+      stopwatchRef.current.innerText = formatTime(time);
+    }
+  }, [time]);
+
+  useEffect(() => {
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  useEffect(() => {
+    console.log("buttonsflex ha cambiado:", buttonsflex);
+  }, [buttonsflex]);
+
+  const percentage = ((initialTime - time) / initialTime) * 360;
 
   return (
-    <main className={`${className}`}   style={{ '--size': size }} >
-    <div className={`circle-3 ${sizeCircle}`} style={{
+    <main className={`${className}`} style={{ '--size': size }} >
+      <div className={`circle-3 ${sizeCircle}`} style={{
         '--size': size,
         background: `conic-gradient(rgb(119, 119, 255) ${percentage}deg, white 0deg)`,
       }}>
-        <div id="stopwatch" className={`stopwatch-2 ${classText}`}  ref={stopwatchRef}>00:00</div>
-        <div className="buttons-3">
-        <Square className="stop2" onClick={stop}/>
-            {isRunning ? (
-        <Pause id="play-pause2" className="paused2" onClick={playPause} />
-      ) : (
-        <Play id="play-pause2" className="paused2" onClick={playPause} />
-      )}
+        <div id="stopwatch" className={`stopwatch-2 ${classText}`} ref={stopwatchRef}>00:00</div>
+        <div className="buttons-3" style={ buttonsflex ? { display: 'none' } : {}}>
+          <Square className="stop2" onClick={stop} />
+          {isRunning ? (
+            <Pause id="play-pause2" className="paused2" onClick={playPause} />
+          ) : (
+            <Play id="play-pause2" className="paused2" onClick={playPause} />
+          )}
         </div>
-       
-    </div>
+
+      </div>
     </main>
-  
+
   )
 }
 export default Reloj2

@@ -35,13 +35,13 @@ const Header = ({ onUpload, onDownload }) => {
             </div>
             <div className="cont-button-comic">
               
-              <button
+              {/* <button
                 onClick={onDownload}
                 className="button-download-comic"
               >
                 <Download className="img-upload-comic" size={20} />
                 <span>Descargar</span>
-              </button>
+              </button> */}
             </div>
           </div>
         </header>

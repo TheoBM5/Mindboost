@@ -240,6 +240,26 @@ padding-bottom: 1rem;
   }
 
 
+  .header-analogy{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+  }
+
+  .header-analogy input{
+    width: 70%;
+    background-color: #5e5e5e;
+    color: white;
+  }
+
+  .footer-analogy{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   @media (max-width: 480px) {
   .title-logo-comic{
     display: none;
