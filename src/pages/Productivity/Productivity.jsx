@@ -15,7 +15,6 @@ function Productivity() {
   
     // Ordenar por impacto (de mayor a menor)
     selected.sort((a, b) => b.impact - a.impact);
-    console.log("op", selected[0])
     navigate(`/survey/${selected[0].id}`)
 
   };

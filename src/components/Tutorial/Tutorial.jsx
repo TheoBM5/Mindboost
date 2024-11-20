@@ -1,36 +1,58 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Tutorial.css'
 
 const Tutorial = ({ steps, onClose }) => {
-    const [currentStep, setCurrentStep] = useState(0);
-  
-    useEffect(() => {
-      const element = document.querySelector(steps[currentStep].selector);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  const [currentStep, setCurrentStep] = useState(0);
+  const modalRef = useRef(null);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
+
+  useEffect(() => {
+    const element = document.querySelector(steps[currentStep].selector);
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+
+      let top = rect.top + window.scrollY;
+      let left = rect.left;
+
+      if (top + modalRef.current.offsetHeight > windowHeight) {
+        top = windowHeight - modalRef.current.offsetHeight - 10; 
       }
-    }, [currentStep, steps]);
-  
-    const nextStep = () => {
-      if (currentStep < steps.length - 1) {
-        setCurrentStep(currentStep + 1);
-      } else {
-        onClose();
+      if (left + modalRef.current.offsetWidth > windowWidth) {
+        left = windowWidth - modalRef.current.offsetWidth - 10;
       }
-    };
-    return (
-      <div className="tutorial-overlay">
-        <div className="tutorial-modal" style={{
-          position: 'absolute',
-          top: `${document.querySelector(steps[currentStep].selector)?.getBoundingClientRect().top + window.scrollY}px`,
-          left: `${document.querySelector(steps[currentStep].selector)?.getBoundingClientRect().left}px`
-        }}>
-          <h3>{steps[currentStep].title}</h3>
-          <p>{steps[currentStep].message}</p>
-          <button onClick={nextStep}>Siguiente</button>
-          <button onClick={onClose}>Cerrar</button>
-        </div>
-      </div>
-    );
+
+      setPosition({ top, left });
+    }
+  }, [currentStep, steps]);
+
+  const nextStep = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      onClose();
+    }
   };
-export default Tutorial
+
+  return (
+    <div className="tutorial-overlay">
+      <div
+        ref={modalRef}
+        className="tutorial-modal"
+        style={{
+          position: 'absolute',
+          top: `${position.top}px`,
+          left: `${position.left}px`,
+        }}
+      >
+        <h3>{steps[currentStep].title}</h3>
+        <p>{steps[currentStep].message}</p>
+        <button onClick={nextStep}>Siguiente</button>
+        <button onClick={onClose}>Cerrar</button>
+      </div>
+    </div>
+  );
+};
+
+export default Tutorial;

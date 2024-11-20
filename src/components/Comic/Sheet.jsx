@@ -8,7 +8,7 @@ import { Buton, Button, Input, Label } from "../../components/ui/index";
 import { uploadImage } from "../../utils/uploadImage"; 
 
 import "./Comic.css";
-import html2canvas from 'html2canvas'; // Importa html2canvas
+import html2canvas from 'html2canvas'; 
 
 const Sheet = ({ id, frames, onRemove, onUpdate, selectedTool }) => {
   const [selectedFrameId, setSelectedFrameId] = useState(null);
@@ -64,31 +64,30 @@ const Sheet = ({ id, frames, onRemove, onUpdate, selectedTool }) => {
 
   const onExport = async (title) => {
     let dataUrl;
-    let imageUrl = null; // Declara imageUrl al inicio
-  
+    let imageUrl = null; 
     if (containerRef.current) {
       try {
         const canvas = await html2canvas(containerRef.current, {
           backgroundColor: null,
         });
-        dataUrl = canvas.toDataURL('image/png'); // Asigna a dataUrl correctamente
+        dataUrl = canvas.toDataURL('image/png'); 
       } catch (error) {
         console.error("Error generating canvas:", error);
-        return; // Termina la ejecución si hay un error al generar la imagen
+        return; 
       }
     }
   
-    // Subir imagen
+
     try {
       if (dataUrl) {
         imageUrl = await uploadImage(dataUrl);  
-        console.log("Image URL:", imageUrl);
+       
       }
     } catch (error) {
       console.error("Error uploading image:", error);
     }
   
-    // Crear el objeto de datos para la tarjeta
+
     const cardData = {
       title: title,
       imageUrl: imageUrl,
@@ -96,9 +95,8 @@ const Sheet = ({ id, frames, onRemove, onUpdate, selectedTool }) => {
   
     // Crear la tarjeta
     try {
-      console.log(params.deckid, cardData, params.id);
       const deck = await createCard(params.deckid, cardData, params.id, 9); 
-      navigate("/"); // Navega a la página principal después de guardar
+      navigate("/"); 
     } catch (error) {
       console.error("Error saving card:", error);
     }
@@ -106,7 +104,6 @@ const Sheet = ({ id, frames, onRemove, onUpdate, selectedTool }) => {
 
   const onSubmit = (formData) => {
     const { title } = formData;
-    console.log("Form data submitted", formData);
     onExport(title); 
   };
 

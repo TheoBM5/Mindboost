@@ -46,7 +46,7 @@ export const DeckProvider = ({ children }) => {
 
   const deleteDeck = async (id) => {
     const res = await deleteDeckRequest(id);
-    console.log("cardContext",res)
+
     if (res.status === 204) {
       setDecks(decks.filter((deck) => deck.id !== id));
     }
@@ -64,7 +64,7 @@ export const DeckProvider = ({ children }) => {
   };
 
   const getDeckReview = async () => {
-    console.log("ressssssss")
+
     const res = await getDeckReviewRequest();
     return res.data;
   };

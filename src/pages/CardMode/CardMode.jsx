@@ -211,7 +211,7 @@ function CardMode() {
 
   const handleContainerClick = (cardId) => {
     setSelectedCard(cardId);
-    console.log("selecciodddn", selectedCard)
+    
   };
 
   const handleCancelar = () => {
@@ -219,12 +219,10 @@ function CardMode() {
   }
 
   const handleConfirm = () => {
-    console.log("selected", selectedCard);
-    // Usa isTutorialMode para condicionar la navegación
     if (selectedCard === "0" || selectedCard === "10" || selectedCard === "11" || selectedCard === "12") {
       navigate(`/deck/${params.id}/${params.deckid}/new/card/${selectedCard}`, { state: isTutorialMode });
     } else if (selectedCard === "1") {
-      console.log("logro")
+
       navigate(`/deck/${params.id}/${params.deckid}/achievement`, { state: isTutorialMode });
     } else if (selectedCard === "2") {
       navigate(`/deck/${params.id}/${params.deckid}/clock`, { state: isTutorialMode });

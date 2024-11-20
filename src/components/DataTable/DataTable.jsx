@@ -44,7 +44,6 @@ function DataTable() {
         })) ?? []
     ), [cards]);
 
-    console.log(cards)
 
     const handleRowClick  = (row) => {
       row.getToggleSelectedHandler();

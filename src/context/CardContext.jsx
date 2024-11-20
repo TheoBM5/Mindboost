@@ -42,7 +42,7 @@ export const CardProvider = ({ children }) => {
   const createCard = async (deckId, card, user_id, typeCard) => { 
     try {
       const res = await createCardRequest(deckId, card, user_id, typeCard);
-      console.log(res)
+
       setCards([...cards, res.data]);
       return res.data;
     } catch (error) {
@@ -72,7 +72,7 @@ export const CardProvider = ({ children }) => {
 
   const loadReviewCards = useCallback(async (user_id, deckId) => {
     const res = await getAllReviewCardsRequest(user_id, deckId);
-    console.log(res.data)
+
     setCards(res.data);
   }, []);
 
@@ -85,9 +85,9 @@ export const CardProvider = ({ children }) => {
         interval_repeat,
         review_date
       };
-      console.log("contexto antes: ",data,id);
+   
       const res = await updateReviewCardRequest(id, data);
-      console.log("contexto despues",res.data)
+ 
       return res.data;
     } catch(error){
       if (error.response) {

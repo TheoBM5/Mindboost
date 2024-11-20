@@ -12,7 +12,7 @@ function Reloj2({ initialTime, onTimeEnd, size, className, onTimeStart, pauseBlo
 
   const formatTime = (time) => {
     const minutes = String(Math.floor(time / 60)).padStart(2, '0');
-    console.log(minutes)
+
     const seconds = String(time % 60).padStart(2, '0');
     return `${minutes}:${seconds}`;
   };
@@ -21,7 +21,7 @@ function Reloj2({ initialTime, onTimeEnd, size, className, onTimeStart, pauseBlo
     if (restriction) {
       onTimeStart();
       setbuttonsflex(true);
-      console.log(buttonsflex)
+
 
     }
     if (isRunning) {

@@ -30,8 +30,6 @@ export const signinSchema = z.object({
         required_error: 'El email es requerido',
         invalid_type_error: 'El email debe ser un texto'
     }).refine(value => {
-        console.log('Value:', value);
-        console.log('Regex test:', emailRegex.test(value));
         return emailRegex.test(value);
     },{
         message: 'El email debe ser un email valido'

@@ -49,7 +49,6 @@ function RubberDuckChat() {
   const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
   const startTutorial = () => setIsTutorialActive(true);
   const endTutorial = () => setIsTutorialActive(false);
-  console.log("tutorial", isTutorialActive)
   const navigate = useNavigate();
   
   const handleAddQuestion = () => {
@@ -125,14 +124,12 @@ function RubberDuckChat() {
       const deck = await createCard(params.deckid, finalData, params.id, 5);
       if (deck) {
         navigate("/");
-        console.log("Deck creado:", deck);
+  
       }
     } catch (error) {
       console.error("Error al guardar los datos:", error);
     }
   
-    console.log("Datos guardados (JSON):", JSON.stringify(finalData));
-    console.log("Datos guardados (Objeto):", finalData);
   };
 
   return (

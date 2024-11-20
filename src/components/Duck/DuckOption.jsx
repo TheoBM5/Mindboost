@@ -9,7 +9,6 @@ function DuckOption() {
     const params = useParams();
     const location = useLocation();
     const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
-    console.log("tutorial", isTutorialActive)
     const handleOptionSelect = (option) => {
       setSelectedOption(option);
     };
@@ -19,7 +18,6 @@ function DuckOption() {
       }
     
     const handleSelectMode = () => {
-        console.log(params)
         if(selectedOption === "rubberDuck"){
             navigate(`/deck/${params.id}/${params.deckid}/duck1`, { state: isTutorialActive } );
         }

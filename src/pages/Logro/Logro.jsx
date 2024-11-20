@@ -54,7 +54,7 @@ function Logro() {
   const modalRef = useRef(null);
   const location = useLocation();
   const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
-  console.log("tutorial", isTutorialActive)
+
 
   const startTutorial = () => setIsTutorialActive(true);
   const endTutorial = () => setIsTutorialActive(false);
@@ -76,7 +76,6 @@ function Logro() {
     if(iconUploaded)
       {
         setImgLogro(ICON_NAMES[selectedIcon])
-        console.log("ren",imgLogro)
         setIsOpen(false);
       }
     setImgLogro(name);
@@ -115,7 +114,7 @@ function Logro() {
 
   const handleSendLogro = async (formData) => {
     try {
-      console.log(formData)
+
       let data = {};
       if(!iconUploaded){
         const imageUrl = await uploadImage(ImageLogro.current);
@@ -128,7 +127,7 @@ function Logro() {
       // Combinar los datos del formulario con la URL de la imagen
       const deck = await createCard(params.deckid, data, params.id, 3);
       if (deck) {
-        console.log(deck);
+        navigate("/")
       }
 
       alert('Imagen subida y guardada con éxito');
@@ -187,12 +186,10 @@ function Logro() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
-        console.log("Click afuera, cerrando modal"); // Verificación en consola
+
         setIsOpen(false);
         
-      } else {
-        console.log("Click dentro del modal");
-      }
+      } 
     };
 
     document.addEventListener("mouseup", handleClickOutside); // Cambiamos a "mouseup"

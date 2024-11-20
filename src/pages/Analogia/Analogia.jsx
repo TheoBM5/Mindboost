@@ -41,7 +41,6 @@ function Analogia() {
   const [selectedTool, setSelectedTool] = useState('move');
   const location = useLocation();
   const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
-  console.log("tutorial", isTutorialActive)
   const startTutorial = () => setIsTutorialActive(true);
   const endTutorial = () => setIsTutorialActive(false);
 

@@ -29,7 +29,6 @@ export function AuthProvider({ children }) {
       setIsAuth(true);
 
       const { preferences } = res.data;
-      console.log("preferences",preferences)
       if (preferences) {
         // Cargamos las preferencias en el estado de preferencias
         usePreferencesStore.getState().loadPreferences({

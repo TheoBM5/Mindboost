@@ -5,7 +5,6 @@ import React from "react";
 export function UserCard({className}) {
 
   const {user} = useAuth()
-  console.log("->img",user)
   return (
     <Link to={"/profile"} className='enlace'>
       <article className={`user-Card ${className}`}>

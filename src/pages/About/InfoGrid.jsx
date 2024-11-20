@@ -9,7 +9,7 @@ function InfoGrid() {
     const [activeTitle, setActiveTitle] = useState(0);
     const handleSelectInfo = (section) =>{
         setActiveTitle(section);
-        console.log(section)
+
     }
     const modes = [
         { id: "0", label: "Apuntes Sub", img: `/img/flashw.webp`},

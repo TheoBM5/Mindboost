@@ -22,8 +22,6 @@ export const getDeck = async (req, res) => {
 
 export const createDeck = async (req, res, next) => {
     const {title, description, icon} = req.body;
-    console.log(req.body)
-    console.log(icon)
     try{
         const result = await pool.query(
         "INSERT INTO deck (title, description, user_id, icon_name) VALUES ($1, $2, $3, $4) RETURNING *",  
@@ -41,7 +39,6 @@ export const createDeck = async (req, res, next) => {
 };
     
 export const updateDeck = async (req, res) => {
-    console.log(req.userId)
     const id = req.params.id;
     const {title, description, icon} = req.body;
 
@@ -57,7 +54,7 @@ export const updateDeck = async (req, res) => {
 
 export const deleteDeck = async (req, res) => {
     const result = await pool.query('DELETE FROM deck WHERE id = $1 RETURNING *',[req.params.id])
-    console.log(result)
+
 
     if(result.rowCount === 0){
         return res.status(404).json({
@@ -70,7 +67,7 @@ export const deleteDeck = async (req, res) => {
 
 export const getDeckReview = async (req, res) => {
     try {
-        console.log('Controller getDeckReview - User ID:', req.userId); // Añadir registro
+         // Añadir registro
 
         const result = await pool.query(`
             SELECT DISTINCT d.id AS deck_id
@@ -81,11 +78,11 @@ export const getDeckReview = async (req, res) => {
             AND d.user_id = $1
         `, [req.userId]);
 
-        console.log('Query Result:', result.rows); // Añadir registro
+        console.log('Query Result:', result.rows);
 
         return res.json(result.rows);
     } catch (error) {
-        console.error('Error en getDeckReview:', error.message); // Añadir registro
+        console.error('Error en getDeckReview:', error.message);
         return res.status(500).json({ error: 'Error interno del servidor' });
     }
 };

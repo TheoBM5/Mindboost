@@ -47,8 +47,6 @@ function RubberDuck() {
   const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
   const startTutorial = () => setIsTutorialActive(true);
   const endTutorial = () => setIsTutorialActive(false);
-  console.log("tutorial2222", isTutorialActive)
-
 
   const handleInputChange = (event) => {
     clearTimeout(typingTimeout);
@@ -67,7 +65,7 @@ function RubberDuck() {
 const handleColorChange = (color) => {
   setSelectedColor(color.hex);
   setColorDuck(color.hex);
-  console.log(selectedColor)
+
 };
 
 const handleClickOutside = (event) => {
@@ -93,7 +91,7 @@ useEffect(() => {
       const deck = await createCard(params.deckid, data, params.id, 4);
       if (deck) {
         navigate("/");
-        console.log(deck);
+
       }
 
       // alert('Imagen subida y guardada con éxito');

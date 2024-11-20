@@ -5,7 +5,6 @@ function GeneralInfo() {
 
   const handleMouseEnter = (section) => {
     setHoveredTitle(section);
-    console.log(section)
   };
   const modes = [
     { id: "0", label: "Apuntes Sub", img: `/img/flashw.webp`},

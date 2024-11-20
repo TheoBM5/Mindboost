@@ -24,7 +24,7 @@ function FlashCard() {
   const currentCard = cards[currentCardIndex];
   let isLastQuestion = false;
   let currentQuestion = 0;
-  console.log("hola", currentCard)
+
 
 
   function addDaysToDate(fecha, days) {
@@ -70,13 +70,13 @@ function FlashCard() {
     if (fechanueva <= fechaActual) {
       fechanueva = addDaysToDate(fechaActual, 1);
     }
-    console.log("despues", fechanueva);
+
     return { racha, ef, interval_repeat, fechanueva };
   }
 
   useEffect(() => {
     loadReviewCards(params.id, params.deckid);
-
+  
   }, [params.id, params.deckid, loadReviewCards]);
 
 
@@ -134,7 +134,6 @@ function FlashCard() {
   }
 
   const sortContent = (content) => {
-    console.log(content)
     return content
       .split('\n')
       .sort((a, b) => {
@@ -145,19 +144,11 @@ function FlashCard() {
       .join('\n');
   };
 
-
   const handleNextQuestion = () => {
-    console.log("input", showInput);
-    console.log("lastquestion", isLastQuestion);
-
     if (showInput || isLastQuestion) {
       if (isLastQuestion) {
-        setShowBack(true);
+        setShowBack(true); // Mostrar la parte trasera si es la última pregunta
       } else {
-        // Avanza a la siguiente pregunta
-        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-        const isLastQuestion = currentQuestionIndex === currentCard.content.questions.length;
-        setShowInput(false);
         setAnsweredQuestions((prev) => [
           ...prev,
           {
@@ -165,18 +156,25 @@ function FlashCard() {
             answer: currentQuestion.answer,
           },
         ]);
+  
+        setCurrentQuestionIndex((prevIndex) => {
+          const nextIndex = prevIndex + 1;
+          if (nextIndex >= currentCard.content.questions.length) {
+            return prevIndex; 
+          }
+          return nextIndex;
+        });
+  
+        setShowInput(false); 
       }
-
     } else {
       setShowInput(true);
-
     }
   };
 
-
   if (currentCard.typecard == "5") {
     currentQuestion = currentCard.content.questions[currentQuestionIndex];
-    isLastQuestion = currentQuestionIndex === currentCard.content.questions.length - 1;
+    isLastQuestion = currentQuestionIndex >= currentCard.content.questions.length - 1;
   }
 
   return (

@@ -33,7 +33,6 @@ function CardFormPage() {
     useEffect(()=>{
         if(params.id){
             loadDeck(params.id).then(deck=>{
-                console.log(deck)
                 setValue('title', deck.title);
                 setValue('description', deck.description);
                 setSelectedIcon(deck.icon_name); // Actualiza el estado de selectedIcon

@@ -33,7 +33,7 @@ function CardFormPage() {
     const hasIdCard = params.hasOwnProperty('idcard');
     const location = useLocation();
     const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
-    console.log("tutorial", isTutorialActive)
+
 
     const startTutorial = () => setIsTutorialActive(true);
     const endTutorial = () => setIsTutorialActive(false);
@@ -56,7 +56,6 @@ function CardFormPage() {
     }
 
     const maxLengthCharacter = params.mode == 10 ? 140 : params.mode == 11 ? 160 : params.mode == 12 ? 40 : undefined
-    console.log("max", maxLengthCharacter)
     return (
         <div className="size-form-card">
             {isTutorialActive && (

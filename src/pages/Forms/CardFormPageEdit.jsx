@@ -27,15 +27,13 @@ function CardFormPageEdit({CardObject, onClose, handleUpdateRow }) {
 
     useEffect(()=>{
         if(CardObject){
-            // console.log(JSON.stringify(CardObject, null, 2));
-            console.log("carddddddddd",CardObject.content)
             const card_object = {front: CardObject.front, reverse: CardObject.reverse};
             setValue('front', CardObject.content.front);
             setValue('reverse', CardObject.content.reverse);
             if(CardObject.typecard === "3"){
                 if(CardObject.content.imageUrl){
                     setValue('imgurl', CardObject.content.imageUrl);
-                    console.log("cccccc",CardObject.content.imageUrl)
+   
                 }
                 else{
                     setValue("icon", CardObject.content.icon)

@@ -48,7 +48,6 @@ function ExcalidrawComp() {
   const params = useParams();
   const navigate = useNavigate();
   const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
-  console.log("tutorial", isTutorialActive)
   const startTutorial = () => setIsTutorialActive(true);
   const endTutorial = () => setIsTutorialActive(false);
 
@@ -68,7 +67,7 @@ function ExcalidrawComp() {
     blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
     try {
       imageUrl = await uploadImage(blob);  
-      console.log("Image URL:", imageUrl);
+
     } catch (error) {
       console.error("Error uploading image:", error);
       imageUrl = null; 
@@ -80,7 +79,6 @@ function ExcalidrawComp() {
     };
 
     try {
-      console.log(params.deckid, cardData, params.id);
       const deck = await createCard(params.deckid, cardData, params.id, 8); 
       navigate("/");
     } catch (error) {
@@ -91,7 +89,6 @@ function ExcalidrawComp() {
 
   const onSubmit = (formData) => {
     const { title } = formData;
-    console.log("Form data submitted", formData);
     onExport(title); 
   };
 

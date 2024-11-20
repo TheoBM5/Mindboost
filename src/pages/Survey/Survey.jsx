@@ -15,7 +15,6 @@ function Survey() {
   const [output, setOutput] = useState('');
   const [clasesIa, setClasesIa] = useState(null);
   const params = useParams();
-  console.log("par",params.opc)
   const handleAnswerClick = (selectedOption, index) => {
     setUserAnswers([...userAnswers, { question: currentNode.question, answer: selectedOption.answer }]);
     const newBinaryAnswer = index === 0 ? 0 : 1;  
@@ -41,9 +40,7 @@ function Survey() {
 
   const handleIa = async () => {
     try {
-      console.log(Array.isArray(binaryAnswers)); 
       const result = await runPythonScript(binaryAnswers);
-      console.log("Resultado", result)
       const clasesIa = answersClass[result];
       setClasesIa(clasesIa);
       setOutput(result.prediction);
