@@ -1,6 +1,7 @@
 .text-area-wrap{
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .text-area-comp{

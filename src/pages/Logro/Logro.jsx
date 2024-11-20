@@ -1,14 +1,40 @@
 import {Card, Input, TextArea, Button, Label} from "../../components/ui/index";
 import {useForm} from "react-hook-form";
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation  } from "react-router-dom";
 import { ICON_NAMES } from "../../constants/icon"; 
-import axios from 'axios';
+import Tutorial from "../../components/Tutorial/Tutorial";
 import ModalCrop from "../ImageRecorte/ModalCrop";
 import { useCards } from "../../context/CardContext";
 import { CiImageOn, CiUser, CiCircleList  } from "react-icons/ci";
+import { uploadImage } from "../../utils/uploadImage"; 
 import './Logro.css';
+
+const tutorialSteps = [
+  { 
+    selector: '.text-area-logro-cont', 
+    title: 'Descripción', 
+    message: 'Escribe aquí los pasos o detalles del procedimiento asociado al logro.' 
+  },
+  { 
+    selector: '.cont-image-logro', 
+    title: 'Imagen', 
+    message: 'Selecciona una imagen o un ícono que represente este logro.' 
+  },
+  { 
+    selector: '.input-logro', 
+    title: 'Título', 
+    message: 'Ingresa un título breve y descriptivo para identificar el logro.' 
+  },
+  { 
+    selector: '.button-aplicar-contenedor', 
+    title: 'Aplicar', 
+    message: 'Usa estos botones para guardar los cambios o regresar al menú anterior.' 
+  },
+];
+
 function Logro() {
+  
   const {register, handleSubmit, reset, formState: {errors}, setValue, clearErrors} = useForm ();
   const [selectedIcon, setSelectedIcon] = useState('')
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +52,12 @@ function Logro() {
   const ImageLogro = useRef("");
   const navigate = useNavigate();
   const modalRef = useRef(null);
+  const location = useLocation();
+  const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
+  console.log("tutorial", isTutorialActive)
+
+  const startTutorial = () => setIsTutorialActive(true);
+  const endTutorial = () => setIsTutorialActive(false);
   const ImagelogroUpdate = (imgSrc) => {
     ImageLogro.current = imgSrc;
     setValue('icon', imgSrc);
@@ -86,7 +118,7 @@ function Logro() {
       console.log(formData)
       let data = {};
       if(!iconUploaded){
-        const imageUrl = await uploadImageToCloudinary(ImageLogro.current);
+        const imageUrl = await uploadImage(ImageLogro.current);
         delete formData.icon;
         data = { ...formData, imageUrl };
       } else {
@@ -176,7 +208,9 @@ function Logro() {
 
   return (
     <div className="page-logro-container">
-
+        {isTutorialActive && (
+        <Tutorial steps={tutorialSteps} onClose={endTutorial} />
+      )}
         <Card className={"logro-style-card"}>
                 <form className="logro-content" onSubmit={onSubmit} autoComplete="off">
                 <div className="text-area-logro-cont">

@@ -8,26 +8,35 @@
 
 .line-buttons{
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));	
+    width: 80%;
+    grid-template-columns: repeat(4, minmax(10%, 1fr));	
     gap: 5rem;
-    margin: 3rem 0rem;
+    margin: 3rem auto;
     padding: 2rem 0rem;
+    justify-self: center;
 }
 
 .content{
-    display: block;
-    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
 }
 
 .estiloCard{
     display: flex;
-    width: 50rem;
-    height: 20rem;
+    width: 40%;
+    height: 30%;
     padding: 5.5rem;
     text-align: center;
     align-items: center;
     justify-content: center;
-    position: inherit;
+    margin: 0 auto;
+}
+
+.estiloCard p{
+    font-size: clamp(1.5rem, 100%, 10.5rem);
 }
 
 .continue-button{
@@ -83,4 +92,69 @@
     width: 70%;
     height: 60%;
     overflow-y: scroll;
+}
+
+.card-image-canva-repaso{
+    width: 20%;
+}
+
+
+.estilo-Card-8 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .card-image-cropped {
+    width: 50%;
+    height: 150px; /* Ajusta la altura según el recorte deseado */
+    object-fit: cover; /* Esto asegura que la imagen se recorte sin distorsión */
+    border-radius: 8px;
+    margin-top: 1rem;
+  }
+  
+  .card-image-full {
+    width: 50%;
+    height: auto; /* Muestra toda la imagen */
+    object-fit: contain; /* Ajusta la imagen sin recortarla */
+    border-radius: 8px;
+    margin-top: 1rem;
+  }
+  
+  
+  .continue-style {
+    margin-top: 1rem;
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .card-front {
+    text-align: center;
+  }
+
+
+@media (max-width: 450px) {
+    .estiloCard {
+        height: 20%;
+        width: 50%;
+    }
+
+    .line-buttons{
+        display: grid;
+        width: 80%;
+        grid-template-columns: repeat(2, minmax(5%, 1fr));
+        grid-template-columns: repeat(2, minmax(5%, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    .continue-button {
+        width: 80%;
+        margin: 0 auto;
+    }
 }

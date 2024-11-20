@@ -34,16 +34,7 @@ const Header = ({ onUpload, onDownload }) => {
               <h1 className="title-logo-comic">Mindboost</h1>
             </div>
             <div className="cont-button-comic">
-              <button className="button-upload-comic">
-                <Upload className="img-upload-comic" size={20} />
-                <span>Cargar</span>
-                <input
-                  type="file"
-                  accept=".json"
-                  onChange={handleFileUpload}
-                  className="input-header-comic"
-                />
-              </button>
+              
               <button
                 onClick={onDownload}
                 className="button-download-comic"

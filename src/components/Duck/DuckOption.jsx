@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import './Duck.css';
+
+
 function DuckOption() {
     const [selectedOption, setSelectedOption] = useState(null);
     const navigate = useNavigate();
     const params = useParams();
+    const location = useLocation();
+    const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
+    console.log("tutorial", isTutorialActive)
     const handleOptionSelect = (option) => {
       setSelectedOption(option);
     };
@@ -16,10 +21,10 @@ function DuckOption() {
     const handleSelectMode = () => {
         console.log(params)
         if(selectedOption === "rubberDuck"){
-            navigate(`/deck/${params.id}/${params.deckid}/duck1`)
+            navigate(`/deck/${params.id}/${params.deckid}/duck1`, { state: isTutorialActive } );
         }
         else{
-            navigate(`/deck/${params.id}/${params.deckid}/duckchat`)
+            navigate(`/deck/${params.id}/${params.deckid}/duckchat`, { state:  isTutorialActive } );
         }
     }
 

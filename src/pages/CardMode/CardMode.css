@@ -195,6 +195,10 @@
   cursor: help;
 }
 
+.help-mode-button:hover{
+  filter: invert(0.30);
+}
+
 .modal-modes-cont
 {
   width: 100%;
@@ -217,6 +221,12 @@
   font-weight: bolder;
   top: 15px;
   right: 15px;
+  cursor: pointer;
+}
+
+.close-modal-help:hover
+{
+  filter: invert(0.50);
 }
 
 .circle-help{
@@ -224,6 +234,7 @@
   height: 10px;
   background-color: rgb(85, 85, 85);
   border-radius: 50%;
+ 
 }
 
 .active-circle{
@@ -262,6 +273,7 @@
   border: none;
   color: rgb(175, 175, 175);
   font-size: 40px;
+  cursor: pointer;
 }
 
 .next-button-help{
@@ -273,12 +285,29 @@
   border: none;
   color: rgb(175, 175, 175);
   font-size: 40px;
+  cursor: pointer;
+}
+
+.tutorial-checkbox{
+  grid-column: 2/3;
+  grid-row: 7/8;
+  width: 100%;
+  font-weight: bolder;
+  text-align: center;
+  font-size: clamp(0.5rem, 2vw, 0.8rem);
+  justify-self: center;
 }
 
 .title-help-modal{
   grid-column: 2/5;
   grid-row: 1/2;
+  background: linear-gradient(87deg, rgb(91, 225, 255) 0%, rgb(78, 190, 255) 100%); 
+  background-clip: text;
+  -webkit-background-clip: text; 
+  color: transparent;
 }
+
+
 
 .label-title-modes{
   font-size: clamp(1rem, 2vw, 1.5rem);
@@ -287,10 +316,15 @@
 .img-modal-help
 {
   height: 100%;
-  width: 25%;
+  width: 40%;
   grid-column: 1/6;
   grid-row: 2/4;
-  border-radius: 12px;
+  border-radius: 21px;
+  padding: 0 0.2rem;
+  border: none;
+  /* object-fit: fill; */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgb(30, 30, 30)
 }
 
 .text-modal-help
@@ -298,10 +332,37 @@
   display: block;
   grid-column: 2/5;
   grid-row: 5/7;
-  font-size: 20px;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   margin-bottom: 10px;
   line-height: 1.4;
+  align-self: start;
 }
+
+.text-modal-help span{
+  color: rgb(255, 182, 182);
+  font-weight: bold;
+}
+
+.crear-button-modal{
+  grid-column: 4/5;
+  grid-row: 7/8;
+  display: flex; 
+  background-color: rgb(49, 123, 213);
+  border-radius: 12px;
+  color: white;
+  width: 50%;
+  height: 25%;
+  align-items: center;
+  padding: 1rem 2rem;
+  border: 0;
+  cursor: pointer;
+}
+
+.crear-button-modal:hover{
+  color: rgb(224, 224, 224);
+  background-color: rgb(31, 92, 167);
+}
+
 
 .subtitle-help-mode
 {
@@ -310,11 +371,23 @@
   grid-row: 4/5;
   font-weight: bold;
   font-size: 25px;
+  margin-bottom: 0;
+  color: rgb(175, 175, 175);
 }
 
 .imagen-tile-modes{
   width: 80%;
   margin: auto;
+}
+
+.pruebabox
+{
+  width: 80%;
+  height: 100%;
+  background-color: antiquewhite;
+  grid-column: 1/6;
+  grid-row: 2/4;
+  border-radius: 12px;
 }
 
 
@@ -366,6 +439,7 @@
     width: 45%;
     height: 30%;
   }
+
 
   .buttons-confirm{
     display: flex;

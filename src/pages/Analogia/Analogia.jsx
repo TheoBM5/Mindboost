@@ -3,11 +3,47 @@ import { Plus, Minus, Upload, Move, RotateCw, Maximize2 } from 'lucide-react';
 import Sheet from "../../components/Comic/Sheet";
 import Toolbar from "../../components/Comic/ToolBar";
 import Header from "../../components/Comic/Header";
+import Tutorial from "../../components/Tutorial/Tutorial";
+import { useNavigate, useParams, useLocation  } from "react-router-dom";
 import "./Analogia.css";
+
+const tutorialSteps = [
+  { 
+    selector: '.main-analogia', 
+    title: 'Título', 
+    message: 'Escribe aquí el título de tu analogía.' 
+  },
+  { 
+    selector: '.hoja-analogia', 
+    title: 'Frame', 
+    message: 'Este es el espacio donde puedes agregar imágenes que representen tu analogía.' 
+  },
+  { 
+    selector: '.button-add-sheet-analogia', 
+    title: 'Herramientas', 
+    message: 'Estos botones te permiten manipular el frame y sus elementos.' 
+  },
+  { 
+    selector: '.button-add-sheet-analogia', 
+    title: 'Más herramientas', 
+    message: 'Utiliza estos botones adicionales para ajustar o editar el contenido del frame.' 
+  },
+  { 
+    selector: '.header-analogia', 
+    title: 'Guardar', 
+    message: 'Con este boton se guarda el comic' 
+  }
+];
+
 
 function Analogia() {
   const [sheets, setSheets] = useState([{ id: 1, frames: [] }]);
   const [selectedTool, setSelectedTool] = useState('move');
+  const location = useLocation();
+  const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
+  console.log("tutorial", isTutorialActive)
+  const startTutorial = () => setIsTutorialActive(true);
+  const endTutorial = () => setIsTutorialActive(false);
 
   const addSheet = () => {
     setSheets([...sheets, { id: Date.now(), frames: [] }]);
@@ -53,7 +89,10 @@ function Analogia() {
 
   return (
     <div className="cont-analogia">
-      <Header onUpload={handleUpload} onDownload={handleDownload} />
+         {isTutorialActive && (
+        <Tutorial steps={tutorialSteps} onClose={endTutorial} />
+      )}
+      <Header onUpload={handleUpload} onDownload={handleDownload} className="header-analogia" />
       <main className="main-analogia">
         <Toolbar selectedTool={selectedTool} onToolSelect={setSelectedTool} />
         <div className="cont-hoja-analogia">
@@ -72,12 +111,12 @@ function Analogia() {
                 selectedTool={selectedTool}
               />
             ))}
-            <button
+            {/* <button
               onClick={addSheet}
               className="button-add-sheet-analogia"
             >
               <Plus size={24} />
-            </button>
+            </button> */}
           </div>
         </div>
       </main>

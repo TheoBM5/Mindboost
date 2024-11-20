@@ -1,11 +1,35 @@
 import {Card, TextArea, Button, Label} from "../../components/ui/index"
 import {useForm} from "react-hook-form";
 import Reloj from "../../components/Reloj/Reloj";
-import React, { useState, useEffect,useRef  } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useCards } from "../../context/CardContext"
 import Reloj2 from "../../components/Reloj/Reloj2";
+import Tutorial from "../../components/Tutorial/Tutorial";
 import './Contrarreloj.css'
+
+const tutorialSteps = [
+    { 
+        selector: '.area-card-cont', 
+        title: 'Tarjeta', 
+        message: 'Escribe aquí el contenido de las tarjetas que vas a estudiar.' 
+      },
+      { 
+        selector: '.add-button-clock', 
+        title: 'Agregar', 
+        message: 'Utiliza este botón para agregar más tarjetas a tu sesión.' 
+      },
+      { 
+        selector: '.contrarreloj-style', 
+        title: 'Tiempo', 
+        message: 'Este es el reloj que mostrará cuánto tiempo llevas en la sesión. Presiona el botón ▶️ debajo del reloj para comenzar.' 
+      },
+      { 
+        selector: '.card-clock', 
+        title: 'Historial', 
+        message: 'Aquí se mostrarán las preguntas que ya hayas realizado durante esta sesión.' 
+      },
+  ];
 
 function Contrarreloj() {
     const [timeClock, setTimeClock] = useState(0);
@@ -21,6 +45,10 @@ function Contrarreloj() {
     const {createCard, updateCard, loadCard, errors: CardErrors} = useCards();
     const params = useParams();
     const hasIdCard = params.hasOwnProperty('idcard');
+    const location = useLocation();
+    const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
+    const startTutorial = () => setIsTutorialActive(true);
+    const endTutorial = () => setIsTutorialActive(false);
 
     const onSubmit = handleSubmit ((data) => {
         const updatedResponses = [...responses];
@@ -136,8 +164,10 @@ function Contrarreloj() {
             </div>
 
     ) : (
-                
-    <div className="clock-grid">
+        <div className="clock-grid">
+        {isTutorialActive && (
+            <Tutorial steps={tutorialSteps} onClose={endTutorial} />
+          )}
         <div className="area-card-cont">
             <Card className="cardStyle2 card-style-clock">
                 <form className="form-clock" onSubmit={onSubmit}>

@@ -2,9 +2,40 @@ import './RubberDuckChat.css'
 import React, { useState, useRef, useEffect} from 'react';
 import {Card, Input, Label} from '../../components/ui/index';
 import Buton from '../../components/ui/Boton/Buton';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useCards } from "../../context/CardContext";
+import Tutorial from "../../components/Tutorial/Tutorial";
 import ChatDuck from '../../components/ChatDuckCard/ChatDuck';
+
+const tutorialSteps = [
+  { 
+    selector: '.input-title-chat', 
+    title: 'Título del tema', 
+    message: 'Aquí puedes agregar el título del tema sobre el cual el pato realizará preguntas.' 
+  },
+  { 
+    selector: '.card-question-duck img', 
+    title: 'El pato', 
+    message: 'Este es el pato que hará las preguntas y con quien interactuarás en el chat.' 
+  },
+  { 
+    selector: '.question-input-box', 
+    title: 'Preguntas', 
+    message: 'En este espacio puedes escribir las preguntas que quieres que el pato te haga relacionadas con tu tema.' 
+  },
+  { 
+    selector: '.buttons-agregar-chat', 
+    title: 'Administrar preguntas', 
+    message: 'Usa estos botones para agregar nuevas preguntas o eliminar las que ya no necesites.' 
+  },
+  { 
+    selector: '.chat-duck-interaction', 
+    title: 'Responde al pato', 
+    message: 'En la siguiente pantalla podrás interactuar con el pato respondiendo a las preguntas que te haga.' 
+  },
+];
+
+
 function RubberDuckChat() {
   const [questions, setQuestions] = useState([{ id: 1, text: '', answer: ''}]);
   const [makeQuestions, setMakeQuestions] = useState(true);
@@ -14,6 +45,11 @@ function RubberDuckChat() {
   const endOfContentRef = useRef(null);
   const {createCard, updateCard, loadCard, errors: CardErrors} = useCards();
   const params = useParams();
+  const location = useLocation();
+  const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
+  const startTutorial = () => setIsTutorialActive(true);
+  const endTutorial = () => setIsTutorialActive(false);
+  console.log("tutorial", isTutorialActive)
   const navigate = useNavigate();
   
   const handleAddQuestion = () => {
@@ -102,7 +138,11 @@ function RubberDuckChat() {
   return (
     <div>
     {makeQuestions ? (
+      
       <div className='cont-duck2'>
+        {isTutorialActive && (
+          <Tutorial steps={tutorialSteps} onClose={endTutorial} />
+        )}
       <Card className={"card-question-duck"}>
         {/* <Buton className="close-questions-card" label="X"/> */}
             <div className='title-duck2'>

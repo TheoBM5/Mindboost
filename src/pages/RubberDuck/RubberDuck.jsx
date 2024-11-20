@@ -8,9 +8,30 @@ import Onda from "./Onda";
 import Wave from "./Wave";
 import {Card, Input, TextArea, Button, Label} from "../../components/ui/index";
 import { CiTrash } from "react-icons/ci";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useCards } from "../../context/CardContext"
+import Tutorial from "../../components/Tutorial/Tutorial";
 import './RubberDuck.css'
+
+const tutorialSteps = [
+  { 
+    selector: '.title-duck-text', 
+    title: 'Título del tema', 
+    message: 'Aquí puedes agregar el título del tema que el pato te ayudará a comprender.' 
+  },
+  { 
+    selector: '.text-description-duck', 
+    title: 'El pato', 
+    message: 'Si no escribes nada, el pato flotará. Cuando comiences a escribir, el pato comenzará a surfear las olas, ayudándote a visualizar la fluides que tienes con el tema.' 
+  },
+  { 
+    selector: '.duck-window', 
+    title: 'Guardar', 
+    message: 'Aquí puedes guardar el texto que le escribas al pato, para que puedas consultarlo más tarde.' 
+  },
+];
+
+
 function RubberDuck() {
   const [isTyping, setIsTyping] = useState(false);
   const [colorWindow, setColorWindow] = useState(false);
@@ -22,6 +43,11 @@ function RubberDuck() {
   let typingTimeout = null;
   const { color_duck, setColorDuck } = usePreferencesStore();
   const [selectedColor, setSelectedColor] = useState(color_duck);
+  const location = useLocation();
+  const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
+  const startTutorial = () => setIsTutorialActive(true);
+  const endTutorial = () => setIsTutorialActive(false);
+  console.log("tutorial2222", isTutorialActive)
 
 
   const handleInputChange = (event) => {
@@ -83,6 +109,9 @@ useEffect(() => {
 
   return (
     <main className="rubber-duck-cont">
+        {isTutorialActive && (
+          <Tutorial steps={tutorialSteps} onClose={endTutorial} />
+        )}
         <Card className={"card-duck-text"}>
           <form className="duck-form" onSubmit={onSubmit}>
           <Label>Titulo</Label>

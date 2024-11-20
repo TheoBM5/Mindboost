@@ -7,8 +7,36 @@ import { Excalidraw, exportToCanvas,
     } from "@excalidraw/excalidraw";
 import "./ExcalidrawComp.css";
 import {useForm} from "react-hook-form";
+import Tutorial from "../../components/Tutorial/Tutorial";
+import { useNavigate, useParams, useLocation  } from "react-router-dom";
 import { useCards } from "../../context/CardContext";
 import { Buton, Button, Input, Label } from "../../components/ui/index";
+import { uploadImage } from "../../utils/uploadImage"; 
+
+const tutorialSteps = [
+  { 
+    selector: '.canva-config', 
+    title: 'Espacio de trabajo', 
+    message: 'Este es el lienzo donde puedes agregar imágenes, formas y textos para crear tu diseño.' 
+  },
+  { 
+    selector: '.canva-tools', 
+    title: 'Herramientas', 
+    message: 'Aquí encontrarás las herramientas necesarias para personalizar tu Canva, como agregar elementos o editar su apariencia.' 
+  },
+  { 
+    selector: '.button-export-canva', 
+    title: 'Guardar diseño', 
+    message: 'Haz clic aquí para guardar tu Canva una vez que hayas terminado de editarlo.' 
+  },
+  { 
+    selector: '.button-export-canva', 
+    title: 'Titulo', 
+    message: 'Aquí puedes ver una previsualización de tu diseño y asegurarte de que todo esté como deseas y se le agregua un titulo' 
+  }
+];
+
+
 
 function ExcalidrawComp() {
   const [canvasUrl, setCanvasUrl] = useState("");
@@ -16,54 +44,67 @@ function ExcalidrawComp() {
   const [modal, setModal] = useState(false);
   const {createCard, updateCard, loadCard, errors: CardErrors} = useCards();
   const {register, handleSubmit, reset, formState: {errors}, setValue} = useForm ();
-  const onExport = async (type) => {
-    setModal(true);
+  const location = useLocation();
+  const params = useParams();
+  const navigate = useNavigate();
+  const [isTutorialActive, setIsTutorialActive] = useState(location.state ?? false);
+  console.log("tutorial", isTutorialActive)
+  const startTutorial = () => setIsTutorialActive(true);
+  const endTutorial = () => setIsTutorialActive(false);
+
+  const onExport = async (title) => {
+    setModal(true); 
     if (!excalidrawAPI) {
       return false;
     }
-
+    let imageUrl = null;
+    // Exportamos la imagen del canvas (captura de pantalla)
     let blob;
-    if (type === "png") {
       const canvas = await exportToCanvas({
         elements: excalidrawAPI.getSceneElements(),
         appState: excalidrawAPI.getAppState(),
         files: excalidrawAPI.getFiles(),
       });
-      blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
-    } else if (type === "svg") {
-      const svg = await exportToSvg({
-        elements: excalidrawAPI.getSceneElements(),
-        appState: excalidrawAPI.getAppState(),
-        files: excalidrawAPI.getFiles(),
-      });
-      blob = new Blob([svg.outerHTML], { type: "image/svg+xml" });
-    } else if (type === "json") {
-      const json = JSON.stringify({
-        elements: excalidrawAPI.getSceneElements(),
-        appState: excalidrawAPI.getAppState(),
-        files: excalidrawAPI.getFiles(),
-      });
-      blob = new Blob([json], { type: "application/json" });
+    blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+    try {
+      imageUrl = await uploadImage(blob);  
+      console.log("Image URL:", imageUrl);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      imageUrl = null; 
     }
+    
+    const cardData = {
+      title: title,
+      imageUrl: imageUrl,
+    };
 
-    // Convert the blob to a URL and set it to display the image
-    const url = URL.createObjectURL(blob);
-    setCanvasUrl(url);
-    console.log(canvasUrl)
+    try {
+      console.log(params.deckid, cardData, params.id);
+      const deck = await createCard(params.deckid, cardData, params.id, 8); 
+      navigate("/");
+    } catch (error) {
+      console.error("Error saving card:", error);
+    }
   };
 
-  const onSubmit = handleSubmit(async (formData) => {
-    console.log(formData);
-    console.log("hola");
-  });
+
+  const onSubmit = (formData) => {
+    const { title } = formData;
+    console.log("Form data submitted", formData);
+    onExport(title); 
+  };
 
 
   return (
     <>
     <div>
-            <button className="button-export-canva" onClick={onExport.bind(null, "png")}>
-              Terminar
-            </button>
+    {isTutorialActive && (
+        <Tutorial steps={tutorialSteps} onClose={endTutorial} />
+      )}
+        <button className="button-export-canva" onClick={() => setModal(true)}>
+          Terminar
+        </button>
           </div>
     <div className="canva-config">
       <Excalidraw
@@ -79,7 +120,7 @@ function ExcalidrawComp() {
           },
           scrollToContent: true,
         }}
-        excalidrawAPI={(api) => setExcalidrawAPI(api)} // Using API prop to access the Excalidraw API
+        excalidrawAPI={(api) => setExcalidrawAPI(api)} 
       />
     </div>
     {modal && (
@@ -101,7 +142,7 @@ function ExcalidrawComp() {
             <img className="img-canva-export" src={canvasUrl} alt="" />
             <div className="cont-button-canva-export">
               <Button className={"button-canva-export"} onClick={() => setModal(false)}>Editar</Button>
-              <Button type="submit" className={"button-canva-export"} onClick={onSubmit}>
+              <Button type="submit" className={"button-canva-export"} onClick={handleSubmit(onSubmit)}>
                 Terminar
               </Button>
             </div>

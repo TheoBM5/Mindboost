@@ -8,19 +8,19 @@
     background: rgb(12, 11, 11);
     color: rgb(140, 140, 140);
     text-align: center;
-    font-size: 0.875rem;
+    font-size: clamp(1rem, 0.8vw, 1.5rem);
     line-height: 1.25rem;
-    font-weight: bold;
+    font-weight: bolder;
     align-items: center;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     justify-content: center;
     padding: 0.5rem 0.75rem;
+    cursor: pointer;
 }
 
 .button-red, .button-green,
 .button-orange, .button-yellow{
     padding: 1rem 0rem;
-    color: rgb(175, 175, 175);
+    color: rgb(255, 255, 255);
     content: '';
 }
 
@@ -31,7 +31,7 @@
 }
 
 .button-red{
-    background: rgb(255, 124, 124);
+    background: rgb(251, 96, 96);
     border:  1px solid rgb(12, 11, 11);
 }
 
@@ -44,8 +44,8 @@
 
 .button-green
 {
-    background: rgb(124, 255, 168);
-    border:  3px solid rgb(124, 255, 168);
+    background: rgb(35, 204, 92);
+    border:  3px solid rgb(45, 195, 95);
 }
 
 .button-green:hover{
@@ -55,7 +55,7 @@
 
 .button-orange
 {
-    background: rgb(255, 196, 124);
+    background: rgb(255, 184, 97);
     border:  3px solid rgb(255, 196, 124);
 }
 
@@ -66,7 +66,7 @@
 
 .button-yellow
 {
-    background: rgb(242, 255, 124);
+    background: rgb(242, 227, 6);
     border:  3px solid rgb(245, 255, 49);
 }
 
