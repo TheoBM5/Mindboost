@@ -3,28 +3,38 @@ import CardsContent from "../../components/Cards/CardsContent";
 import {useState} from 'react';
 import {useDecks} from '../../context/DeckContext';
 import { SquarePlus } from 'lucide-react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import './Home.css';
 
 import NavbarLeft from "../../components/Navbarleft/NavbarLeft";
 function Home() {
-  const {decks, loadDecks, getDeckReview} = useDecks();
+  const { decks, loadDecks, getDeckReview } = useDecks();
   const [reviewDecks, setReviewDecks] = useState([]);
   const navigate = useNavigate();
-  console.log("reviewdecks",reviewDecks)
+  const location = useLocation();
+
   useEffect(() => {
+    // Cargar los decks y las revisiones de los decks
     loadDecks();
     getDeckReview().then((reviewDecksData) => {
       const reviewDeckIds = reviewDecksData.map((deck) => deck.deck_id);
       setReviewDecks(reviewDeckIds);
     });
-  }, []);
+  }, [location]); // Dependemos de location para actualizar cuando cambie la ruta
+
+  useEffect(() => {
+    // Este useEffect asegura que si 'decks' cambia, recargamos la información de las revisiones
+    getDeckReview().then((reviewDecksData) => {
+      const reviewDeckIds = reviewDecksData.map((deck) => deck.deck_id);
+      setReviewDecks(reviewDeckIds);
+    });
+  }, [decks]); 
 
   if (decks.length === 0) return (
     <div className="box">
     <NavbarLeft className="nav-bar-left"/>
     <div className="cont-no-decks">
-      <h1 className="text-no-deck">No decks found</h1>
+      <h1 className="text-no-deck">No hay decks que Estudiar</h1>
       <div className="nuevo-deck-no" onClick={() => navigate("/deck/new")}>
         <label>Nuevo Deck</label>
         <SquarePlus />

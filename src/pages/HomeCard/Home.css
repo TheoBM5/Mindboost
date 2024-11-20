@@ -89,7 +89,7 @@
   /* Pantallas pequeñas (móviles) */
   @media (max-width: 480px) {
     .deck-space{
-        gap: 1rem;
+        gap: 1.4rem;
         padding: 10px;
         margin-top: 65px;
         grid-template-columns: repeat( auto-fill, minmax(280px, 1fr));

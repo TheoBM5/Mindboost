@@ -90,7 +90,8 @@
 .deck-buttons{
     display: flex;
     justify-content: space-around;
-    position: inherit;
+    position: relative;
+    width: 100%;
   }
 
 .options{
@@ -123,7 +124,7 @@
     cursor: pointer;
   }
   
-.menu {
+.menu, .menu-2 {
 
     background: rgb(47, 47, 47);
     border: none;
@@ -131,8 +132,13 @@
     border-radius: 10px;
     position: absolute;
     z-index: 2;
-    left: 15.5rem;
-    top: 3.5rem;
+    left: 0;
+    top: 0;
+    font-size: clamp(0.8rem 80%, 2rem);
+  }
+
+  .menu-2{
+    left: 70%;
   }
 
   .menu-item {
@@ -195,4 +201,8 @@
   .card-image-img{
     width: 50%;
   }
+  .menu, .menu-2{
+    font-size: clamp(0.7rem, 40%, 2rem);
+  }
+  
 }

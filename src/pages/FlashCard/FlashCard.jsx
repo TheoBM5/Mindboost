@@ -17,9 +17,10 @@ function FlashCard() {
   const [showInput, setShowInput] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const navigate = useNavigate();
-  const [answeredQuestions, setAnsweredQuestions] = useState([]); // Lista de preguntas ya respondidas
-  const [showAnswer, setShowAnswer] = useState(false); // Controla cuándo mostrar la respuesta
+  const [answeredQuestions, setAnsweredQuestions] = useState([]); 
+  const [showAnswer, setShowAnswer] = useState(false); 
   const chatContainerRef = useRef(null);
+  const [key, setKey] = useState(0);
   const currentCard = cards[currentCardIndex];
   let isLastQuestion = false;
   let currentQuestion = 0;
@@ -67,7 +68,7 @@ function FlashCard() {
 
     let fechanueva = addDaysToDate(fechaActual, interval_repeat);
     if (fechanueva <= fechaActual) {
-      fechanueva = addDaysToDate(fechaActual, 1); // Establece la nueva fecha al menos un día en el futuro
+      fechanueva = addDaysToDate(fechaActual, 1);
     }
     console.log("despues", fechanueva);
     return { racha, ef, interval_repeat, fechanueva };
@@ -100,9 +101,11 @@ function FlashCard() {
         const { racha, ef, interval_repeat, fechanueva } = sm2(num, currentCard.racha, currentCard.interval_repeat, currentCard.ef, currentCard.review_date)
         console.log("despues sm2", racha, ef, interval_repeat, fechanueva);
         updateReviewCards(racha, ef, interval_repeat, fechanueva, currentCard.idcard);
+        setKey(prevKey => prevKey + 1);
         navigate('/');
       }
       else {
+        setKey(prevKey => prevKey + 1);
         navigate('/');
       }
     } else {

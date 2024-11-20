@@ -104,7 +104,7 @@ function CardsContent({deck, className}) {
            {isOpen2 &&(
             <button
               className='menu'
-              style={{left: "7rem"}}
+             
               ref={menuMode}
             >
               <div className='menu-item' onClick={handleNewCard}>Tarjeta Clasica</div>
@@ -122,7 +122,7 @@ function CardsContent({deck, className}) {
                     ⋮
                   </button>
                   {isOpen && (
-                    <button className="menu" ref={menuRef}>
+                    <button className="menu-2" ref={menuRef}>
                       <div className="menu-item" onClick={handleEditClickDeck}>Editar deck</div>
                       <div className="menu-item" onClick={handleEditClick}>Editar card</div>
                       <div className="menu-item" onClick={handleDeleteClick}>Eliminar</div>
