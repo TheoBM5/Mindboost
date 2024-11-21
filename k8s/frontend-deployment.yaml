@@ -17,6 +17,13 @@ spec:
         image: theobm5/mindboost-frontend:latest
         ports:
         - containerPort: 80
+        env:
+        - name: BACKEND_URL
+          value: "http://backend:3000"  # Configura la URL del backend aquí
+        - name: DB_HOST
+          value: "postgres"  # Si el frontend necesita conectarse directamente a la base de datos, configura la URL de PostgreSQL aquí (pero lo usual es que se conecte al backend, no a la base de datos directamente)
+        - name: DB_PORT
+          value: "5432"  # Puerto del servicio de la base de datos si es necesario
 ---
 apiVersion: v1
 kind: Service
@@ -29,5 +36,5 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
-    nodePort: 30080
-  type: NodePort
+    nodePort: 30080  # El puerto al cual accederás desde fuera del clúster
+  type: NodePort  # El tipo de servicio que expone el frontend

@@ -1,4 +1,61 @@
-CREATE TABLE users (
+CREATE SEQUENCE public.card_id_seq
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    START 1
+    CACHE 1
+    NO CYCLE;
+
+CREATE SEQUENCE public.deck_id_seq
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    START 1
+    CACHE 1
+    NO CYCLE;
+
+CREATE SEQUENCE public.preference_id_seq
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    START 1
+    CACHE 1
+    NO CYCLE;
+
+CREATE SEQUENCE public.user_card_parameters_id_seq
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    START 1
+    CACHE 1
+    NO CYCLE;
+
+CREATE SEQUENCE public.user_card_parameters_copies_id_seq
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    START 1
+    CACHE 1
+    NO CYCLE;
+
+CREATE SEQUENCE public.user_deck_id_seq
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    START 1
+    CACHE 1
+    NO CYCLE;
+
+CREATE SEQUENCE public.users_id_seq
+    INCREMENT BY 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    START 1
+    CACHE 1
+    NO CYCLE;
+
+-- Crear las tablas
+CREATE TABLE public.users (
     id serial4 NOT NULL,
     username varchar(255) NOT NULL,
     "name" varchar(255) NOT NULL,
@@ -12,7 +69,7 @@ CREATE TABLE users (
     CONSTRAINT users_username_key UNIQUE (username)
 );
 
-CREATE TABLE deck (
+CREATE TABLE public.deck (
     id serial4 NOT NULL,
     title varchar(255) NOT NULL,
     "type" varchar(255) NULL,
@@ -21,42 +78,29 @@ CREATE TABLE deck (
     icon_name varchar(255) NULL DEFAULT 'Star'::character varying,
     CONSTRAINT deck_pkey PRIMARY KEY (id),
     CONSTRAINT deck_title_key UNIQUE (title),
-    CONSTRAINT deck_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id)
+    CONSTRAINT deck_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id)
 );
 
-CREATE TABLE user_deck (
+CREATE TABLE public.preference (
     id serial4 NOT NULL,
-    user_id int4 NULL,
-    deck_id int4 NULL,
-    CONSTRAINT user_deck_pkey PRIMARY KEY (id),
-    CONSTRAINT user_deck_deck_id_fkey FOREIGN KEY (deck_id) REFERENCES deck(id),
-    CONSTRAINT user_deck_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id)
+    user_id int4 NOT NULL,
+    img_duck varchar(255) NULL DEFAULT '1'::character varying,
+    color_duck varchar(255) NULL DEFAULT 'blue'::character varying,
+    mode_color varchar(255) NULL DEFAULT 'dark'::character varying,
+    CONSTRAINT preference_pkey PRIMARY KEY (id),
+    CONSTRAINT preference_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id)
 );
 
-CREATE TABLE card (
+CREATE TABLE public.card (
     id serial4 NOT NULL,
     "content" json NULL,
     typecard text NULL,
     deck_id int4 NULL,
     user_id int4 NULL,
     CONSTRAINT card_pkey PRIMARY KEY (id),
-    CONSTRAINT card_deck_id_fkey FOREIGN KEY (deck_id) REFERENCES deck(id),
-    CONSTRAINT card_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id)
+    CONSTRAINT card_deck_id_fkey FOREIGN KEY (deck_id) REFERENCES public.deck(id),
+    CONSTRAINT card_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id)
 );
-
--- Table Triggers
-
-CREATE TRIGGER after_card_insert
-AFTER INSERT
-ON public.card
-FOR EACH ROW
-EXECUTE FUNCTION public.card_parameters();
-
--- public.user_card_parameters definition
-
--- Drop table
-
--- DROP TABLE public.user_card_parameters;
 
 CREATE TABLE public.user_card_parameters (
     idcard int4 NOT NULL DEFAULT nextval('user_card_parameters_id_seq'::regclass),
@@ -72,20 +116,6 @@ CREATE TABLE public.user_card_parameters (
     CONSTRAINT user_card_parameters_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id)
 );
 
--- Table Triggers
-
-CREATE TRIGGER trigger_copy_user_card_parameters
-AFTER UPDATE
-ON public.user_card_parameters
-FOR EACH ROW
-EXECUTE FUNCTION public.copy_user_card_parameters();
-
--- public.user_card_parameters_copies definition
-
--- Drop table
-
--- DROP TABLE public.user_card_parameters_copies;
-
 CREATE TABLE public.user_card_parameters_copies (
     id serial4 NOT NULL,
     racha int4 NULL,
@@ -97,11 +127,19 @@ CREATE TABLE public.user_card_parameters_copies (
     CONSTRAINT user_card_parameters_copies_parameter_id_fkey FOREIGN KEY (parameter_id) REFERENCES public.user_card_parameters(idcard)
 );
 
--- DROP FUNCTION public.card_parameters();
+CREATE TABLE public.user_deck (
+    id serial4 NOT NULL,
+    user_id int4 NULL,
+    deck_id int4 NULL,
+    CONSTRAINT user_deck_pkey PRIMARY KEY (id),
+    CONSTRAINT user_deck_deck_id_fkey FOREIGN KEY (deck_id) REFERENCES public.deck(id),
+    CONSTRAINT user_deck_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id)
+);
 
+-- Crear funciones y triggers
 CREATE OR REPLACE FUNCTION public.card_parameters()
-RETURNS trigger
-LANGUAGE plpgsql
+ RETURNS trigger
+ LANGUAGE plpgsql
 AS $function$
 BEGIN
     INSERT INTO user_card_parameters (user_id, card_id, racha, ef, interval_repeat)
@@ -110,16 +148,20 @@ BEGIN
 END;
 $function$;
 
--- DROP FUNCTION public.copy_user_card_parameters();
-
 CREATE OR REPLACE FUNCTION public.copy_user_card_parameters()
-RETURNS trigger
-LANGUAGE plpgsql
+ RETURNS trigger
+ LANGUAGE plpgsql
 AS $function$
 BEGIN
-    -- Insertar una copia de los datos actualizados en la tabla de copias
     INSERT INTO user_card_parameters_copies (parameter_id, racha, ef, interval_repeat, review_date)
     VALUES (NEW.idcard, NEW.racha, NEW.ef, NEW.interval_repeat, NEW.review_date);
     RETURN NEW;
 END;
 $function$;
+
+-- Crear triggers
+CREATE TRIGGER after_card_insert AFTER INSERT
+    ON public.card FOR EACH ROW EXECUTE FUNCTION card_parameters();
+
+CREATE TRIGGER trigger_copy_user_card_parameters AFTER UPDATE
+    ON public.user_card_parameters FOR EACH ROW EXECUTE FUNCTION copy_user_card_parameters();

@@ -1,8 +1,7 @@
 import dotenv from 'dotenv';
 
-console.log("DB_HOST:", process.env.DB_HOST);
-import app from './app.js';
+import app from "./app.js";
+import { PORT } from "./config.js";
 
-
-app.listen(3000);
-console.log("Server on port", 3000);
+app.listen(PORT);
+console.log("Server on port", PORT);
